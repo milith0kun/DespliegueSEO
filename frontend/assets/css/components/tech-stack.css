@@ -1,0 +1,148 @@
+/* Estilos para la sección de tecnologías */
+.tech-stack-section {
+    position: relative;
+    min-height: 55vh;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    color: white;
+    overflow: hidden;
+}
+
+.parallax-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Aseguramos que esté detrás del contenido */
+}
+
+.tech-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    opacity: 0.1;
+    will-change: transform; /* Optimización para animaciones */
+    transition: opacity 0.3s ease;
+    visibility: visible; /* Cambiado de hidden a visible para que se muestren los iconos */
+}
+
+.tech-layer:hover {
+    opacity: 0.2;
+}
+
+.tech-layer i {
+    font-size: 5rem;
+    color: white;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.tech-layer i:hover {
+    transform: scale(1.2);
+    color: #3B82F6;
+}
+
+.tech-content {
+    position: relative;
+    z-index: 2;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.tech-content h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3B82F6, #2563EB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    max-width: 1200px;
+    margin: 3rem auto 0;
+}
+
+.tech-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform; /* Optimización para animaciones */
+}
+
+.tech-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+}
+
+.tech-item i {
+    font-size: 2.5rem;
+    color: #3B82F6;
+    margin-bottom: 1rem;
+}
+
+.tech-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.tech-item p {
+    color: #a0aec0;
+}
+
+/* Animaciones para estadísticas - Modificado para evitar conflictos */
+/* Estos estilos ahora solo se aplicarán a los elementos stat-item dentro de tech-stack-section */
+.tech-stack-section .stat-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.tech-stack-section .stat-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Aseguramos compatibilidad con diferentes navegadores */
+@supports not (backdrop-filter: blur(10px)) {
+    .tech-item {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Mejoras adicionales para la sección de estadísticas */
+/* Estos estilos se aplicarán a la sección de estadísticas independiente */
+.stats-section .stat-item {
+    opacity: 1; /* Aseguramos que sean visibles por defecto */
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stats-section .stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+}
+
+/* Animación para los números en la sección de estadísticas */
+@keyframes numberAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stats-section .stat-number {
+    animation: numberAnimation 0.8s ease-out forwards;
+}

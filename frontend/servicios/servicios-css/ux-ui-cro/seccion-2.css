@@ -1,0 +1,72 @@
+/* Estilos para la sección 2 de ux-ui-cro */
+
+.service-benefits {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+}
+
+.service-benefits .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.service-benefits h2 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 50px;
+    position: relative;
+    display: inline-block;
+}
+
+.service-benefits h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    border-radius: 2px;
+}
+
+.benefits-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.benefits-list li {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    padding-left: 35px;
+}
+
+.benefits-list li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 15px;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.benefits-list li strong {
+    display: block;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}

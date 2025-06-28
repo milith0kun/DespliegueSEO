@@ -1,0 +1,178 @@
+/* Estilos para la sección de nuestros clientes */
+.clients-section {
+    padding: 5rem 2rem;
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de fondo decorativo sutil */
+.clients-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(37, 99, 235, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 50px;
+    height: 3px;
+    background-color: #3B82F6;
+    transform: translateX(-50%);
+}
+
+.section-header p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilos base para los logos de clientes */
+.client-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    position: relative;
+    height: 120px;
+}
+
+.client-logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    position: relative;
+}
+
+.client-logo:hover {
+    background-color: rgba(59, 130, 246, 0.05);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Implementación de logos con CSS */
+.client-logo a::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.client-logo:hover a::before {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* Logos específicos de empresas de marketing digital, desarrollo y SEO */
+.client-logo:nth-child(1) a::before {
+    background-image: url('https://logo.clearbit.com/hubspot.com');
+}
+
+.client-logo:nth-child(2) a::before {
+    background-image: url('https://logo.clearbit.com/salesforce.com');
+}
+
+.client-logo:nth-child(3) a::before {
+    background-image: url('https://logo.clearbit.com/mailchimp.com');
+}
+
+.client-logo:nth-child(4) a::before {
+    background-image: url('https://logo.clearbit.com/moz.com');
+}
+
+.client-logo:nth-child(5) a::before {
+    background-image: url('https://logo.clearbit.com/semrush.com');
+}
+
+.client-logo:nth-child(6) a::before {
+    background-image: url('https://logo.clearbit.com/wix.com');
+}
+
+.client-logo:nth-child(7) a::before {
+    background-image: url('https://logo.clearbit.com/shopify.com');
+}
+
+.client-logo:nth-child(8) a::before {
+    background-image: url('https://logo.clearbit.com/adobe.com');
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .clients-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .clients-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    .clients-section {
+        padding: 4rem 1.5rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .clients-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .client-logo {
+        padding: 1rem;
+        height: 100px;
+    }
+}

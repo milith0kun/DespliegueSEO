@@ -1,0 +1,165 @@
+/* ============================= */
+/* Sección de Servicios Destacados */
+/* ============================= */
+
+#servicios.services-section {
+    padding: 5rem 2rem;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+#servicios .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+#servicios .section-header h2 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    color: #1a1a1a;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+#servicios .section-header p {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ============================= */
+/* Contenedor de Servicios */
+/* ============================= */
+
+#servicios .services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#servicios .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Exactamente 3 columnas */
+    grid-template-rows: repeat(2, auto); /* 2 filas */
+    gap: 2.5rem;
+    justify-content: center;
+}
+
+/* ============================= */
+/* Tarjetas de Servicio */
+/* ============================= */
+
+#servicios .service-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 2.4rem 1.4rem;
+    border: 1px solid #f0f0f0;
+}
+
+#servicios .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+#servicios .service-card a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Iconos de servicio */
+#servicios .service-icon {
+    margin: 0 auto 1.5rem;
+    width: 150px; /* Iconos aún más grandes */
+    height: 150px; /* Iconos aún más grandes */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+#servicios .service-icon i {
+    font-size: 4rem; /* Tamaño más grande para los iconos de Font Awesome */
+    color: #2e2c2c; /* Color azul para los iconos */
+    transition: all 0.3s ease;
+}
+
+#servicios .service-icon img {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+#servicios .service-card:hover .service-icon {
+    transform: scale(1.1);
+}
+
+#servicios .service-card:hover .service-icon i {
+    color: #7f85d1; /* Color azul más oscuro al hacer hover */
+    transform: scale(1.15); /* Ligero aumento de tamaño al hacer hover */
+    text-shadow: 0 0 15px rgba(106, 113, 207, 0.5); /* Efecto de brillo */
+}
+
+/* Títulos y párrafos */
+#servicios .service-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #000000;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+#servicios .service-card:hover h3 {
+    color: #7567c9;
+}
+
+#servicios .service-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #666;
+    flex-grow: 1;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+/* ============================= */
+/* Ajustes Responsive */
+/* ============================= */
+
+@media (max-width: 992px) {
+    #servicios .services-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #servicios.services-section {
+        padding: 3rem 1rem;
+    }
+    
+    #servicios .services-grid {
+        grid-template-columns: 1fr; /* 1 columna en móviles */
+        gap: 1.5rem;
+        max-width: 450px;
+        margin: 0 auto;
+    }
+    
+    #servicios .service-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    #servicios .service-icon {
+        width: 100px;
+        height: 100px;
+    }
+}

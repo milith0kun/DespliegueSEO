@@ -1,0 +1,258 @@
+/* Estilos específicos para la sección 3 de seo-contenido */
+.service-process {
+    padding: 110px 0 120px; /* Aumentado el padding para mejor espaciado */
+    background-color: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0,0,0,0.05); /* Sutil separador */
+}
+
+.service-process::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.03) 0%, rgba(41, 128, 185, 0.03) 100%);
+    z-index: 0;
+}
+
+/* Transición desde la sección anterior */
+.service-process::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(to top, transparent, rgba(248, 249, 250, 0.9));
+    z-index: 1;
+}
+
+.service-process .container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.service-process h2 {
+    text-align: center;
+    font-size: 2.8rem; /* Tamaño aumentado */
+    margin-bottom: 70px; /* Más espacio debajo del título */
+    color: #2c3e50;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.service-process h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #e74c3c, #3498db);
+    border-radius: 2px;
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajustado para mejor espaciado */
+    gap: 40px; /* Aumentado el espacio entre elementos */
+    margin: 0 auto;
+    max-width: 1100px; /* Limitado el ancho máximo */
+}
+
+.step {
+    background-color: #ffffff;
+    border-radius: 12px; /* Bordes más redondeados */
+    padding: 40px 30px; /* Más padding para mejor espaciado */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); /* Transición mejorada */
+    position: relative;
+    border-bottom: 3px solid transparent;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.step::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px; /* Borde superior más grueso */
+    background: linear-gradient(90deg, #e74c3c, #3498db);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); /* Transición mejorada */
+    z-index: 1;
+}
+
+.step:hover {
+    transform: translateY(-12px); /* Mayor elevación al hover */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border-bottom: 3px solid #e74c3c;
+}
+
+.step:hover::before {
+    transform: scaleX(1);
+}
+
+/* Números de paso con círculos más grandes */
+.step h3 {
+    color: #e74c3c;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.step h3::before {
+    content: attr(data-step); /* Usar atributo data-step para el número */
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+    margin-bottom: 15px;
+}
+
+.step p {
+    color: #555;
+    line-height: 1.7; /* Mejor espaciado entre líneas */
+    font-size: 1.05rem; /* Texto ligeramente más grande */
+}
+
+/* Conectores entre pasos */
+.process-steps {
+    position: relative;
+}
+
+.process-steps::after {
+    content: '';
+    position: absolute;
+    top: 25px; /* Alineado con los círculos de números */
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(231, 76, 60, 0.3), rgba(52, 152, 219, 0.3));
+    z-index: 0;
+}
+
+/* Estilos responsivos */
+@media (max-width: 992px) {
+    .service-process {
+        padding: 90px 0 100px;
+    }
+    
+    .service-process h2 {
+        font-size: 2.5rem;
+        margin-bottom: 60px;
+    }
+    
+    .process-steps::after {
+        display: none; /* Ocultar línea conectora en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 768px) {
+    .service-process {
+        padding: 80px 0 90px;
+    }
+    
+    .service-process h2 {
+        font-size: 2.2rem;
+        margin-bottom: 50px;
+    }
+    
+    .process-steps {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        gap: 30px;
+    }
+    
+    .step {
+        padding: 35px 25px;
+    }
+    
+    .step h3::before {
+        top: -60px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-process {
+        padding: 70px 0 80px;
+    }
+    
+    .service-process h2 {
+        font-size: 2rem;
+    }
+    
+    .step {
+        padding: 30px 20px;
+    }
+    
+    .step h3 {
+        font-size: 1.3rem;
+    }
+    
+    .step h3::before {
+        top: -55px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+.step h3 {
+    color: #e74c3c;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.step p {
+    color: #555;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .service-process h2 {
+        font-size: 2rem;
+    }
+    
+    .process-steps {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+    
+    .step {
+        padding: 25px 20px;
+    }
+}

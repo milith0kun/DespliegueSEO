@@ -1,0 +1,284 @@
+/* Estilos para la sección Cómo Trabajamos - Versión moderna */
+.process-section {
+    padding: 6rem 2rem;
+    background: #594f91; 
+    overflow: hidden;
+    color: white;
+}
+
+/* Efecto de fondo decorativo */
+.process-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+
+
+.process-section .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.process-section .section-header h2 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+.process-section .section-header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 327px); /* Ancho exacto de 327px */
+    gap: 4rem; /* Mayor espacio entre tarjetas */
+    justify-content: center;
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.process-step {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    width: 327px; /* Ancho exacto */
+}
+
+.process-step:hover {
+    transform: translateY(-8px);
+}
+
+/* Posicionamiento específico para cada paso */
+.process-step:nth-child(1) {
+    margin-top: 0;
+}
+
+.process-step:nth-child(2) {
+    margin-top: 4rem;
+}
+
+.process-step:nth-child(3) {
+    margin-top: 0;
+}
+
+.step-image {
+    width: 327px; /* Ancho exacto */
+    height: 500px; /* Alto exacto */
+    overflow: hidden;
+    position: relative;
+    border-radius: 0;
+    margin-bottom: 1.5rem;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.8s ease;
+    filter: grayscale(100%); /* Todas las imágenes en blanco y negro por defecto */
+}
+
+/* Cargar imágenes desde CSS para cada paso */
+.step-analysis .step-image {
+    background-image: url('../../images/Seccion/Proceso\ \ 1.png');
+}
+
+.step-execution .step-image {
+    background-image: url('../../images/Seccion/Proces\ 2.png');
+}
+
+.step-optimization .step-image {
+    background-image: url('../../images/Seccion/Proceso\ 3.png');
+}
+
+/* Efecto de color al pasar el mouse */
+.process-step:hover .step-image {
+    filter: grayscale(0%); /* Mostrar color original al hacer hover */
+    transform: scale(1.03);
+}
+
+/* Línea decorativa encima del título */
+.process-step .title-line {
+    width: 60px;
+    height: 3px;
+    background: #3b82f6;
+    margin-bottom: 0.8rem;
+    transition: width 0.3s ease;
+}
+
+.process-step:hover .title-line {
+    width: 80px;
+}
+
+.process-step h3 {
+    color: white;
+    font-size: 1.4rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.process-step p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    transition: color 0.3s ease;
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+}
+
+/* Animaciones al cargar la página - Mejoradas */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.process-step:nth-child(1) {
+    animation: slideInFromLeft 1s ease forwards;
+    opacity: 0;
+    animation-delay: 0.2s;
+}
+
+.process-step:nth-child(2) {
+    animation: fadeInUp 1s ease forwards;
+    opacity: 0;
+    animation-delay: 0.4s;
+}
+
+.process-step:nth-child(3) {
+    animation: slideInFromRight 1s ease forwards;
+    opacity: 0;
+    animation-delay: 0.6s;
+}
+
+.step-number {
+    
+    
+    color: white;
+    font-size: 1.9rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 50%;
+}
+/* Animación para la línea del título */
+@keyframes expandWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 60px;
+    }
+}
+
+.process-step .title-line {
+    animation: expandWidth 0.8s ease forwards;
+    animation-delay: 1s;
+    width: 0;
+}
+
+/* Estilos responsivos mejorados */
+@media (max-width: 1100px) {
+    .process-section::before {
+        display: none;
+    }
+    
+    .process-steps {
+        grid-template-columns: repeat(2, 327px);
+        gap: 3rem;
+    }
+    
+    .process-step:nth-child(1),
+    .process-step:nth-child(2),
+    .process-step:nth-child(3) {
+        margin: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .process-section {
+        padding: 4rem 1.5rem;
+    }
+
+    .process-section .section-header {
+        margin-bottom: 3rem;
+    }
+    
+    .process-section .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .process-steps {
+        grid-template-columns: 327px;
+        gap: 4rem;
+        justify-content: center;
+    }
+    
+    .process-step {
+        margin: 0 auto;
+    }
+    
+    .process-step:nth-child(1) {
+        animation: fadeInUp 1s ease forwards;
+    }
+    
+    .process-step:nth-child(3) {
+        animation: fadeInUp 1s ease forwards;
+    }
+}

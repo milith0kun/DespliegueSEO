@@ -1,0 +1,147 @@
+/* Estilos para la sección 3 de software-medida */
+.service-process {
+    padding: 100px 0;
+    background-color: #ffffff;
+    position: relative;
+}
+.service-process::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../assets/images/dots-pattern.png');
+    background-size: 20px 20px;
+    opacity: 0.05;
+}
+
+.service-process .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.service-process h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #1a237e;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.service-process h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #1a237e, #4caf50);
+    border-radius: 2px;
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    position: relative;
+}
+
+.process-steps::after {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #e0e0e0, #4caf50, #e0e0e0);
+    z-index: 0;
+}
+
+.step {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 60px 20px 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.step:hover {
+    transform: translateY(-10px);
+}
+
+.step h3 {
+    color: #1a237e;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    position: relative;
+}
+.step h3::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: #4caf50;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    z-index: -1;
+}
+
+.step p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .process-steps::after {
+        display: none;
+    }
+    
+    .step {
+        padding-top: 40px;
+    }
+    
+    .step h3::before {
+        top: -30px;
+        width: 40px;
+        height: 40px;
+    }
+}
+.step h3::after {
+    content: attr(data-step);
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    z-index: 0;
+    line-height: 50px;
+}
+
+.step:nth-child(1) h3::after {
+    content: '1';
+}
+
+.step:nth-child(2) h3::after {
+    content: '2';
+}
+
+.step:nth-child(3) h3::after {
+    content: '3';
+}
+
+.step:nth-child(4) h3::after {
+    content: '4';
+}

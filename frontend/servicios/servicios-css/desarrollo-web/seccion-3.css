@@ -1,0 +1,408 @@
+/* Estilos para la sección 3 de desarrollo-web */
+
+.service-process {
+    background: linear-gradient(to bottom, #ffffff, #f8fafc);
+    padding: 120px 0 100px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.02);
+}
+
+.service-process::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+    filter: blur(30px);
+    animation: pulse 15s infinite alternate;
+}
+
+.service-process::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: -50px;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+    filter: blur(30px);
+    animation: pulse 15s infinite alternate-reverse;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.1); }
+}
+
+.service-process .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.service-process h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    color: #0f172a;
+    margin-bottom: 4rem;
+    position: relative;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #0f172a, #334155);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.service-process h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+}
+
+.process-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-top: 50px;
+    gap: 20px;
+}
+
+.process-steps::before {
+    content: '';
+    position: absolute;
+    top: 60px; /* Ajustado para la nueva altura de los círculos */
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #e2e8f0, #3b82f6, #e2e8f0);
+    z-index: 1;
+    border-radius: 3px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    padding: 0 15px;
+    position: relative;
+    z-index: 2;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.step:hover {
+    transform: translateY(-8px);
+}
+
+/* Círculos aumentados de tamaño */
+.step h3 {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    width: 120px; /* Aumentado de 85px */
+    height: 120px; /* Aumentado de 85px */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    font-size: 1rem; /* Reducido ligeramente para mejor ajuste */
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.35);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    flex-direction: column; /* Cambiado para apilar número y texto */
+    padding: 10px; /* Añadido padding interno */
+    text-align: center;
+    line-height: 1.2; /* Reducido el interlineado */
+}
+
+/* Estilo para el número del paso */
+.step h3::first-line {
+    font-size: 1.5rem; /* Tamaño más grande para el número */
+    font-weight: 800;
+    margin-bottom: 3px;
+}
+
+.step:hover h3 {
+    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.5);
+    transform: scale(1.08) translateY(-5px);
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+}
+
+.step h3::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px dashed rgba(59, 130, 246, 0.4);
+    animation: spin 25s linear infinite;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+}
+
+.step:hover h3::after {
+    border-color: rgba(59, 130, 246, 0.6);
+    animation-duration: 15s;
+}
+
+/* Iconos para cada paso */
+.step:nth-child(1) h3::before {
+    content: '🔍';
+    font-size: 1.2rem;
+    position: absolute;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    top: 10px;
+}
+
+.step:nth-child(2) h3::before {
+    content: '✏️';
+    font-size: 1.2rem;
+    position: absolute;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    top: 10px;
+}
+
+.step:nth-child(3) h3::before {
+    content: '🔄';
+    font-size: 1.2rem;
+    position: absolute;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    top: 10px;
+}
+
+.step:nth-child(4) h3::before {
+    content: '🚀';
+    font-size: 1.2rem;
+    position: absolute;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    top: 10px;
+}
+
+.step:hover h3::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.step p {
+    color: #475569;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.step:hover p {
+    color: #1e293b;
+}
+
+/* Efecto de brillo en los pasos */
+.step::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 80%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.step:hover::after {
+    opacity: 0.4;
+}
+
+/* Animaciones para los elementos */
+.service-process h2 {
+    animation: fadeInDown 0.9s ease-out;
+}
+
+.step:nth-child(1) {
+    animation: fadeInUp 0.7s ease-out 0.1s both;
+}
+
+.step:nth-child(2) {
+    animation: fadeInUp 0.7s ease-out 0.25s both;
+}
+
+.step:nth-child(3) {
+    animation: fadeInUp 0.7s ease-out 0.4s both;
+}
+
+.step:nth-child(4) {
+    animation: fadeInUp 0.7s ease-out 0.55s both;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media queries para responsividad */
+@media (max-width: 992px) {
+    .service-process {
+        padding: 100px 0 80px;
+    }
+    
+    .service-process h2 {
+        font-size: 2.5rem;
+    }
+    
+    .process-steps {
+        flex-direction: column;
+        gap: 50px;
+    }
+    
+    .process-steps::before {
+        display: none;
+    }
+    
+    .step {
+        display: flex;
+        text-align: left;
+        align-items: center;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        backdrop-filter: blur(5px);
+    }
+    
+    .step h3 {
+        margin: 0 30px 0 0;
+        min-width: 100px; /* Aumentado de 85px */
+        width: 100px; /* Aumentado de 85px */
+        height: 100px; /* Aumentado de 85px */
+        flex-direction: column;
+        font-size: 0.9rem;
+    }
+    
+    .step p {
+        margin-top: 0;
+        max-width: none;
+    }
+    
+    .step:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+}
+
+@media (max-width: 768px) {
+    .service-process {
+        padding: 80px 0 60px;
+    }
+    
+    .service-process h2 {
+        font-size: 2.2rem;
+        margin-bottom: 3rem;
+    }
+    
+    .step h3 {
+        width: 90px; /* Aumentado de 75px */
+        height: 90px; /* Aumentado de 75px */
+        font-size: 0.85rem;
+        margin-right: 25px;
+    }
+    
+    .step p {
+        font-size: 1rem;
+    }
+    
+    .step {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-process {
+        padding: 60px 0 40px;
+    }
+    
+    .service-process h2 {
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .step {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px 15px;
+    }
+    
+    .step h3 {
+        margin: 0 auto 20px;
+        width: 85px; /* Aumentado de 70px */
+        height: 85px; /* Aumentado de 70px */
+        font-size: 0.85rem;
+    }
+    
+    .step p {
+        font-size: 0.95rem;
+    }
+}

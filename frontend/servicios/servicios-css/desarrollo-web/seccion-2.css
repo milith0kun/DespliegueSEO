@@ -1,0 +1,241 @@
+/* Estilos para la sección 2 de desarrollo-web */
+
+.service-benefits {
+    background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+    padding: 120px 0 100px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.03);
+}
+
+.service-benefits::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../../../assets/images/pattern-light.svg') repeat;
+    opacity: 0.07;
+    z-index: 1;
+    animation: floatBackground 60s linear infinite;
+}
+
+@keyframes floatBackground {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 100px; }
+}
+
+.service-benefits .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.service-benefits h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #0f172a;
+    margin-bottom: 3.5rem;
+    position: relative;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.service-benefits h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+}
+
+.benefits-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.8rem;
+    list-style: none;
+    padding: 0;
+    margin-top: 3rem;
+}
+
+.benefits-list li {
+    background: white;
+    border-radius: 16px;
+    padding: 35px 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.benefits-list li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, #3b82f6, #2563eb);
+    border-radius: 6px 0 0 6px;
+    transition: width 0.3s ease;
+}
+
+.benefits-list li:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-color: rgba(226, 232, 240, 0.3);
+}
+
+.benefits-list li:hover::before {
+    width: 8px;
+}
+
+.benefits-list li strong {
+    display: block;
+    font-size: 1.35rem;
+    color: #0f172a;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 15px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.benefits-list li strong::before {
+    content: '✓';
+    position: absolute;
+    left: -15px;
+    color: #3b82f6;
+    font-weight: bold;
+    font-size: 1.2rem;
+    top: -2px;
+}
+
+.benefits-list li:nth-child(1) strong::before { content: '🚀'; }
+.benefits-list li:nth-child(2) strong::before { content: '🔒'; }
+.benefits-list li:nth-child(3) strong::before { content: '🔄'; }
+.benefits-list li:nth-child(4) strong::before { content: '🛠️'; }
+
+/* Mejora del texto dentro de los elementos de la lista */
+.benefits-list li {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #475569;
+}
+
+/* Efecto de brillo en las tarjetas */
+.benefits-list li::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.benefits-list li:hover::after {
+    opacity: 0.15;
+    transform: scale(1);
+}
+
+/* Animación al cargar la página */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.benefits-list li {
+    animation: fadeInUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+}
+
+.benefits-list li:nth-child(1) { animation-delay: 0.1s; }
+.benefits-list li:nth-child(2) { animation-delay: 0.25s; }
+.benefits-list li:nth-child(3) { animation-delay: 0.4s; }
+.benefits-list li:nth-child(4) { animation-delay: 0.55s; }
+
+/* Media queries para responsividad */
+@media (max-width: 992px) {
+    .service-benefits {
+        padding: 100px 0 80px;
+    }
+    
+    .service-benefits h2 {
+        font-size: 2.3rem;
+    }
+    
+    .benefits-list {
+        gap: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-benefits {
+        padding: 80px 0 60px;
+    }
+    
+    .benefits-list {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .service-benefits h2 {
+        font-size: 2.1rem;
+        margin-bottom: 3rem;
+    }
+    
+    .benefits-list li {
+        padding: 30px 25px;
+    }
+    
+    .benefits-list li:hover {
+        transform: translateY(-5px) scale(1.01);
+    }
+}
+
+@media (max-width: 480px) {
+    .service-benefits {
+        padding: 60px 0 40px;
+    }
+    
+    .service-benefits h2 {
+        font-size: 1.9rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .benefits-list li {
+        padding: 25px 20px;
+    }
+    
+    .benefits-list li strong {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .benefits-list li {
+        font-size: 1rem;
+    }
+}

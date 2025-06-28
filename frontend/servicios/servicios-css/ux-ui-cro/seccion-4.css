@@ -1,0 +1,43 @@
+/* Estilos para la sección 4 de ux-ui-cro */
+
+.service-cta {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.service-cta .container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.service-cta h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.service-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.service-cta .btn-primary {
+    display: inline-block;
+    background-color: white;
+    color: #3498db;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.service-cta .btn-primary:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}

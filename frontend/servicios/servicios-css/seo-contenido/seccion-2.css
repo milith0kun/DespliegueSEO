@@ -1,0 +1,298 @@
+/* Estilos para la sección 2 de seo-contenido - Ventajas Clave */
+.service-benefits {
+    background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 50%, #f5f5f5 100%);
+    padding: 120px 0 130px;
+    margin: 0;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 15px 30px -15px rgba(0,0,0,0.07), inset 0 -15px 30px -15px rgba(0,0,0,0.07);
+}
+
+/* Patrón de fondo sutil mejorado */
+.service-benefits::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zm20.97 0l9.315 9.314-1.414 1.414L34.828 0h2.83zM22.344 0L13.03 9.314l1.414 1.414L25.172 0h-2.83zM32 0l12.142 12.142-1.414 1.414L30 .828 17.272 13.556l-1.414-1.414L28 0h4zM.284 0l28 28-1.414 1.414L0 2.544v2.83L25.456 30l-1.414 1.414L0 7.97v2.828L22.627 30l-1.414 1.414L0 13.4v2.83L19.8 30l-1.414 1.414L0 18.83v2.828L16.97 30l-1.414 1.414L0 24.258v2.83L14.142 30l-1.414 1.414L0 29.686v2.83L11.314 30l-1.414 1.414L0 35.114v2.83L8.485 30l-1.414 1.414L0 40.542v2.83L5.657 30l-1.414 1.414L0 45.97v2.83L2.828 30l-1.414 1.414L0 51.4v2.83L0 60h60L60 0H.284zM60 60L60 7.97l-1.414 1.414L60 11.8v-2.83l-4.243-4.243-1.414 1.414L60 17.657v-2.83l-7.07-7.07-1.415 1.414L60 23.485v-2.83L46.142 6.142l-1.414 1.414L60 29.314v-2.83L42.8 6.8l-1.415 1.414L60 35.142v-2.83l-20.485-20.485-1.414 1.414L60 41v-2.83L37.657 14.657l-1.414 1.414L60 46.828v-2.83L34.485 20.485l-1.414 1.414L60 52.657v-2.83L31.314 26.314l-1.414 1.414L60 58.485v-2.83L28.142 32.142l-1.414 1.414L60 60z' fill='%23e74c3c' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.7;
+    z-index: 0;
+    animation: subtle-float 60s infinite linear;
+    filter: blur(0.5px);
+}
+
+@keyframes subtle-float {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 100px; }
+}
+
+.service-benefits .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.service-benefits h2 {
+    text-align: center;
+    font-size: 3.2rem;
+    margin-bottom: 70px;
+    color: #2c3e50;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    position: relative;
+    padding-bottom: 25px;
+    animation: fadeInDown 0.8s ease-out, scaleIn 1.2s ease-out;
+    letter-spacing: -0.5px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+@keyframes scaleIn {
+    0% { transform: scale(0.95); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Línea decorativa con gradiente mejorada */
+.service-benefits h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 5px;
+    background: linear-gradient(90deg, #e74c3c, #3498db, #2ecc71);
+    border-radius: 3px;
+    animation: expandWidth 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+@keyframes expandWidth {
+    from { width: 0; opacity: 0; }
+    to { width: 120px; opacity: 1; }
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 35px;
+}
+
+.benefits-list li {
+    margin-bottom: 25px;
+    padding: 35px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.03);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid rgba(230, 230, 230, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    overflow: hidden;
+    animation: fadeInUp 0.7s ease-out forwards;
+    animation-delay: calc(0.15s * var(--i, 0));
+    opacity: 0;
+    color: #444;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    font-family: 'Poppins', sans-serif;
+}
+
+.benefits-list li:nth-child(1) { --i: 1; }
+.benefits-list li:nth-child(2) { --i: 2; }
+.benefits-list li:nth-child(3) { --i: 3; }
+.benefits-list li:nth-child(4) { --i: 4; }
+.benefits-list li:nth-child(5) { --i: 5; }
+.benefits-list li:nth-child(6) { --i: 6; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Barra lateral con gradiente mejorada */
+.benefits-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(to bottom, #e74c3c, #3498db);
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 0 4px 4px 0;
+    opacity: 0.8;
+}
+
+/* Círculo decorativo mejorado */
+.benefits-list li::after {
+    content: '';
+    position: absolute;
+    right: -30px;
+    bottom: -30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(231, 76, 60, 0.08) 0%, rgba(231, 76, 60, 0) 70%);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 0;
+}
+
+/* Efectos de hover mejorados */
+.benefits-list li:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 5px 15px rgba(0,0,0,0.04);
+    background-color: rgba(255, 255, 255, 0.95);
+    border-color: rgba(240, 240, 240, 0.9);
+}
+
+.benefits-list li:hover::before {
+    width: 8px;
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.4);
+}
+
+.benefits-list li:hover::after {
+    transform: scale(3);
+    opacity: 0.15;
+    right: -20px;
+    bottom: -20px;
+}
+
+/* Efecto de brillo al hover */
+.benefits-list li::before {
+    box-shadow: 0 0 0 rgba(231, 76, 60, 0);
+    animation: none;
+}
+
+.benefits-list li:hover::before {
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(231, 76, 60, 0.3); }
+    100% { box-shadow: 0 0 20px rgba(231, 76, 60, 0.6); }
+}
+
+.benefits-list strong {
+    color: #e74c3c;
+    display: block;
+    margin-bottom: 14px;
+    font-size: 1.4rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    position: relative;
+    padding-left: 32px;
+    transition: all 0.3s ease;
+    letter-spacing: -0.3px;
+}
+
+/* Efecto de check al hover mejorado */
+.benefits-list strong::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 1.3rem;
+    color: #2ecc71;
+    opacity: 0;
+    transform: scale(0) rotate(-20deg);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-shadow: 0 2px 4px rgba(46, 204, 113, 0.3);
+}
+
+.benefits-list li:hover strong::before {
+    opacity: 1;
+    transform: scale(1.2) rotate(0deg);
+}
+
+.benefits-list li:hover strong {
+    color: #c0392b;
+    transform: translateX(3px);
+}
+
+/* Estilos responsivos mejorados */
+@media (max-width: 1100px) {
+    .benefits-list {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 900px;
+        gap: 30px;
+    }
+    
+    .service-benefits h2 {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .service-benefits {
+        padding: 100px 0 110px;
+    }
+    
+    .service-benefits h2 {
+        font-size: 2.5rem;
+        margin-bottom: 60px;
+    }
+    
+    .benefits-list {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+    
+    .benefits-list li {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-benefits {
+        padding: 80px 0 90px;
+    }
+    
+    .service-benefits h2 {
+        font-size: 2.2rem;
+        margin-bottom: 50px;
+    }
+    
+    .service-benefits h2::after {
+        width: 100px;
+        height: 4px;
+    }
+    
+    .benefits-list li {
+        padding: 25px 22px;
+        margin-bottom: 20px;
+    }
+    
+    .benefits-list strong {
+        font-size: 1.25rem;
+        padding-left: 28px;
+        margin-bottom: 10px;
+    }
+    
+    .benefits-list strong::before {
+        font-size: 1.2rem;
+    }
+    
+    .benefits-list li {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+}

@@ -1,0 +1,45 @@
+/* Estilización de la barra de scroll */
+::-webkit-scrollbar {
+    width: 12px;
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to right, #3b82f6, #2563eb);
+    border-radius: 6px;
+    border: 3px solid #f1f5f9;
+}
+
+/* Indicador de progreso de scroll */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+    z-index: 9999;
+    transition: width 0.1s ease;
+}
+
+/* Efecto de brillo */
+.scroll-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: skewX(-20deg);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-150%) skewX(-20deg);
+    }
+    100% {
+        transform: translateX(150%) skewX(-20deg);
+    }
+}

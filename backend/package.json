@@ -1,0 +1,45 @@
+{
+  "name": "ecosdelseo-backend",
+  "version": "1.0.0",
+  "description": "Backend para Ecos del SEO - API Node.js + MySQL",
+  "main": "servidor.js",
+  "scripts": {
+    "start": "node servidor.js",
+    "dev": "nodemon servidor.js",
+    "test": "jest"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "seo",
+    "marketing",
+    "api",
+    "nodejs",
+    "mysql",
+    "hostinger"
+  ],
+  "author": "Ecos del SEO",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "bcrypt": "^5.1.1",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.1.0",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.14.1",
+    "nodemailer": "^6.9.5",
+    "uuid": "^9.0.1",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1",
+    "supertest": "^6.3.3"
+  }
+}

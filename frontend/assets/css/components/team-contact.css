@@ -1,0 +1,485 @@
+/* Estilos para la sección de Contacto */
+.team-contact-section {
+    padding: 4rem 2rem;
+    background: #ffffff;
+    position: relative;
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Cambiado a fracciones iguales para mejor balance */
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: #4a6cf7;
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+/* Estilos para la sección de contacto - MEJORADOS */
+.contact-section {
+    padding: 3rem 2.5rem;
+    background-color: rgb(205, 208, 253);
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    width: 100%;
+    max-width: 550px;
+    position: relative;
+    overflow: hidden;
+    transform: translateX(0); /* Eliminado el desplazamiento negativo */
+}
+
+/* Elementos decorativos */
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 500px;
+    height: 500px;
+    background-color: rgba(77, 100, 194, 0.08);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.contact-section::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 150px;
+    height: 150px;
+    background-color: rgba(74, 108, 247, 0.05);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.contact-section .section-header {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 2rem;
+}
+
+.contact-section .section-header h2 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-weight: 700;
+    font-size: 2.2rem;
+}
+
+.contact-section .section-header h2::after {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #4a6cf7, #6a89ff);
+    border-radius: 2px;
+}
+
+.contact-section .section-header p {
+    color: #666;
+    margin: 0 auto 1rem;
+    font-size: 1.1rem;
+    max-width: 90%;
+}
+
+.contact-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+    position: relative;
+    width: 100%;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+    color: #555;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+    color: #444;
+    min-width: 100%; /* Asegurar que ocupe todo el ancho */
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #4a6cf7;
+    box-shadow: 0 0 0 4px rgba(74, 108, 247, 0.1);
+    outline: none;
+    background-color: #fff;
+}
+
+/* Ajuste específico para el área de mensaje */
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px; /* Reducido para que sea menos alto */
+    max-height: 200px;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    box-sizing: border-box;
+}
+
+/* Hacer que el grupo del mensaje ocupe todo el ancho */
+.form-group:has(textarea) {
+    grid-column: 1 / -1; /* Hace que ocupe ambas columnas */
+    width: 100%;
+}
+
+/* Ajuste general para todos los campos del formulario */
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+    color: #444;
+    min-width: 100%; /* Asegurar que ocupe todo el ancho */
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #4a6cf7;
+    box-shadow: 0 0 0 4px rgba(74, 108, 247, 0.1);
+    outline: none;
+    background-color: #fff;
+}
+
+.submit-btn {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #4a6cf7, #3a5bd9);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0.8rem;
+    box-shadow: 0 4px 15px rgba(74, 108, 247, 0.25);
+    width: 100%;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #3a5bd9, #2a4bc9);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(74, 108, 247, 0.35);
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+
+.submit-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(74, 108, 247, 0.3);
+}
+
+.submit-btn i {
+    margin-right: 0.8rem;
+    font-size: 1.2rem;
+}
+
+/* Estilos para los enlaces adicionales */
+.additional-contact {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.additional-contact a {
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: #555;
+    background-color: #f0f4ff;
+    border: 1px solid #e0e7ff;
+    margin: 0 0.5rem;
+}
+
+.additional-contact a:hover {
+    background-color: #e0e7ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 108, 247, 0.15);
+    color: #3a5bd9;
+}
+
+.additional-contact a i {
+    margin-right: 0.6rem;
+    font-size: 1.1rem;
+    color: #4a6cf7;
+}
+
+/* Estilos para los campos con placeholder */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #aaa;
+    font-size: 0.95rem;
+}
+
+/* Estilos para los campos requeridos */
+.form-group label:not([for="phone"]):not([for="company"])::after {
+    content: ' *';
+    color: #4a6cf7;
+}
+
+/* Corregir el problema de desbordamiento en campos de entrada */
+.form-group input {
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 3.2rem; /* Altura fija para todos los inputs */
+}
+
+/* Estilos responsivos */
+@media (max-width: 992px) {
+    .section-container {
+        grid-template-columns: 1fr;
+        transform: translateX(0);
+    }
+    
+    .contact-section {
+        margin: 0 auto;
+        max-width: 550px;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-section {
+        padding: 2.5rem 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-contact-section {
+        padding: 3rem 1rem;
+    }
+    
+    .contact-section {
+        padding: 2rem 1.5rem;
+        transform: translateX(0);
+    }
+}
+
+/* Estilos para el botón flotante de chat de WhatsApp */
+.floating-chat {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+.chat-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #7b79db; /* Color oficial de WhatsApp */
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0;
+    outline: none;
+}
+
+.chat-btn i {
+    font-size: 32px; /* Tamaño del icono */
+    transition: transform 0.3s ease;
+}
+
+.chat-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+    background-color: #22c35e;
+}
+
+.chat-btn:hover i {
+    transform: rotate(10deg);
+}
+
+.chat-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
+}
+
+/* Animación de pulso para llamar la atención */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+.chat-btn {
+    animation: pulse 2s infinite;
+}
+
+/* Estilos responsivos para el botón de chat */
+@media (max-width: 768px) {
+    .chat-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .chat-btn i {
+        font-size: 26px;
+    }
+    
+    .floating-chat {
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* Estilos para los mensajes del formulario */
+.form-message {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+    width: 100%;
+}
+
+.form-message.success {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #2e7d32;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.form-message.error {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #d32f2f;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.form-message i {
+    margin-right: 0.8rem;
+    font-size: 1.2rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para el estado de carga del botón */
+.submit-btn:disabled {
+    background: linear-gradient(135deg, #6a89ff, #4a6cf7);
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.submit-btn .fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,30 @@
+/* ==========================================================================
+   Ecos del SEO - Main Stylesheet
+   ========================================================================== */
+
+/* Base - Fundamental styles */
+@import 'base/variables.css';
+@import 'base/reset.css';
+@import 'base/typography.css';
+@import 'base/responsive.css';
+
+/* Components - Reusable UI elements */
+@import 'components/logo.css';
+@import 'components/logo_style.css';
+@import 'components/buttons.css';
+@import 'components/header.css';
+@import 'components/hero.css';
+@import 'components/nav_logo.css';
+@import 'components/animations.css'; /* Archivo unificado de animaciones */
+@import 'components/services.css';
+@import 'components/process.css';
+@import 'components/clientes.css';
+@import 'components/testimonials.css';
+@import 'components/tech-stack.css';
+@import 'components/stats.css';
+@import 'components/team-contact.css'; 
+@import 'components/team-team.css';
+@import 'components/Animacion_footer.css';
+
+/* Layouts - Page structure */
+@import 'layouts/footer.css';

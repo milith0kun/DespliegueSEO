@@ -1,0 +1,338 @@
+/* Estilos para la sección 1 de trading-finanzas */
+
+.service-hero {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #ffffff;
+    padding: 140px 0 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.3);
+}
+
+/* Patrón de fondo animado */
+.service-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300c6ff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"), 
+                  url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z' fill='%2300c6ff' fill-opacity='0.05'/%3E%3C/svg%3E");
+    opacity: 0.2;
+    z-index: 1;
+    animation: floatBackground 60s linear infinite;
+}
+
+/* Animación de fondo flotante */
+@keyframes floatBackground {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+    100% {
+        background-position: 60px 60px, 100px 100px;
+    }
+}
+
+/* Elementos gráficos de trading */
+.service-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%2300c6ff' fill-opacity='0.15' d='M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    opacity: 0.8;
+}
+
+/* Círculos de luz */
+.light-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,198,255,0.2) 0%, rgba(0,198,255,0) 70%);
+    z-index: 1;
+    animation: pulse-light 8s infinite;
+    opacity: 0.6;
+}
+
+.light-circle:nth-child(1) {
+    width: 400px;
+    height: 400px;
+    top: -150px;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.light-circle:nth-child(2) {
+    width: 500px;
+    height: 500px;
+    bottom: -200px;
+    right: -150px;
+    animation-delay: 2s;
+}
+
+.light-circle:nth-child(3) {
+    width: 300px;
+    height: 300px;
+    top: 30%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+@keyframes pulse-light {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+}
+
+/* Animación de gráfico de trading */
+@keyframes chart-line {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.service-hero .container {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Título con efecto de gradiente */
+.service-hero h1 {
+    font-size: 3.8rem;
+    margin-bottom: 1.8rem;
+    font-weight: 800;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to right, #ffffff, #00c6ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    display: inline-block;
+    letter-spacing: -0.5px;
+    animation: fadeInDown 1s ease-out forwards;
+}
+
+/* Línea decorativa debajo del título */
+.service-hero h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #00c6ff, rgba(0,198,255,0.3));
+    border-radius: 2px;
+    animation: expand-line 1.5s ease-out forwards;
+}
+
+@keyframes expand-line {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+    100% {
+        width: 100px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.service-hero p {
+    font-size: 1.35rem;
+    margin-bottom: 2.8rem;
+    line-height: 1.7;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    opacity: 0.9;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 1s ease-out 0.3s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 0.9;
+        transform: translateY(0);
+    }
+}
+
+/* Botón con efecto de brillo */
+.service-hero .btn-primary {
+    display: inline-block;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    color: #ffffff;
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(0, 198, 255, 0.3), 0 6px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    position: relative;
+    overflow: hidden;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    animation: fadeInUp 1s ease-out 0.6s forwards;
+    opacity: 0;
+    transform: translateZ(0);
+}
+
+/* Efecto de brillo al pasar el cursor */
+.service-hero .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: rotate(30deg);
+    animation: shine 6s infinite;
+    pointer-events: none;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(30deg);
+    }
+    20%, 100% {
+        transform: translateX(100%) rotate(30deg);
+    }
+}
+
+.service-hero .btn-primary:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 198, 255, 0.4), 0 5px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to right, #00c6ff, #0058ca);
+}
+
+.service-hero .btn-primary:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 5px 10px rgba(0, 198, 255, 0.2);
+}
+
+/* Efecto de onda al hacer clic */
+.service-hero .btn-primary .ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Estilos responsivos */
+@media (max-width: 992px) {
+    .service-hero {
+        padding: 120px 30px 90px;
+    }
+    
+    .service-hero h1 {
+        font-size: 3.2rem;
+    }
+    
+    .service-hero p {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-hero {
+        padding: 100px 20px 80px;
+    }
+    
+    .service-hero h1 {
+        font-size: 2.8rem;
+    }
+    
+    .service-hero p {
+        font-size: 1.15rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .service-hero .btn-primary {
+        padding: 14px 32px;
+        font-size: 1rem;
+    }
+    
+    .light-circle:nth-child(3) {
+        display: none;
+    }
+    
+    .service-hero::after {
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-hero {
+        padding: 80px 15px 60px;
+    }
+    
+    .service-hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .service-hero p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .service-hero .btn-primary {
+        padding: 12px 28px;
+        font-size: 0.95rem;
+    }
+    
+    .light-circle {
+        display: none;
+    }
+    
+    .service-hero::after {
+        height: 60px;
+    }
+}

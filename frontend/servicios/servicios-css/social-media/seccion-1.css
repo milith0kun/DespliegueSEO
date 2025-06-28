@@ -1,0 +1,298 @@
+/* Estilos para la sección 1 de social-media */
+
+.service-hero {
+    background: linear-gradient(135deg, #405de6 0%, #5851db 25%, #833ab4 50%, #c13584 75%, #fd1d1d 100%);
+    color: #ffffff;
+    padding: 120px 0 80px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.2);
+}
+
+.service-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../assets/images/patterns/social-pattern.svg');
+    background-size: cover;
+    opacity: 0.15;
+    z-index: 1;
+    animation: floatBackground 30s infinite linear;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
+}
+
+.service-hero .container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.service-hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeInDown 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+    background: linear-gradient(to right, #ffffff, #f0f0f0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+}
+
+.service-hero h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #405de6, #fd1d1d);
+    border-radius: 2px;
+    animation: expandWidth 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards 0.5s;
+}
+
+.service-hero p {
+    font-size: 1.35rem;
+    max-width: 800px;
+    margin: 2rem auto 2.5rem;
+    line-height: 1.7;
+    opacity: 0.95;
+    animation: fadeInUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s both;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.service-hero .btn-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    color: #833ab4;
+    font-weight: 700;
+    padding: 16px 34px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.1);
+    animation: fadeInUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.5s both;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+}
+
+.service-hero .btn-primary:hover {
+    background: #ffffff;
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4), 0 0 0 3px rgba(255, 255, 255, 0.2);
+    color: #c13584;
+}
+
+.service-hero .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(45deg);
+    animation: shine 6s infinite linear;
+    pointer-events: none;
+}
+
+/* Elementos decorativos */
+.service-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+    filter: blur(10px);
+    animation: pulse 8s infinite alternate;
+}
+
+/* Círculos de luz */
+.light-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+    z-index: 1;
+    filter: blur(8px);
+    animation: pulse 8s infinite alternate;
+}
+
+.light-circle:nth-child(1) {
+    top: 20%;
+    left: 15%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+}
+
+.light-circle:nth-child(2) {
+    top: 60%;
+    left: 10%;
+    width: 100px;
+    height: 100px;
+    animation-delay: 2s;
+}
+
+.light-circle:nth-child(3) {
+    top: 30%;
+    right: 15%;
+    width: 120px;
+    height: 120px;
+    animation-delay: 4s;
+}
+
+.light-circle:nth-child(4) {
+    bottom: 20%;
+    right: 20%;
+    width: 180px;
+    height: 180px;
+    animation-delay: 6s;
+}
+
+/* Animaciones */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatBackground {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 150px 150px;
+    }
+}
+
+@keyframes expandWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100px;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.3;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 0.6;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+    20% {
+        left: 100%;
+        opacity: 0.3;
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+/* Estilos responsivos */
+@media (max-width: 992px) {
+    .service-hero h1 {
+        font-size: 3.2rem;
+    }
+    
+    .service-hero h1::after {
+        height: 3px;
+    }
+    
+    .light-circle {
+        opacity: 0.5;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-hero {
+        padding: 100px 0 60px;
+    }
+    
+    .service-hero h1 {
+        font-size: 2.7rem;
+    }
+    
+    .service-hero p {
+        font-size: 1.15rem;
+        margin: 1.5rem auto 2rem;
+    }
+    
+    .service-hero h1::after {
+        width: 80px;
+    }
+    
+    .light-circle:nth-child(2),
+    .light-circle:nth-child(4) {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-hero {
+        padding: 80px 0 50px;
+    }
+    
+    .service-hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .service-hero p {
+        font-size: 1rem;
+        margin: 1.2rem auto 1.8rem;
+    }
+    
+    .service-hero .btn-primary {
+        padding: 14px 28px;
+        font-size: 0.95rem;
+    }
+    
+    .service-hero h1::after {
+        height: 2px;
+        width: 60px;
+    }
+    
+    .light-circle {
+        display: none;
+    }
+}

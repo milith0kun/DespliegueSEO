@@ -1,0 +1,321 @@
+/* Estilos para la sección 4 de software-medida */
+.service-cta {
+    padding: 120px 0;
+    background: linear-gradient(135deg, #1a237e, #283593, #3949ab);
+    color: #ffffff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.2);
+}
+
+/* Patrón de fondo sutil */
+.service-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: 1;
+}
+
+/* Círculos de luz pulsantes */
+.service-cta::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 25%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 25%);
+    animation: pulse-light 8s infinite alternate ease-in-out;
+    z-index: 1;
+}
+
+@keyframes pulse-light {
+    0% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+}
+
+.service-cta .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 30px;
+    position: relative;
+    z-index: 2;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* Título mejorado con gradiente de texto */
+.service-cta h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    background: linear-gradient(90deg, #ffffff, #e0e0ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.5px;
+    animation: slideInDown 0.8s ease-out forwards;
+}
+
+/* Párrafo mejorado */
+.service-cta p {
+    font-size: 1.35rem;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    opacity: 0.95;
+    font-weight: 300;
+    animation: slideInUp 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+/* Botón CTA mejorado */
+.service-cta .btn-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, #4caf50, #43a047);
+    color: white;
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4), 
+                inset 0 -3px 0 rgba(0, 0, 0, 0.1),
+                0 0 0 0 rgba(76, 175, 80, 0.7);
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+    animation: pulse-button 2.5s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+/* Efecto hover mejorado */
+.service-cta .btn-primary:hover {
+    background: linear-gradient(135deg, #43a047, #388e3c);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(76, 175, 80, 0.5),
+                inset 0 -3px 0 rgba(0, 0, 0, 0.2),
+                0 0 20px 5px rgba(76, 175, 80, 0.3);
+    animation: none;
+}
+
+/* Efecto active */
+.service-cta .btn-primary:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4),
+                inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto de brillo al pasar el cursor */
+.service-cta .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: rotate(30deg);
+    transition: all 0.8s;
+    opacity: 0;
+}
+
+.service-cta .btn-primary:hover::before {
+    animation: shine 1.5s ease-out;
+    opacity: 1;
+}
+
+/* Efecto de ondas al hacer clic */
+.service-cta .btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+.service-cta .btn-primary:active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+/* Elementos decorativos adicionales */
+.service-cta .container::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    top: -100px;
+    right: -50px;
+    z-index: -1;
+    animation: rotate 20s linear infinite;
+}
+
+.service-cta .container::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    bottom: -75px;
+    left: -50px;
+    z-index: -1;
+    animation: rotate 15s linear infinite reverse;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-button {
+    to {
+        box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4),
+                    inset 0 -3px 0 rgba(0, 0, 0, 0.1),
+                    0 0 0 20px rgba(76, 175, 80, 0);
+    }
+}
+
+@keyframes shine {
+    0% {
+        left: -50%;
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        left: 150%;
+        opacity: 0;
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 1;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Ajustes responsivos */
+@media (max-width: 992px) {
+    .service-cta {
+        padding: 100px 0;
+    }
+    
+    .service-cta h2 {
+        font-size: 3rem;
+    }
+    
+    .service-cta p {
+        font-size: 1.25rem;
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-cta {
+        padding: 80px 0;
+    }
+    
+    .service-cta h2 {
+        font-size: 2.5rem;
+    }
+    
+    .service-cta p {
+        font-size: 1.15rem;
+        max-width: 500px;
+        margin-bottom: 30px;
+    }
+    
+    .service-cta .btn-primary {
+        padding: 15px 35px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-cta {
+        padding: 60px 0;
+    }
+    
+    .service-cta h2 {
+        font-size: 2.2rem;
+    }
+    
+    .service-cta p {
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+    
+    .service-cta .btn-primary {
+        padding: 14px 30px;
+        font-size: 0.95rem;
+    }
+    
+    .service-cta .container::before,
+    .service-cta .container::after {
+        display: none;
+    }
+}

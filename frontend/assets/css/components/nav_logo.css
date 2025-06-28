@@ -1,0 +1,70 @@
+.contact-info {
+    display: flex;
+    align-items: center;
+    height: 22px;
+}
+
+.email-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 1rem;
+    background: rgba(59, 130, 246, 0.08);
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    height: 22px;
+    width: 100px;
+}
+
+.email-container:hover {
+    background: rgba(59, 130, 246, 0.12);
+    transform: translateY(-1px);
+}
+
+.email-container i {
+    color: #3B82F6;
+    font-size: 0.9rem;
+}
+
+.email-text {
+    font-size: 0.9rem;
+    color: #000000;
+    font-weight: 500;
+}
+
+/* Estilos para los botones */
+.primary-btn, .secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #3b82f6;
+    color: #3b82f6;
+}
+
+.secondary-btn:hover {
+    background: rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+}
+
+.primary-btn i, .secondary-btn i {
+    font-size: 1.1rem;
+}

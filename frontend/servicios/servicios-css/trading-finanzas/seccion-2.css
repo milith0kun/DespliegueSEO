@@ -1,0 +1,200 @@
+/* Estilos para la sección 2 de trading-finanzas */
+
+.service-benefits {
+    padding: 100px 0;
+    position: relative;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9f7ff 100%);
+    overflow: hidden;
+}
+
+/* Patrón de fondo con gráficos financieros */
+.service-benefits::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 L90 10 L90 90 L10 90 Z' fill='none' stroke='%2300c6ff10' stroke-width='0.5'/%3E%3Cpath d='M30 30 L70 30 L70 70 L30 70 Z' fill='none' stroke='%230072ff10' stroke-width='0.5'/%3E%3Cpath d='M20 10 L20 90 M40 10 L40 90 M60 10 L60 90 M80 10 L80 90' stroke='%2300c6ff08' stroke-width='0.5' stroke-dasharray='2,4'/%3E%3Cpath d='M10 20 L90 20 M10 40 L90 40 M10 60 L90 60 M10 80 L90 80' stroke='%230072ff08' stroke-width='0.5' stroke-dasharray='2,4'/%3E%3Cpath d='M10 70 L20 65 L30 68 L40 62 L50 55 L60 59 L70 50 L80 45 L90 40' fill='none' stroke='%2300c6ff15' stroke-width='1'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: 0;
+    animation: moveBackground 60s linear infinite;
+}
+
+@keyframes moveBackground {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 100px; }
+}
+
+.service-benefits .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.service-benefits h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 60px;
+    color: #1a2a6c;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 198, 255, 0.1);
+}
+
+.service-benefits h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    margin: 20px auto 0;
+    border-radius: 2px;
+    box-shadow: 0 2px 10px rgba(0, 198, 255, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; width: 80px; }
+    50% { opacity: 1; width: 100px; }
+    100% { opacity: 0.6; width: 80px; }
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+.benefits-list li {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 35px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 114, 255, 0.08), 
+                0 1px 3px rgba(0, 0, 0, 0.05),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+    border-left: 1px solid rgba(255, 255, 255, 0.7);
+    border-top: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.benefits-list li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, #00c6ff, #0072ff);
+    opacity: 0.8;
+    transition: all 0.4s ease;
+}
+
+.benefits-list li:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 114, 255, 0.12), 
+                0 4px 8px rgba(0, 0, 0, 0.06),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.benefits-list li:hover::before {
+    width: 8px;
+    box-shadow: 0 0 20px rgba(0, 198, 255, 0.6);
+}
+
+.benefits-list li strong {
+    display: block;
+    margin-bottom: 12px;
+    color: #1a2a6c;
+    font-size: 1.3rem;
+    font-weight: 700;
+    position: relative;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+}
+
+.benefits-list li strong::before {
+    content: '📈';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.benefits-list li:nth-child(2) strong::before {
+    content: '⏱️';
+}
+
+.benefits-list li:nth-child(3) strong::before {
+    content: '🛡️';
+}
+
+.benefits-list li:nth-child(4) strong::before {
+    content: '🔌';
+}
+
+.benefits-list li:hover strong {
+    padding-left: 30px;
+    color: #0072ff;
+}
+
+.benefits-list li:hover strong::before {
+    opacity: 1;
+    left: 0;
+}
+
+/* Efecto de entrada con animación */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.benefits-list li {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.benefits-list li:nth-child(1) { animation-delay: 0.1s; }
+.benefits-list li:nth-child(2) { animation-delay: 0.3s; }
+.benefits-list li:nth-child(3) { animation-delay: 0.5s; }
+.benefits-list li:nth-child(4) { animation-delay: 0.7s; }
+
+@media (max-width: 992px) {
+    .service-benefits {
+        padding: 80px 0;
+    }
+    
+    .benefits-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .service-benefits h2 {
+        font-size: 2.3rem;
+    }
+    
+    .benefits-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .benefits-list li {
+        padding: 25px 20px;
+    }
+}
