@@ -20,7 +20,6 @@
     top: 50%; /* Changed from 55% to center vertically */
     transform-origin: center center;
     transform: translate(-50%, -50%) scale(0.55);
-    filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
 }
 
 /* Adjust the rotating elements container */
@@ -91,6 +90,16 @@
     pointer-events: none;
     transform-origin: center center;
     transform: translateX(-5px);
+    animation: rotateContainer 20s linear infinite;
+}
+
+@keyframes rotateContainer {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .element {
@@ -104,6 +113,64 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Posicionamiento de los elementos alrededor del logo */
+.element.search {
+    top: 10%;
+    left: 20%;
+    animation: orbitElement 12s linear infinite;
+}
+
+.element.analytics {
+    top: 15%;
+    right: 20%;
+    animation: orbitElement 12s linear infinite reverse;
+    animation-delay: -2s;
+}
+
+.element.globe {
+    bottom: 15%;
+    left: 25%;
+    animation: orbitElement 14s linear infinite;
+    animation-delay: -4s;
+}
+
+.element.keywords {
+    bottom: 20%;
+    right: 25%;
+    animation: orbitElement 16s linear infinite reverse;
+    animation-delay: -6s;
+}
+
+.element.content {
+    top: 50%;
+    left: 10%;
+    animation: orbitElement 18s linear infinite;
+    animation-delay: -8s;
+}
+
+.element.mobile {
+    top: 50%;
+    right: 10%;
+    animation: orbitElement 20s linear infinite reverse;
+    animation-delay: -10s;
+}
+
+.element.code {
+    bottom: 10%;
+    left: 50%;
+    animation: orbitElement 22s linear infinite;
+    animation-delay: -12s;
+}
+
+@keyframes orbitElement {
+    0% {
+        transform: rotate(0deg) translateX(30px) rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg) translateX(30px) rotate(-360deg);
+    }
 }
 
 .icon {

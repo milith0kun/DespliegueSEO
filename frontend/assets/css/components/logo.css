@@ -93,19 +93,15 @@
 @keyframes float {
     0%, 100% {
         transform: translateZ(10px) translateX(0) translateY(0) rotateY(1deg) rotateX(-0.5deg) rotateZ(0deg);
-        /* Eliminado el filtro drop-shadow */
     }
     25% {
         transform: translateZ(20px) translateX(3px) translateY(5px) rotateY(2deg) rotateX(1deg) rotateZ(0.5deg);
-        /* Eliminado el filtro drop-shadow */
     }
     50% {
         transform: translateZ(25px) translateX(5px) translateY(-8px) rotateY(3deg) rotateX(-1.5deg) rotateZ(1deg);
-        /* Eliminado el filtro drop-shadow */
     }
     75% {
         transform: translateZ(20px) translateX(3px) translateY(3px) rotateY(2deg) rotateX(0.5deg) rotateZ(0.5deg);
-        /* Eliminado el filtro drop-shadow */
     }
 }
 
@@ -154,7 +150,6 @@
 .letter:hover {
     transform: scale(1.25) translateX(20px) translateY(-20px) translateZ(80px) rotateY(12deg) rotateX(-8deg) rotateZ(3deg);
     z-index: 10;
-    /* Eliminado el filtro drop-shadow */
     transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 

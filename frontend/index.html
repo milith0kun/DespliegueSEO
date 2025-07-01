@@ -374,37 +374,24 @@
                     </div>
                     <form class="contact-form" id="contact-form">
                         <div class="form-group">
-                            <label for="nombre">Nombre </label>
-                            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                            <label for="name">Nombre </label>
+                            <input type="text" id="name" name="name" required placeholder="Nombre completo">
                         </div>
                         <div class="form-group">
                             <label for="email">Email </label>
                             <input type="email" id="email" name="email" required placeholder="ejemplo@dominio.com">
                         </div>
                         <div class="form-group">
-                            <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+34 600 000">
                         </div>
                         <div class="form-group">
-                            <label for="empresa">Empresa</label>
-                            <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa">
+                            <label for="company">Empresa</label>
+                            <input type="text" id="company" name="company" placeholder="Nombre de tu empresa">
                         </div>
                         <div class="form-group">
-                            <label for="interes_servicio">Servicio de interés</label>
-                            <select id="interes_servicio" name="interes_servicio">
-                                <option value="">Selecciona un servicio</option>
-                                <option value="desarrollo-web">Desarrollo Web</option>
-                                <option value="seo-contenido">SEO & Contenido</option>
-                                <option value="ux-ui-cro">UX/UI & CRO</option>
-                                <option value="paid-media">Paid Media</option>
-                                <option value="social-media">Social Media</option>
-                                <option value="software-medida">Software a Medida</option>
-                                <option value="trading-finanzas">Trading & Finanzas</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="mensaje">Mensaje </label>
-                            <textarea id="mensaje" name="mensaje" required placeholder="Cuéntanos sobre tu proyecto o consulta"></textarea>
+                            <label for="message">Mensaje </label>
+                            <textarea id="message" name="message" required placeholder="Cuéntanos sobre tu proyecto o consulta"></textarea>
                         </div>
                         <button type="submit" class="submit-btn">
                             <i class="fas fa-paper-plane"></i>
@@ -473,7 +460,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>Copyright &copy; <span id="current-year">2025</span> Ecos del SEO. Todos los derechos reservados.</p>
+                <p>Copyright © <span id="current-year">2025</span> Ecos del SEO. Todos los derechos reservados.</p>
                 <div class="social-links">
                     <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -485,10 +472,15 @@
     </footer>
     
     
-    <!-- Scripts -->
-    <script type="module" src="assets/js/main.js"></script>
-    <script type="module" src="assets/js/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  
+    <script type="module" src="assets/js/main.js" defer></script>
+    <script src="assets/js/logo-particles.js" defer></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("tu_user_id");
+        })();
+    </script>
 </body>
 </html>
+
+

@@ -15,7 +15,10 @@
 @import 'components/header.css';
 @import 'components/hero.css';
 @import 'components/nav_logo.css';
-@import 'components/animations.css'; /* Archivo unificado de animaciones */
+@import 'components/nav_animacion.css'; 
+@import "components/Animacion_choques.css";
+@import 'components/Animacion_footer.css';
+@import 'components/Animacion_scrol.css';
 @import 'components/services.css';
 @import 'components/process.css';
 @import 'components/clientes.css';
@@ -23,8 +26,7 @@
 @import 'components/tech-stack.css';
 @import 'components/stats.css';
 @import 'components/team-contact.css'; 
-@import 'components/team-team.css';
-@import 'components/Animacion_footer.css';
+@import 'components/team-team.css'; 
 
 /* Layouts - Page structure */
 @import 'layouts/footer.css';

@@ -88,36 +88,46 @@
 
 .nav-menu {
     display: flex;
-    gap: 3rem; /* Aumenté el espacio para mayor claridad */
+    gap: 3rem; /* Espacio entre elementos del menú */
     align-items: center;
     margin: 0;
     padding: 0;
+    position: relative;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 30px;
+    padding: 0.5rem 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 .nav-menu a {
-    color: #0f172a; /* Color más oscuro para mayor seriedad */
+    color: #0f172a; /* Color oscuro para mayor seriedad */
     text-decoration: none;
-    font-weight: 600; /* Peso de fuente más equilibrado */
+    font-weight: 600; /* Peso de fuente equilibrado */
     position: relative;
-    padding: 0.5rem 0;
+    padding: 0.7rem 0.8rem;
     transition: all 0.3s ease;
-    letter-spacing: 0.5px; /* Mayor espaciado entre letras para legibilidad */
-    font-size: 0.95rem; /* Tamaño ligeramente más pequeño */
-    text-transform: uppercase; /* Texto en mayúsculas para aspecto más formal */
-    font-family: 'Montserrat', sans-serif; /* Fuente más corporativa */
+    letter-spacing: 0.5px; /* Espaciado entre letras para legibilidad */
+    font-size: 0.95rem; /* Tamaño adecuado */
+    text-transform: uppercase; /* Texto en mayúsculas para aspecto formal */
+    font-family: 'Montserrat', sans-serif; /* Fuente corporativa */
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 .nav-menu a:hover {
     color: #1e40af; /* Azul más oscuro al pasar el mouse */
     transform: translateY(-2px); /* Ligero movimiento hacia arriba */
+    background: rgba(59, 130, 246, 0.1); /* Fondo sutil al hover */
 }
 
 .nav-menu a::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 3px; /* Línea más gruesa */
-    bottom: -4px;
-    left: 0;
+    height: 3px; /* Línea indicadora */
+    bottom: 5px;
+    left: 50%;
     background-color: #1e40af; /* Color más oscuro para la línea */
     transition: width 0.3s ease, background-color 0.3s ease;
     opacity: 0.8; /* Ligera transparencia */
@@ -132,12 +142,12 @@
     background: linear-gradient(to bottom, #3a4db1, #2563EB);
     color: #ffffff;
     padding: 0.35rem 1.75rem;
-    height: 30px; /* Aumentado para mayor visibilidad */
+    height: 30px;
     min-width: 90px;
     border-radius: 6px;
     font-weight: 600;
-    font-family: 'Press Start 2P', system-ui;
-    font-size: 0.7rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     transition: all 0.2s ease;
@@ -146,13 +156,8 @@
     justify-content: center;
     gap: 8px;
     position: relative;
-    border: 2px solid #6d8aff;
-    box-shadow: 
-        0 0 0 2px rgba(0, 0, 0, 0.3),
-        inset 0 2px 0 rgba(255, 255, 255, 0.3),
-        0 4px 0 rgba(0, 0, 0, 0.5),
-        0 0 10px rgba(109, 138, 255, 0.5);
-    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(109, 138, 255, 0.5);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .login-btn::before {
@@ -162,59 +167,21 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
     opacity: 1;
     transition: opacity 0.3s ease;
     pointer-events: none;
 }
 
-.login-btn::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: transparent;
-    border: 1px solid rgba(109, 138, 255, 0.5);
-    border-radius: 8px;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    animation: pulse-border 2s infinite;
-}
-
-@keyframes pulse-border {
-    0% {
-        opacity: 0.5;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.8;
-        transform: scale(1.03);
-    }
-    100% {
-        opacity: 0.5;
-        transform: scale(1);
-    }
-}
-
 .login-btn:hover {
     transform: translateY(-1px);
     background: linear-gradient(to bottom, #4a5dc1, #3a4a9c);
-    box-shadow: 
-        0 0 0 2px rgba(0, 0, 0, 0.3),
-        inset 0 2px 0 rgba(255, 255, 255, 0.4),
-        0 6px 0 rgba(0, 0, 0, 0.5),
-        0 0 15px rgba(109, 138, 255, 0.7);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .login-btn:active {
-    transform: translateY(2px);
-    box-shadow: 
-        0 0 0 2px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2),
-        0 2px 0 rgba(0, 0, 0, 0.5);
+    transform: translateY(1px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.05s ease;
 }
 
