@@ -2,11 +2,20 @@
 
 .service-hero {
     background: linear-gradient(135deg, #2c3e50, #1a2a3a);
+    background-size: 300% 300%;
+    animation: gradientShift 15s ease infinite;
     color: #ffffff;
-    padding: 120px 0 80px;
+    padding: 140px 0 100px;
     text-align: center;
     position: relative;
     overflow: hidden;
+    box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .service-hero::before {
@@ -17,48 +26,172 @@
     width: 100%;
     height: 100%;
     background-image: url('../../../assets/images/ux-pattern.svg');
-    background-size: cover;
+    background-size: 300px;
     opacity: 0.1;
     z-index: 1;
+    animation: floatBackground 60s infinite linear;
+}
+
+@keyframes floatBackground {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 60px 60px;
+    }
+}
+
+/* Círculos de luz */
+.light-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(52, 152, 219, 0.2) 0%, rgba(52, 152, 219, 0) 70%);
+    z-index: 1;
+    animation: pulse-light 8s infinite;
+    opacity: 0.6;
+}
+
+.light-circle:nth-child(1) {
+    width: 400px;
+    height: 400px;
+    top: -150px;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.light-circle:nth-child(2) {
+    width: 500px;
+    height: 500px;
+    bottom: -200px;
+    right: -150px;
+    animation-delay: 2s;
+}
+
+@keyframes pulse-light {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
 }
 
 .service-hero .container {
     position: relative;
     z-index: 2;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
+    padding: 0 30px;
 }
 
 .service-hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    font-weight: 700;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeInDown 0.8s ease-out;
+    background: linear-gradient(to right, #ffffff, #e0e0e0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    letter-spacing: -0.5px;
+    position: relative;
+}
+
+/* Efecto de línea debajo del título */
+.service-hero h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    border-radius: 2px;
+    animation: expandWidth 1s ease-out forwards;
+}
+
+@keyframes expandWidth {
+    from { width: 0; }
+    to { width: 80px; }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .service-hero p {
-    font-size: 1.25rem;
-    margin-bottom: 40px;
-    line-height: 1.6;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 1.4rem;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    opacity: 0.95;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-weight: 300;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .service-hero .btn-primary {
     display: inline-block;
-    background-color: #3498db;
+    background: linear-gradient(to right, #3498db, #2980b9);
     color: white;
-    padding: 15px 30px;
+    padding: 16px 36px;
     border-radius: 50px;
     font-weight: 600;
+    font-size: 1.1rem;
     text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
 }
 
 .service-hero .btn-primary:hover {
-    background-color: #2980b9;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.6);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(52, 152, 219, 0.6);
+}
+
+/* Efecto de brillo en hover */
+.service-hero .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.service-hero .btn-primary:hover::before {
+    left: 100%;
 }

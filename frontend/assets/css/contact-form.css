@@ -1,0 +1,136 @@
+/* Estilos para el formulario de contacto y notificaciones */
+
+/* Estilos para las notificaciones */
+.form-notification {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease-out forwards;
+    position: relative;
+}
+
+.form-notification.success {
+    background-color: rgba(46, 204, 113, 0.15);
+    border-left: 4px solid #2ecc71;
+    color: #27ae60;
+}
+
+.form-notification.error {
+    background-color: rgba(231, 76, 60, 0.15);
+    border-left: 4px solid #e74c3c;
+    color: #c0392b;
+}
+
+.form-notification i:first-child {
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+.form-notification p {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.form-notification .close-notification {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.form-notification .close-notification:hover {
+    opacity: 1;
+}
+
+/* Estilos para el botón de envío */
+.submit-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.submit-btn .fa-spinner {
+    margin-right: 8px;
+    animation: spin 1s infinite linear;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mejoras de accesibilidad para el formulario */
+.contact-form .form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Indicador visual de campo requerido */
+.contact-form label::after {
+    content: "*";
+    color: #e74c3c;
+    margin-left: 4px;
+    font-weight: bold;
+}
+
+.contact-form label[for="phone"]::after,
+.contact-form label[for="company"]::after {
+    content: "";
+}
+
+/* Estilos para validación */
+.contact-form input:invalid,
+.contact-form textarea:invalid {
+    border-color: #e74c3c;
+}
+
+.contact-form input:valid,
+.contact-form textarea:valid {
+    border-color: #2ecc71;
+}
+
+/* Solo aplicar después de interacción del usuario */
+.contact-form input:placeholder-shown,
+.contact-form textarea:placeholder-shown {
+    border-color: initial;
+}

@@ -1,255 +1,183 @@
 /**
- * Servidor principal - Ecos del SEO
- * API REST para gestión de servicios, contactos y contenido
+ * Servidor unificado para Ecos del SEO
+ * Este archivo configura y levanta el servidor Express que sirve tanto el backend (API) como el frontend
  */
 
-// Importaciones
-require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const compression = require('compression');
 const morgan = require('morgan');
+const compression = require('compression');
+const cookieParser = require('cookie-parser');
+const rateLimit = require('express-rate-limit');
 const path = require('path');
-const { logger } = require('./utilidades/logger');
-const os = require('os');
-const { format } = require('util');
+const session = require('express-session');
+const { testConnection } = require('./configuracion/db');
 
-// Función para generar una línea decorativa
-const line = (char = '=', length = 60) => char.repeat(length);
+// Cargar variables de entorno
+require('dotenv').config();
 
-// Función para mostrar información del sistema
-const getSystemInfo = () => {
-  return {
-    platform: os.platform(),
-    arch: os.arch(),
-    hostname: os.hostname(),
-    cpus: os.cpus().length,
-    totalMem: (os.totalmem() / 1024 / 1024 / 1024).toFixed(2) + ' GB',
-    freeMem: (os.freemem() / 1024 / 1024).toFixed(2) + ' MB',
-    uptime: (os.uptime() / 60 / 60).toFixed(2) + ' horas'
-  };
-};
-
-// Configuración global del servidor
+// Crear la aplicación Express
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Configuración por entorno
-const config = {
-  // Configuración base compartida entre entornos
-  port: process.env.PORT || 3000,
-  host: process.env.HOST || '0.0.0.0', // Usar 0.0.0.0 para permitir conexiones desde cualquier interfaz
-  corsOrigin: process.env.FRONTEND_URL || '*', // Permitir cualquier origen en desarrollo
-  apiPrefix: process.env.API_PREFIX || '/api',
-  // Ruta a los archivos estáticos del frontend
-  frontendPath: path.resolve(__dirname, '../frontend'),
-  // Ajustes específicos por entorno
-  development: {
-    logLevel: 'debug',
-    enableDetailedErrors: true
-  },
-  production: {
-    logLevel: 'info',
-    enableDetailedErrors: false
-  },
-  testing: {
-    logLevel: 'debug',
-    enableDetailedErrors: true
-  }
-};
-
-// Obtener configuración del entorno actual
-const env = process.env.NODE_ENV || 'development';
-const currentConfig = { ...config, ...config[env] };
-
-// Establecer nivel de log según entorno
-logger.level = currentConfig.logLevel;
-
-// Middleware configurado según entorno
-
-// Seguridad - Helmet
+// Middleware de seguridad y optimización
 app.use(helmet({
-  contentSecurityPolicy: false, // Desactivar temporalmente CSP para desarrollo
-  crossOriginEmbedderPolicy: false
-}));
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://cdn.jsdelivr.net', 'https://code.jquery.com'],
+      styleSrc: ["'self'", "'unsafe-inline'", 'https://cdn.jsdelivr.net', 'https://fonts.googleapis.com'],
+      fontSrc: ["'self'", 'https://fonts.gstatic.com', 'https://cdn.jsdelivr.net'],
+      imgSrc: ["'self'", 'data:', 'https:'],
+      connectSrc: ["'self'", 'https://api.example.com']
+    }
+  }
+})); // Seguridad HTTP con configuración para recursos frontend
 
-// Compresión de respuestas
-app.use(compression());
-
-// Parseo de JSON
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-
-// CORS
+// Configuración de CORS para permitir cookies en solicitudes cross-origin
 app.use(cors({
-  origin: currentConfig.corsOrigin,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : 'http://localhost:3000',
+  credentials: true // Permitir cookies en solicitudes CORS
 }));
 
-// Logging HTTP
-const morganFormat = env === 'production' ? 'combined' : 'dev';
-app.use(morgan(morganFormat, { 
-  stream: { write: message => logger.info(message.trim()) },
-  skip: (req, res) => env === 'production' && res.statusCode < 400 // En producción, solo log de errores
+app.use(compression()); // Comprimir respuestas
+app.use(express.json()); // Parsear JSON
+app.use(express.urlencoded({ extended: true })); // Parsear URL-encoded
+app.use(cookieParser(process.env.COOKIE_SECRET || 'ecoseo-secret-key')); // Parsear cookies
+
+// Configuración de sesiones
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'ecoseo-session-secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true, // No accesible por JavaScript del cliente
+    secure: process.env.NODE_ENV === 'production', // Solo HTTPS en producción
+    maxAge: 24 * 60 * 60 * 1000 // 24 horas
+  }
 }));
 
-// Servir archivos estáticos del frontend
-app.use(express.static(currentConfig.frontendPath, {
-  index: 'index.html',
-  extensions: ['html']
-}));
+app.use(morgan('dev')); // Logging de solicitudes
 
-// Manejar rutas del frontend (SPA)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(currentConfig.frontendPath, 'index.html'));
+// Limitar tasa de solicitudes para la API
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutos
+  max: 100, // Límite de 100 solicitudes por ventana
+  standardHeaders: true,
+  legacyHeaders: false,
 });
 
-// Ruta de verificación de estado
-app.get('/api/status', (req, res) => {
-  res.json({
-    mensaje: 'API de Ecos del SEO funcionando correctamente',
-    version: '1.0.0',
-    estado: 'online',
-    entorno: env,
-    timestamp: new Date().toISOString()
+// Configuración de rutas para la API
+app.use('/api', apiLimiter); // Aplicar limitador solo a rutas de API
+
+// Rutas de API
+app.get('/api/health', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    message: 'Servidor funcionando correctamente',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV
   });
 });
 
-// Rutas API
+// Rutas de API
 app.use('/api/auth', require('./rutas/api/auth'));
+app.use('/api/admin/usuarios', require('./rutas/api/usuarios'));
+app.use('/api/admin/dashboard', require('./rutas/api/dashboard'));
 app.use('/api/contactos', require('./rutas/api/contactos'));
-app.use('/api/servicios', require('./rutas/api/servicios'));
-app.use('/api/testimonios', require('./rutas/api/testimonios'));
-app.use('/api/articulos', require('./rutas/api/articulos'));
-app.use('/api/configuracion', require('./rutas/api/configuracion'));
 
-// Para cualquier otra ruta, servir el index.html del frontend
-app.get('*', (req, res) => {
-  res.sendFile(path.join(currentConfig.frontendPath, 'index.html'));
+// Aquí se añadirían más rutas de API cuando estén disponibles
+// app.use('/api/servicios', require('./rutas/api/servicios'));
+
+// Servir archivos estáticos del frontend
+const frontendPath = path.join(__dirname, '../frontend');
+
+// Configuración mejorada para servir archivos estáticos con los MIME types correctos
+app.use(express.static(frontendPath, {
+  setHeaders: (res, path) => {
+    // Configurar tipos MIME explícitos para archivos comunes
+    if (path.endsWith('.css')) {
+      res.setHeader('Content-Type', 'text/css');
+    } else if (path.endsWith('.js')) {
+      res.setHeader('Content-Type', 'application/javascript');
+    } else if (path.endsWith('.html')) {
+      res.setHeader('Content-Type', 'text/html');
+    }
+  }
+}));
+
+// Ruta para servir index.html como página principal
+app.get('/', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
-// Manejo de errores
-app.use((req, res, next) => {
-  const error = new Error('Ruta no encontrada');
-  error.status = 404;
-  next(error);
-});
-
-app.use((error, req, res, next) => {
-  const status = error.status || 500;
-  const mensaje = error.message || 'Error interno del servidor';
-  
-  logger.error(`${status} - ${mensaje}`);
-  if (error.stack && currentConfig.enableDetailedErrors) {
-    logger.error(error.stack);
+// Ruta para manejar todas las demás solicitudes de páginas y redirigirlas al frontend
+// Esto permite que el enrutamiento del frontend funcione correctamente
+app.get('*', (req, res, next) => {
+  // Si la solicitud es para la API, continuar al siguiente middleware
+  if (req.path.startsWith('/api')) {
+    return next();
   }
   
-  res.status(status).json({
-    error: {
-      mensaje,
-      status,
-      // Solo incluir detalles adicionales en entornos no productivos
-      ...(currentConfig.enableDetailedErrors ? {
-        path: req.path,
-        stack: error.stack,
-        timestamp: new Date().toISOString()
-      } : {})
+  // Intentar enviar el archivo solicitado
+  const filePath = path.join(frontendPath, req.path);
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      // Si el archivo no existe, enviar index.html para manejo por el frontend
+      res.sendFile(path.join(frontendPath, 'index.html'));
     }
   });
 });
 
-// Función para mostrar el banner de inicio
-const showStartupBanner = () => {
-  const sysInfo = getSystemInfo();
-  const startTime = new Date();
-  
-  // Limpiar consola
-  console.clear();
-  
-  // Mostrar banner
-  console.log('\n' + line() + '\n' +
-    '  ███████╗ ██████╗ ██████╗ ███████╗     ██████╗ ███████╗ ██████╗ \n' +
-    '  ██╔════╝██╔════╝██╔═══██╗██╔════╝    ██╔═══██╗██╔════╝██╔═══██╗\n' +
-    '  █████╗  ██║     ██║   ██║███████╗    ██║   ██║███████╗██║   ██║\n' +
-    '  ██╔══╝  ██║     ██║   ██║╚════██║    ██║   ██║╚════██║██║   ██║\n' +
-    '  ███████╗╚██████╗╚██████╔╝███████║    ╚██████╔╝███████║╚██████╔╝\n' +
-    '  ╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝     ╚═════╝ ╚══════╝ ╚═════╝ \n');
+// Middleware para manejo de rutas de API no encontradas
+app.use('/api/*', (req, res) => {
+  res.status(404).json({
+    status: 'error',
+    message: 'Ruta de API no encontrada'
+  });
+});
 
-  // Información del sistema
-  console.log(`\n${line('-')}`);
-  console.log('  INFORMACIÓN DEL SISTEMA'.padEnd(40));
-  console.log(line('-'));
-  console.log(`  Fecha/Hora:    ${startTime.toLocaleString()}`);
-  console.log(`  Plataforma:    ${sysInfo.platform} (${sysInfo.arch})`);
-  console.log(`  Hostname:      ${sysInfo.hostname}`);
-  console.log(`  CPU Cores:     ${sysInfo.cpus}`);
-  console.log(`  Memoria:       ${sysInfo.totalMem} total, ${sysInfo.freeMem} libre`);
-  console.log(`  Tiempo activo: ${sysInfo.uptime}`);
-  
-  // Información de la aplicación
-  console.log(`\n${line('-')}`);
-  console.log('  CONFIGURACIÓN DE LA APLICACIÓN'.padEnd(40));
-  console.log(line('-'));
-  
-  // Mostrar URLs de acceso para desarrollo local
-  const localUrl = `http://localhost:${currentConfig.port}`;
-  const networkUrl = `http://${currentConfig.host}:${currentConfig.port}`;
-  
-  console.log(`  URLs de acceso:`);
-  console.log(`    ✓ Local:     ${localUrl}`);
-  console.log(`    ✓ Red:       ${networkUrl}`);
-  console.log(`  Entorno:      ${env.toUpperCase()}`);
-  console.log(`  CORS:         ${currentConfig.corsOrigin}`);
-  console.log(`  API Base:     ${currentConfig.apiPrefix}`);
-  console.log(`  Frontend:     ${currentConfig.frontendPath}`);
-  console.log(`  Nivel de Log: ${currentConfig.logLevel.toUpperCase()}`);
-  
-  // Estado de la base de datos
-  console.log(`\n${line('-')}`);
-  console.log('  ESTADO DE LA BASE DE DATOS'.padEnd(40));
-  console.log(line('-'));
-  console.log(`  Estado:        Conectado correctamente`);
-  console.log(`  Base de datos: ${process.env.DB_NAME}`);
-  console.log(`  Usuario:       ${process.env.DB_USER}`);
-  console.log(`  Servidor:      ${process.env.DB_HOST}:${process.env.DB_PORT}`);
-  
-  // Mensaje final
-  console.log(`\n${line('=')}`);
-  console.log('  [OK] Servidor inicializado correctamente'.padStart(45));
-  console.log(`  Tiempo de inicio: ${new Date().toLocaleTimeString()}`);
-  console.log(`${line('=')}\n`);
-};
+// Middleware para manejo de errores
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.statusCode || 500).json({
+    status: 'error',
+    message: err.message || 'Error interno del servidor'
+  });
+});
 
 // Iniciar el servidor
-app.listen(currentConfig.port, currentConfig.host, () => {
-  showStartupBanner();
-  
-  // Registrar en el logger también
-  logger.info(line());
-  logger.info('SERVIDOR INICIADO CORRECTAMENTE');
-  const url = `http://${currentConfig.host}:${currentConfig.port}`;
-  console.log(`\n  Servidor en ejecución en: ${url}`);
-  console.log('  Presiona Ctrl+C para detener el servidor\n');
-  logger.info(`URL: ${url}`);
-  logger.info(`Entorno: ${env}`);
-  logger.info(`Hora de inicio: ${new Date().toLocaleString()}`);
-  logger.info(line());
+const iniciarServidor = async () => {
+  try {
+    // Probar conexión a la base de datos
+    const dbConectada = await testConnection();
+    
+    if (!dbConectada) {
+      console.error('No se pudo conectar a la base de datos. Abortando inicio del servidor.');
+      process.exit(1);
+    }
+    
+    // Iniciar el servidor
+    app.listen(PORT, () => {
+      console.log(`Servidor unificado iniciado en el puerto ${PORT}`);
+      console.log(`Ambiente: ${process.env.NODE_ENV || 'desarrollo'}`);
+      console.log(`Frontend: http://localhost:${PORT}`);
+      console.log(`API: http://localhost:${PORT}/api`);
+    });
+  } catch (error) {
+    console.error('Error al iniciar el servidor:', error);
+    process.exit(1);
+  }
+};
+
+// Ejecutar el servidor
+iniciarServidor();
+
+// Manejar señales de terminación
+process.on('SIGINT', () => {
+  console.log('Cerrando servidor...');
+  process.exit(0);
 });
 
-// Manejo de errores no capturados
-process.on('unhandledRejection', (reason, promise) => {
-  logger.error('Unhandled Rejection at:', promise, 'reason:', reason);
-  // Podrías cerrar el servidor y reiniciarlo aquí
-  // server.close(() => process.exit(1));
-});
-
-process.on('uncaughtException', (error) => {
-  logger.error('Uncaught Exception:', error);
-  // Podrías cerrar el servidor y reiniciarlo aquí
-  // server.close(() => process.exit(1));
-});
-
-// Exportar la aplicación para pruebas
-module.exports = { app, server };
+module.exports = app; // Para pruebas

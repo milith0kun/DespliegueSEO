@@ -216,7 +216,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
     .service-benefits {
         padding: 60px 0 40px;
     }

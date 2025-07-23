@@ -299,40 +299,6 @@
     }
 }
 
-.step:hover {
-    transform: translateY(-10px);
-}
-
-.step::before {
-    counter-increment: step-counter;
-    content: "";
-    position: absolute;
-    top: -20px;
-    left: 30px;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, #3a1c71, #d76d77);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.step h3 {
-    color: #3a1c71;
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-    padding-top: 10px;
-}
-
-.step p {
-    color: #666;
-    line-height: 1.6;
-}
-
 /* Línea conectora entre pasos */
 .process-steps::after {
     content: '';

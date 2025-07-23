@@ -1,29 +1,21 @@
 /**
- * Rutas para la API de Autenticación y Usuarios
+ * Rutas de autenticación
  */
 
 const express = require('express');
 const router = express.Router();
-const usuarioController = require('../../controladores/usuarioController');
+const authController = require('../../controladores/authController');
 
-// Middleware de autenticación (se implementará más adelante)
-// const autenticacion = require('../../middleware/autenticacion');
-// const autorizacion = require('../../middleware/autorizacion');
+// Ruta para iniciar sesión
+router.post('/login', authController.login);
 
-// Rutas públicas
-router.post('/registro', usuarioController.registrar);
-router.post('/login', usuarioController.login);
+// Ruta para cerrar sesión
+router.post('/logout', authController.logout);
 
-// Rutas protegidas que requieren autenticación
-// router.use(autenticacion.verificarToken);
+// Ruta para verificar autenticación
+router.get('/check', authController.checkAuth);
 
-// Rutas de perfil de usuario
-router.get('/perfil', usuarioController.obtenerPerfil);
-router.put('/perfil', usuarioController.actualizarPerfil);
-router.post('/cambiar-password', usuarioController.cambiarPassword);
-
-// Rutas de administración de usuarios (solo admin)
-router.get('/usuarios', usuarioController.obtenerUsuarios);
-router.put('/usuarios/:id', usuarioController.actualizarUsuario);
+// Ruta para obtener datos del usuario actual
+router.get('/me', authController.getMe);
 
 module.exports = router;

@@ -6,7 +6,12 @@
   "scripts": {
     "start": "node servidor.js",
     "dev": "nodemon servidor.js",
-    "test": "jest"
+    "test": "jest",
+    "init-db": "node scripts/init-db.js",
+    "setup": "npm install && npm run create-db && npm run init-db",
+    "check-db": "node scripts/check-db.js",
+    "create-db": "node scripts/create-db.js",
+    "backup-db": "node scripts/backup-db.js"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -25,10 +30,12 @@
     "axios": "^1.10.0",
     "bcrypt": "^5.1.1",
     "compression": "^1.7.4",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^4.21.2",
     "express-rate-limit": "^7.1.0",
+    "express-session": "^1.18.1",
     "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",

@@ -1,0 +1,3 @@
+DirectoryIndex frontend/index.html
+RewriteEngine On
+RewriteRule ^$ frontend/ [L]
