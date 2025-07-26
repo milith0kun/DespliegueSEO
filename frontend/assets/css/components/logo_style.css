@@ -41,7 +41,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    /* Eliminado: transition: all 0.3s ease; */
 }
 
 .element i {
@@ -174,13 +174,13 @@
 }
 
 .icon {
-  
-  font-size: 18px;
-  filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.6));
-  transition: all 0.3s ease-out;
-  opacity: 0.95;
-  will-change: transform, filter, opacity;
+    font-size: 18px;
+    filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.6));
+    opacity: 0.95;
+    /* Eliminado: will-change: transform, filter, opacity; */
+    animation: iconPulse 3s ease-in-out infinite;
 }
+
 /* Estilos optimizados para cada icono */
 .search .icon { 
     color: #3b82f6;
@@ -224,8 +224,7 @@
     );
     transform-origin: left center;
     transform: translateY(-50%) translateX(-50%);
-    will-change: width, opacity;
-    transition: all 0.15s linear;
+    /* Eliminado: will-change: width, opacity; */
     border-radius: 6px;
     box-shadow: 
         0 0 25px rgba(59, 130, 246, 0.8),
@@ -235,76 +234,31 @@
     z-index: 1;
 }
 
-
-
-
-.trail::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: 0;
-    width: 100%;
-    height: 16px;
-    background: inherit;
-    filter: blur(3px);
-    opacity: 0.7;
-}
-
 .trail.fast {
     width: 150px;
     opacity: 1;
-    transition: all 0.08s linear;
+    /* Eliminado: transition: all 0.08s linear; */
 }
 
 .trail.medium {
     width: 120px;
     opacity: 0.95;
-    transition: all 0.12s linear;
+    /* Eliminado: transition: all 0.12s linear; */
 }
 
 .trail.slow {
     width: 90px;
     opacity: 0.9;
-    transition: all 0.15s linear;
+    /* Eliminado: transition: all 0.15s linear; */
 }
 
-/* Personalización de colas por tipo de icono */
-.search .trail { 
-    background: linear-gradient(90deg, 
-        rgba(59, 130, 246, 1),
-        rgba(59, 130, 246, 0.8) 50%,
-        rgba(59, 130, 246, 0.3) 80%,
-        transparent
-    );
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.7);
-}
-
-.analytics .trail { 
-    background: linear-gradient(90deg, 
-        rgba(96, 165, 250, 1),
-        rgba(96, 165, 250, 0.8) 50%,
-        rgba(96, 165, 250, 0.3) 80%,
-        transparent
-    );
-    box-shadow: 0 0 20px rgba(96, 165, 250, 0.7);
-}
-
-.globe .trail { 
-    background: linear-gradient(90deg, 
-        rgba(37, 99, 235, 1),
-        rgba(37, 99, 235, 0.8) 50%,
-        rgba(37, 99, 235, 0.3) 80%,
-        transparent
-    );
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.7);
-}
-
-/* Efecto hover mejorado */
+/* ELIMINADO COMPLETAMENTE - Efecto hover que causaba la distorsión:
 .element:hover .icon {
     filter: drop-shadow(0 0 18px rgba(59, 130, 246, 0.8));
     transform: scale(1.2);
     opacity: 1;
 }
+*/
 
 @keyframes iconPulse {
     0%, 100% { 
@@ -315,8 +269,4 @@
         opacity: 1;
         filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.7));
     }
-}
-
-.icon {
-    animation: iconPulse 3s ease-in-out infinite;
 }

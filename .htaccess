@@ -1,3 +1,8 @@
 DirectoryIndex frontend/index.html
 RewriteEngine On
+
+# Redirigir rutas de API a api/index.php
+RewriteRule ^api/(.*)$ api/index.php [L,QSA]
+
+# Redirigir la raíz al frontend
 RewriteRule ^$ frontend/ [L]

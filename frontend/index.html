@@ -475,9 +475,32 @@
     
    
     <script src="assets/js/logo-particles.js" defer></script>
-
-
+    <script src="assets/js/pages/home.js" defer></script>
 </body>
 </html>
+
+
+## Análisis de los errores:
+
+### 1. `favicon.ico:1 Failed to load resource: 404`
+- **Qué es**: El navegador busca automáticamente un ícono para la pestaña
+- **Impacto**: Solo visual, no afecta la funcionalidad
+- **Solución**: Agregar un favicon.ico en la carpeta frontend
+
+### 2. `localhost/:1 Failed to load resource: 404`
+- **Qué es**: El navegador intenta acceder a la raíz del servidor
+- **Impacto**: No afecta el formulario de contacto
+- **Solución**: Crear un index.php en la raíz o redirigir
+
+## Soluciones opcionales (no críticas):
+
+### Para el favicon:
+```html
+<head>
+    <!-- ... existing code ... -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <!-- ... existing code ... -->
+</head>
+```
 
 

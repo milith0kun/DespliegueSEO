@@ -4,8 +4,7 @@
 -- ========================================
 
 -- Crear la base de datos
-
-CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE IF NOT EXISTS ecosdelseo_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- Usar la base de datos
 USE ecosdelseo_db;

@@ -1,6 +1,6 @@
 
 .letter {
-    font-family: 'Montserrat', sans-serif; /* Fuente más seria y profesional */
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-style: normal;
     font-size: 4.9rem;
@@ -8,10 +8,10 @@
     display: inline-block;
     padding: 0.02em;
     transform-style: preserve-3d;
-    
     animation: float 8s ease-in-out infinite;
     height: 80px;
 }
+
 .letter:nth-child(1) { animation-delay: 0s; }
 .letter:nth-child(2) {
     font-size: 4.9rem;
@@ -21,29 +21,26 @@
 }
 .letter:nth-child(3) { animation-delay: 0.4s; }
 
-
 .letter .text {
-    position: relative;          /* Posiciona el elemento relativo a su posición normal */
-    display: block;             /* Hace que el elemento sea de nivel bloque */
-    color: #3956b6;            /* Establece el color del texto a azul #3b82f6  - CAMBIAR AQUÍ PARA MODIFICAR COLOR BASE */
-    background: linear-gradient(135deg,  /* Crea un fondo con gradiente diagonal#3b82f6 */
-        #ffffff 0%,            /* Comienza con blanco */
-        #93c5fd 25%,          /* Azul claro al 25% - CAMBIAR PARA MODIFICAR GRADIENTE */
-        #60a5fa 50%,          /* Azul medio al 50% - CAMBIAR PARA MODIFICAR GRADIENTE */
-        #3b82f6 75%,          /* Azul más oscuro al 75% - CAMBIAR PARA MODIFICAR GRADIENTE */
-        #000000 100%          /* Termina con negro */
+    position: relative;
+    display: block;
+    color: #3956b6;
+    background: linear-gradient(135deg,
+        #ffffff 0%,
+        #93c5fd 25%,
+        #60a5fa 50%,
+        #3b82f6 75%,
+        #000000 100%
     );
-
-    
-    background-clip: text;             /* Recorta el fondo al texto */
-    -webkit-text-stroke: 2.9px rgb(0, 0, 0);  /* Añade contorno negro al texto */
-    text-shadow:                       /* Múltiples sombras de texto para efecto de profundidad */
-        1px 1px 1px rgba(0, 0, 0, 0.7),    /* Sombra cercana */
-        2px 2px 0 #3b82f6,                 /* Sombra desplazada azul - CAMBIAR PARA MODIFICAR COLOR DE SOMBRA */
-        3px 3px 15px rgba(59, 130, 246, 0.7),  /* Brillo azul - CAMBIAR PARA MODIFICAR COLOR DE BRILLO */
-        4px 4px 25px rgba(59, 130, 246, 0.5),  /* Brillo azul más grande */
-        0 0 40px rgba(59, 130, 246, 0.6),      /* Brillo azul ambiental */
-        2px 4px 12px rgba(0, 0, 0, 0.3);       /* Sombra negra sutil */
+    background-clip: text;
+    -webkit-text-stroke: 2.9px rgb(0, 0, 0);
+    text-shadow:
+        1px 1px 1px rgba(0, 0, 0, 0.7),
+        2px 2px 0 #3b82f6,
+        3px 3px 15px rgba(59, 130, 246, 0.7),
+        4px 4px 25px rgba(59, 130, 246, 0.5),
+        0 0 40px rgba(59, 130, 246, 0.6),
+        2px 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes glowPulse {
@@ -108,28 +105,6 @@
 .letter {
     animation: float 12s ease-in-out infinite;
 }
-@keyframes glowPulse {
-    0%, 100% {
-        text-shadow: 
-            1px 1px 0 #000,
-            2px 2px 0 #3b82f6,
-            3px 3px 12px rgba(59, 130, 246, 0.6),
-            4px 4px 20px rgba(59, 130, 246, 0.4),
-            0 0 35px rgba(59, 130, 246, 0.6);
-    }
-    50% {
-        text-shadow: 
-            1px 1px 0 #000,
-            2px 2px 0 #3b82f6,
-            3px 3px 12px rgba(59, 130, 246, 0.8),
-            4px 4px 20px rgba(59, 130, 246, 0.6),
-            0 0 45px rgba(59, 130, 246, 0.8);
-    }
-}
-
-.letter {
-    animation: float 8s ease-in-out infinite;
-}
 
 .letter .text {
     animation: glowPulse 4s ease-in-out infinite;
@@ -147,12 +122,6 @@
     animation-delay: 0.4s;
 }
 
-.letter:hover {
-    transform: scale(1.25) translateX(20px) translateY(-20px) translateZ(80px) rotateY(12deg) rotateX(-8deg) rotateZ(3deg);
-    z-index: 10;
-    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
 @media (max-width: 768px) {
     .letter {
         font-size: 3.2rem;
@@ -162,6 +131,7 @@
         font-size: 3.6rem;
     }
 }
+
 @keyframes gradientMove {
     0% {
         background-position: 0% center;
