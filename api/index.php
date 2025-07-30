@@ -2,7 +2,7 @@
 session_start();
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: http://localhost:8000');
+header('Access-Control-Allow-Origin: http://localhost:8080');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Access-Control-Allow-Credentials: true');
@@ -20,8 +20,32 @@ require_once __DIR__ . '/controllers/ContactoController.php';
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
 
+// Debugging - log de rutas (remover en producción)
+error_log("API Request: $method $request");
+
 // Routing
 switch (true) {
+    // Ruta raíz - información de la API
+    case $request === '/' && $method === 'GET':
+        echo json_encode([
+            'success' => true,
+            'message' => 'API del Sistema de Marketing y SEO',
+            'version' => '1.0.0',
+            'available_routes' => [
+                'POST /api/auth/login',
+                'GET /api/auth/check',
+                'GET /api/auth/me',
+                'POST /api/auth/logout',
+                'GET /api/usuarios',
+                'POST /api/contactos',
+                'GET /api/contactos',
+                'GET /api/contactos/estadisticas',
+                'PUT /api/contactos/{id}',
+                'DELETE /api/contactos/{id}'
+            ]
+        ]);
+        break;
+        
     // Rutas de autenticación
     case $request === '/api/auth/login' && $method === 'POST':
         $controller = new UsuarioController();
@@ -65,18 +89,34 @@ switch (true) {
         $controller->estadisticas();
         break;
         
-    case preg_match('/^\/api\/contactos\/([a-f0-9-]+)$/', $request, $matches) && $method === 'PUT':
+    case preg_match('/^\/api\/contactos\/([0-9]+)$/', $request, $matches) && $method === 'PUT':
         $controller = new ContactoController();
         $controller->actualizarEstado($matches[1]);
         break;
         
-    case preg_match('/^\/api\/contactos\/([a-f0-9-]+)$/', $request, $matches) && $method === 'DELETE':
+    case preg_match('/^\/api\/contactos\/([0-9]+)$/', $request, $matches) && $method === 'DELETE':
         $controller = new ContactoController();
         $controller->eliminar($matches[1]);
         break;
         
     default:
         http_response_code(404);
-        echo json_encode(['error' => 'Ruta no encontrada: ' . $request]);
+        echo json_encode([
+            'success' => false,
+            'error' => 'Ruta no encontrada: ' . $request,
+            'method' => $method,
+            'available_routes' => [
+                'POST /api/auth/login',
+                'GET /api/auth/check',
+                'GET /api/auth/me',
+                'POST /api/auth/logout',
+                'GET /api/usuarios',
+                'POST /api/contactos',
+                'GET /api/contactos',
+                'GET /api/contactos/estadisticas',
+                'PUT /api/contactos/{id}',
+                'DELETE /api/contactos/{id}'
+            ]
+        ]);
 }
 ?>

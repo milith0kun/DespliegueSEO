@@ -1,12 +1,30 @@
 /* Estilos para la sección 1 de desarrollo-web */
 
 .service-hero {
-    background: linear-gradient(135deg, #0a2540 0%, #1e3a8a 100%);
+    background: linear-gradient(135deg, #1c3c5c 0%, #294daf 100%);
     color: #ffffff;
-    padding: 140px 0 100px;
+    padding: 140px 0 80px; /* Aumentado padding-top para separación del header */
+    margin-top: 0;
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    /* Animación de entrada */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1.2s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+/* Animación de entrada para toda la sección */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .service-hero::before {
@@ -34,6 +52,19 @@
     border-radius: 50%;
     z-index: 1;
     filter: blur(40px);
+    animation: floatLight 8s ease-in-out infinite;
+}
+
+/* Nueva animación para el efecto de luz flotante */
+@keyframes floatLight {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1);
+        opacity: 0.6;
+    }
 }
 
 .service-hero .container {
@@ -41,11 +72,27 @@
     z-index: 2;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 40px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* Animación del contenedor */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInUp 1s ease-out forwards;
+    animation-delay: 0.6s;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .service-hero h1 {
@@ -53,13 +100,17 @@
     font-weight: 800;
     margin-bottom: 1.5rem;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    animation: fadeInDown 0.8s ease-out;
     background: linear-gradient(90deg, #ffffff, #e0e7ff);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     letter-spacing: -0.5px;
     line-height: 1.2;
+    /* Animación específica del título */
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInDown 1s ease-out forwards;
+    animation-delay: 0.8s;
 }
 
 .service-hero p {
@@ -68,9 +119,13 @@
     margin: 0 auto 2.8rem;
     line-height: 1.7;
     opacity: 0.95;
-    animation: fadeInUp 0.8s ease-out 0.2s both;
     font-weight: 400;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    /* Animación específica del párrafo */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 1s;
 }
 
 .service-hero .btn-primary {
@@ -83,11 +138,30 @@
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-    animation: fadeInUp 0.8s ease-out 0.4s both;
     position: relative;
     overflow: hidden;
     font-size: 1.1rem;
     letter-spacing: 0.5px;
+    /* Animación específica del botón */
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    animation: bounceIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    animation-delay: 1.2s;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-5px) scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .service-hero .btn-primary:hover {
@@ -166,58 +240,119 @@
     }
 }
 
-/* Estilos responsivos */
-@media (max-width: 992px) {
+/* Animación de salida suave para transición a la siguiente sección */
+.service-hero {
+    transition: all 0.8s ease-out;
+}
+
+.service-hero.exit-animation {
+    opacity: 0;
+    transform: translateY(-30px);
+}
+
+/* Estilos responsivos mejorados */
+@media (max-width: 1200px) {
     .service-hero {
-        padding: 120px 0 80px;
+        padding: 120px 0 70px; /* Ajustado para mantener separación */
     }
     
     .service-hero h1 {
-        font-size: 3rem;
+        font-size: 3.2rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .service-hero {
+        padding: 110px 0 65px;
+    }
+}
+
+@media (max-width: 992px) {
+    .service-hero {
+        padding: 100px 0 60px;
+    }
+    
+    .service-hero h1 {
+        font-size: 2.8rem;
+        line-height: 1.1;
     }
     
     .service-hero p {
-        font-size: 1.25rem;
-        margin-bottom: 2.5rem;
+        font-size: 1.2rem;
+        margin-bottom: 1.8rem;
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 800px) {
+    .service-hero {
+        padding: 90px 0 55px;
     }
 }
 
 @media (max-width: 768px) {
     .service-hero {
-        padding: 100px 0 70px;
+        padding: 85px 0 50px;
+    }
+    
+    .service-hero .container {
+        padding: 0 15px;
     }
     
     .service-hero h1 {
-        font-size: 2.5rem;
+        font-size: 2.4rem;
+        margin-bottom: 1rem;
     }
     
     .service-hero p {
-        font-size: 1.2rem;
-        margin-bottom: 2.5rem;
-    }
-    
-    .service-hero .btn-primary {
-        padding: 15px 30px;
-        font-size: 1.05rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .service-hero {
-        padding: 80px 0 60px;
-    }
-    
-    .service-hero h1 {
-        font-size: 2.2rem;
-    }
-    
-    .service-hero p {
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
+        font-size: 1.15rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
     }
     
     .service-hero .btn-primary {
         padding: 14px 28px;
         font-size: 1rem;
+        width: auto;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .service-hero {
+        padding: 80px 0 45px;
+    }
+    
+    .service-hero .container {
+        padding: 0 15px;
+    }
+    
+    .service-hero h1 {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+        letter-spacing: -0.3px;
+    }
+    
+    .service-hero p {
+        font-size: 1.05rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.5;
+    }
+    
+    .service-hero .btn-primary {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-hero {
+        padding: 75px 0 40px;
+    }
+    
+    .service-hero .container {
+        padding: 0 12px;
     }
 }

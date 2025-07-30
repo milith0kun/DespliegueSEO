@@ -5,6 +5,48 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Contenedor global responsive */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 480px) {
+    .container {
+        max-width: 100%;
+        padding: 0 8px;
+    }
+}
+
+/* Responsive para móviles muy pequeños */
+@media (max-width: 320px) {
+    .container {
+        max-width: 100%;
+        padding: 0 5px;
+    }
 }
 
 /* Animaciones para elementos */

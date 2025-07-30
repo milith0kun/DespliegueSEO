@@ -208,31 +208,6 @@ class ContactoController {
         }
     }
     
-    /**
-     * Enviar notificación por email (implementar según tus necesidades)
-     */
-    private function enviarNotificacionEmail($datos) {
-        // Aquí puedes implementar el envío de emails usando PHPMailer o similar
-        // Por ahora solo registramos en log
-        error_log("Nuevo contacto recibido: " . $datos['nombre'] . " - " . $datos['email']);
-        
-        // Ejemplo básico con mail() de PHP (no recomendado para producción)
-        /*
-        $to = 'admin@ecosdelseo.com';
-        $subject = 'Nuevo contacto desde el sitio web';
-        $message = "Nuevo contacto recibido:\n\n";
-        $message .= "Nombre: " . $datos['nombre'] . "\n";
-        $message .= "Email: " . $datos['email'] . "\n";
-        $message .= "Teléfono: " . $datos['telefono'] . "\n";
-        $message .= "Empresa: " . $datos['empresa'] . "\n";
-        $message .= "Mensaje: " . $datos['mensaje'] . "\n";
-        
-        $headers = 'From: noreply@ecosdelseo.com' . "\r\n" .
-                   'Reply-To: ' . $datos['email'] . "\r\n" .
-                   'X-Mailer: PHP/' . phpversion();
-        
-        mail($to, $subject, $message, $headers);
-        */
-    }
+    
 }
 ?>

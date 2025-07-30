@@ -4,6 +4,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    max-width: 100%; /* Prevenir overflow */
 }
 
 html {
@@ -11,6 +12,9 @@ html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    overflow-x: hidden; /* Cambiar de auto a hidden */
+    min-width: 100%;
 }
 
 body {
@@ -18,25 +22,100 @@ body {
     line-height: 1;
     color: #1E293B;
     background-color: #F8F9FA;
-    overflow-x: hidden;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow-x: hidden; /* Cambiar de auto a hidden */
 }
 
-/* Block elements */
-article, aside, footer, header, nav, section, main {
+/* Estilos responsivos para el body mejorados */
+@media (max-width: 1200px) {
+    body {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%; /* Añadir max-width */
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 1024px) {
+    body {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 360px) {
+    body {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 320px) {
+    body {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+/* Block elements mejorados */
+article, aside, footer , nav, section, main {
     display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Añadir para prevenir overflow */
 }
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0 0 1.5rem;
     line-height: 1.2;
-
     font-family: "Roboto", sans-serif;
-
-
+    max-width: 100%; /* Añadir */
+    word-wrap: break-word; /* Añadir para texto largo */
 }
 
 p {
     margin: 0 0 1.5rem;
+    max-width: 100%; /* Añadir */
+    word-wrap: break-word; /* Añadir para texto largo */
 }
 
 /* Lists */
@@ -44,6 +123,7 @@ ul, ol {
     list-style: none;
     margin: 0;
     padding: 0;
+    max-width: 100%; /* Añadir */
 }
 
 /* Links */
@@ -51,20 +131,23 @@ a {
     color: #3B82F6;
     text-decoration: none;
     transition: color 0.3s ease;
+    max-width: 100%; /* Añadir */
+    word-wrap: break-word; /* Añadir para URLs largas */
 }
 
 a:hover {
     color: #2563EB;
 }
 
-/* Media */
+/* Media mejorados */
 img, video, canvas, svg {
     display: block;
     max-width: 100%;
     height: auto;
+    box-sizing: border-box;
 }
 
-/* Form elements */
+/* Form elements mejorados */
 button,
 input,
 select,
@@ -72,9 +155,161 @@ textarea {
     font: inherit;
     color: inherit;
     background: transparent;
+    max-width: 100%; /* Añadir */
+    box-sizing: border-box;
 }
 
 button {
     border: none;
     cursor: pointer;
+    max-width: 100%; /* Añadir */
+}
+
+/* Contenedores principales responsivos mejorados */
+.container, .main-container, .content-wrapper, .section-container {
+    width: 100%;
+    max-width: 1200px; /* Restaurar max-width para centrado */
+    margin: 0 auto; /* Centrar */
+    padding: 0 20px; /* Añadir padding */
+    box-sizing: border-box;
+}
+
+/* Content Grid - Añadir definición global */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Asegurar que todas las secciones ocupen el ancho completo */
+section {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Añadir */
+}
+
+/* Grids responsivos - Añadir */
+.services-grid,
+.team-grid,
+.testimonials-grid,
+.process-grid,
+.clients-grid {
+    display: grid;
+    width: 100%;
+    max-width: 100%;
+    gap: 2rem;
+    box-sizing: border-box;
+}
+
+/* Responsive para contenedores */
+@media (max-width: 1199px) {
+    .container, .main-container, .content-wrapper, .section-container {
+        max-width: 100%;
+        padding: 0 30px;
+    }
+}
+
+@media (max-width: 991px) {
+    .container, .main-container, .content-wrapper, .section-container {
+        padding: 0 25px;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .container, .main-container, .content-wrapper, .section-container {
+        padding: 0 20px;
+    }
+    
+    .services-grid,
+    .team-grid,
+    .testimonials-grid,
+    .process-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .container, .main-container, .content-wrapper, .section-container {
+        padding: 0 15px;
+    }
+    
+    .services-grid,
+    .team-grid,
+    .testimonials-grid,
+    .process-grid,
+    .clients-grid {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 479px) {
+    .container, .main-container, .content-wrapper, .section-container {
+        padding: 0 12px;
+    }
+}
+
+@media (max-width: 359px) {
+    .container, .main-container, .content-wrapper, .section-container {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 319px) {
+    .container, .main-container, .content-wrapper, .section-container {
+        padding: 0 8px;
+    }
+}
+
+/* Utilidades para prevenir overflow */
+.full-width {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.no-overflow {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+}
+
+/* Texto responsivo */
+.text-content {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Tablas responsivas */
+table {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    table {
+        font-size: 0.875rem;
+    }
+}
+
+/* Elementos que pueden causar overflow */
+pre, code {
+    overflow-x: auto;
+    max-width: 100%;
+    word-wrap: break-word;
 }

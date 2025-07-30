@@ -1,6 +1,8 @@
+/* ========================================
+   PARTÍCULAS Y ANIMACIONES TECNOLÓGICAS
+======================================== */
 
-
-/* Enhanced Particles */
+/* Partículas tecnológicas mejoradas */
 .tech-particle {
     position: absolute;
     width: 40px;
@@ -13,7 +15,7 @@
     transition: all 0.3s ease;
 }
 
-/* New collision effect container */
+/* Contenedor de efectos de colisión */
 .collision-effect {
     position: absolute;
     pointer-events: none;
@@ -23,7 +25,7 @@
     z-index: 2;
 }
 
-/* SEO Elements Animation */
+/* Elementos SEO animados */
 .seo-element {
     position: absolute;
     font-family: 'Font Awesome 6 Free';
@@ -33,7 +35,7 @@
     transform: scale(0);
 }
 
-/* Add new tech patterns */
+/* Patrones tecnológicos */
 .tech-pattern {
     position: absolute;
     width: 100%;
@@ -45,7 +47,46 @@
     animation: patternFloat 20s linear infinite;
 }
 
-/* Enhanced collision animations */
+/* Flujo de datos */
+.data-flow {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0, 195, 255, 0.5), transparent);
+    animation: dataFlow 3s linear infinite;
+}
+
+/* Explosión de palabras clave */
+.keyword-burst {
+    position: absolute;
+    font-size: 12px;
+    color: rgba(0, 195, 255, 0.8);
+    white-space: nowrap;
+    pointer-events: none;
+    animation: keywordFloat 4s ease-out forwards;
+}
+
+/* Ecosistema tecnológico de fondo */
+.tech-ecosystem {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(0, 195, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(0, 195, 255, 0.05) 0%, transparent 50%);
+    animation: ecosystemPulse 10s ease-in-out infinite;
+}
+
+/* Palabras clave SEO ocultas */
+.seo-keywords {
+    content: 'SEO, Analytics, Keywords, Ranking';
+    display: none;
+}
+
+/* ========================================
+   ANIMACIONES
+======================================== */
+
+/* Explosión de colisión */
 @keyframes collisionBurst {
     0% {
         transform: scale(0);
@@ -61,6 +102,7 @@
     }
 }
 
+/* Aparición de elementos SEO */
 @keyframes seoElementSpawn {
     0% {
         transform: scale(0) rotate(0deg);
@@ -76,14 +118,7 @@
     }
 }
 
-/* New data flow animation */
-.data-flow {
-    position: absolute;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(0, 195, 255, 0.5), transparent);
-    animation: dataFlow 3s linear infinite;
-}
-
+/* Flujo de datos */
 @keyframes dataFlow {
     0% {
         width: 0;
@@ -99,7 +134,7 @@
     }
 }
 
-/* Enhanced bounce with collision detection */
+/* Rebote mejorado con detección de colisiones */
 @keyframes enhancedBounce {
     0%, 100% {
         transform: translate(0, 0) rotate(0deg) scale(1);
@@ -119,16 +154,7 @@
     }
 }
 
-/* SEO Keywords burst effect */
-.keyword-burst {
-    position: absolute;
-    font-size: 12px;
-    color: rgba(0, 195, 255, 0.8);
-    white-space: nowrap;
-    pointer-events: none;
-    animation: keywordFloat 4s ease-out forwards;
-}
-
+/* Flotación de palabras clave */
 @keyframes keywordFloat {
     0% {
         transform: translateY(0) scale(0);
@@ -144,26 +170,17 @@
     }
 }
 
-/* Add these JavaScript-triggered classes */
-.collision-active {
-    animation: collisionBurst 0.5s ease-out forwards;
+/* Patrón flotante */
+@keyframes patternFloat {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    100% {
+        transform: translateX(-20px) translateY(-20px);
+    }
 }
 
-.element-spawn {
-    animation: seoElementSpawn 1.5s ease-out forwards;
-}
-
-/* Enhanced tech ecosystem background */
-.tech-ecosystem {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(0, 195, 255, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 70% 70%, rgba(0, 195, 255, 0.05) 0%, transparent 50%);
-    animation: ecosystemPulse 10s ease-in-out infinite;
-}
-
+/* Pulso del ecosistema */
 @keyframes ecosystemPulse {
     0%, 100% {
         opacity: 0.3;
@@ -175,8 +192,178 @@
     }
 }
 
-/* Add these to your HTML elements for the collision effects */
-.seo-keywords {
-    content: 'SEO, Analytics, Keywords, Ranking';
-    display: none;
+/* ========================================
+   CLASES ACTIVADAS POR JAVASCRIPT
+======================================== */
+
+.collision-active {
+    animation: collisionBurst 0.5s ease-out forwards;
+}
+
+.element-spawn {
+    animation: seoElementSpawn 1.5s ease-out forwards;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+/* Tablets (768px) */
+@media (max-width: 768px) {
+    .tech-particle {
+        width: 30px;
+        height: 30px;
+        border-width: 1.5px;
+    }
+    
+    .collision-effect {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .seo-element {
+        font-size: 16px;
+    }
+    
+    .keyword-burst {
+        font-size: 10px;
+    }
+    
+    @keyframes enhancedBounce {
+        0%, 100% {
+            transform: translate(0, 0) rotate(0deg) scale(1);
+            filter: brightness(1);
+        }
+        25% {
+            transform: translate(80px, 40px) rotate(90deg) scale(1.1);
+            filter: brightness(1.5);
+        }
+        50% {
+            transform: translate(0, 80px) rotate(180deg) scale(1);
+            filter: brightness(1.2);
+        }
+        75% {
+            transform: translate(-80px, 40px) rotate(270deg) scale(1.1);
+            filter: brightness(1.5);
+        }
+    }
+}
+
+/* Móviles (480px) */
+@media (max-width: 480px) {
+    .tech-particle {
+        width: 25px;
+        height: 25px;
+        border-width: 1px;
+    }
+    
+    .collision-effect {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .seo-element {
+        font-size: 14px;
+    }
+    
+    .keyword-burst {
+        font-size: 9px;
+    }
+    
+    .data-flow {
+        height: 1px;
+    }
+    
+    @keyframes enhancedBounce {
+        0%, 100% {
+            transform: translate(0, 0) rotate(0deg) scale(1);
+            filter: brightness(1);
+        }
+        25% {
+            transform: translate(60px, 30px) rotate(90deg) scale(1.05);
+            filter: brightness(1.3);
+        }
+        50% {
+            transform: translate(0, 60px) rotate(180deg) scale(1);
+            filter: brightness(1.1);
+        }
+        75% {
+            transform: translate(-60px, 30px) rotate(270deg) scale(1.05);
+            filter: brightness(1.3);
+        }
+    }
+    
+    @keyframes keywordFloat {
+        0% {
+            transform: translateY(0) scale(0);
+            opacity: 0;
+        }
+        50% {
+            transform: translateY(-30px) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-60px) scale(0);
+            opacity: 0;
+        }
+    }
+}
+
+/* Móviles pequeños (360px) */
+@media (max-width: 360px) {
+    .tech-particle {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .collision-effect {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .seo-element {
+        font-size: 12px;
+    }
+    
+    .keyword-burst {
+        font-size: 8px;
+    }
+    
+    @keyframes enhancedBounce {
+        0%, 100% {
+            transform: translate(0, 0) rotate(0deg) scale(1);
+            filter: brightness(1);
+        }
+        25% {
+            transform: translate(40px, 20px) rotate(90deg) scale(1.05);
+            filter: brightness(1.2);
+        }
+        50% {
+            transform: translate(0, 40px) rotate(180deg) scale(1);
+            filter: brightness(1.1);
+        }
+        75% {
+            transform: translate(-40px, 20px) rotate(270deg) scale(1.05);
+            filter: brightness(1.2);
+        }
+    }
+}
+
+/* Reducir animaciones para dispositivos con poca potencia */
+@media (prefers-reduced-motion: reduce) {
+    .tech-particle,
+    .collision-effect,
+    .seo-element,
+    .tech-pattern,
+    .data-flow,
+    .keyword-burst,
+    .tech-ecosystem {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+    
+    .collision-active,
+    .element-spawn {
+        animation: none !important;
+    }
 }

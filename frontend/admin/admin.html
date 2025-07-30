@@ -34,6 +34,22 @@
                 <h3 id="unique-contacts">0</h3>
                 <p>Contactos Únicos</p>
             </div>
+            <!-- Agregar nuevas tarjetas -->
+            <div class="stat-card">
+                <i class="fas fa-chart-line"></i>
+                <h3 id="this-week-messages">0</h3>
+                <p>Esta Semana</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-star"></i>
+                <h3 id="priority-messages">0</h3>
+                <p>Prioritarios</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-clock"></i>
+                <h3 id="avg-response-time">0h</h3>
+                <p>Tiempo Promedio</p>
+            </div>
         </div>
         
         <div class="messages-section">
@@ -42,6 +58,40 @@
                 <button class="refresh-btn" id="refresh-btn">
                     <i class="fas fa-sync-alt"></i> Actualizar
                 </button>
+                
+                <!-- Agregar controles de selección masiva -->
+                <div class="bulk-actions" id="bulk-actions" style="display: none;">
+                    <span id="selected-count">0 seleccionados</span>
+                    <button class="bulk-btn btn-mark-read" id="bulk-mark-read">
+                        <i class="fas fa-check"></i> Marcar como Gestionados
+                    </button>
+                    <button class="bulk-btn btn-delete" id="bulk-delete">
+                        <i class="fas fa-trash"></i> Eliminar Seleccionados
+                    </button>
+                </div>
+            </div>
+            <!-- Agregar antes de messages-list -->
+            <div class="pagination-controls">
+                <div class="pagination-info">
+                    <span id="pagination-info">Mostrando 1-10 de 25 mensajes</span>
+                </div>
+                <div class="pagination-buttons">
+                    <button class="pagination-btn" id="prev-page" disabled>
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <span class="page-numbers" id="page-numbers"></span>
+                    <button class="pagination-btn" id="next-page">
+                        Siguiente <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="items-per-page">
+                    <label for="items-limit">Mostrar:</label>
+                    <select id="items-limit">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
             </div>
             <div class="messages-list" id="messages-list">
                 <div class="loading">
@@ -49,8 +99,74 @@
                 </div>
             </div>
         </div>
+    
+    <!-- Agregar después de .stats -->
+    <div class="filters-section">
+        <div class="filters-header">
+            <h3><i class="fas fa-filter"></i> Filtros</h3>
+            <button class="clear-filters-btn" id="clear-filters">
+                <i class="fas fa-times"></i> Limpiar
+            </button>
+        </div>
+        <div class="filters-grid">
+            <div class="filter-group">
+                <label for="filter-estado">Estado:</label>
+                <select id="filter-estado">
+                    <option value="">Todos</option>
+                    <option value="nuevo">Nuevos</option>
+                    <option value="gestionado">Gestionados</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="filter-servicio">Servicio:</label>
+                <select id="filter-servicio">
+                    <option value="">Todos</option>
+                    <option value="seo">SEO</option>
+                    <option value="desarrollo-web">Desarrollo Web</option>
+                    <option value="paid-media">Paid Media</option>
+                    <option value="social-media">Social Media</option>
+                    <option value="ux-ui">UX/UI</option>
+                    <option value="software">Software a Medida</option>
+                    <option value="trading">Trading</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="search-text">Buscar:</label>
+                <input type="text" id="search-text" placeholder="Nombre, email o mensaje...">
+            </div>
+            <div class="filter-group">
+                <label for="filter-fecha">Fecha:</label>
+                <input type="date" id="filter-fecha">
+            </div>
+        </div>
     </div>
     
+    </div>
+    
+    <!-- Agregar modal para vista detallada -->
+    <div class="modal" id="message-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Detalle del Mensaje</h3>
+                <button class="close-modal" id="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn btn-reply" id="modal-reply">
+                    <i class="fas fa-reply"></i> Responder
+                </button>
+                <button class="modal-btn btn-mark-priority" id="modal-priority">
+                    <i class="fas fa-star"></i> Marcar Prioritario
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Agregar antes del cierre de </body> -->
+    <script src="../assets/js/configuracion/api-config.js"></script>
     <script src="js/admin.js"></script>
 </body>
 </html>

@@ -1,0 +1,204 @@
+/* Mejoras responsivas adicionales */
+
+/* Smooth scrolling para toda la página */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Asegurar que el body tenga el padding correcto para el header fijo */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    padding-top: 0; /* El service-hero ya tiene el padding necesario */
+}
+
+/* Transiciones suaves entre secciones */
+section {
+    margin: 0;
+    border: none;
+    display: block;
+    transition: all 0.6s ease-out;
+}
+
+/* Animación de entrada para secciones al hacer scroll */
+.section-animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.section-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Transición específica entre service-hero y service-benefits */
+.service-hero + .service-benefits {
+    margin-top: 0;
+    padding-top: 80px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInSection 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInSection {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación de salida suave para la última sección */
+.main-footer {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInFromBottom 1s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efectos de parallax suave */
+.parallax-element {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Optimización de rendimiento */
+.service-hero,
+.service-benefits,
+.service-cta,
+.main-footer {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Mejoras para touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .service-hero .btn-primary:hover {
+        transform: none;
+        background: #3b82f6;
+    }
+    
+    .benefits-list li:hover {
+        transform: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Reducir animaciones complejas en dispositivos táctiles */
+    .service-hero::after {
+        animation-duration: 12s;
+    }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+    
+    .section-animate {
+        opacity: 1;
+        transform: none;
+    }
+    
+    .service-hero {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Mejoras para pantallas muy pequeñas */
+@media (max-width: 320px) {
+    .service-hero .container,
+    .service-benefits .container {
+        padding: 0 8px;
+    }
+    
+    .service-hero h1 {
+        font-size: 1.6rem;
+        line-height: 1.1;
+    }
+    
+    .service-hero p {
+        font-size: 0.95rem;
+    }
+    
+    .service-hero .btn-primary {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    /* Reducir animaciones en pantallas muy pequeñas */
+    .service-hero,
+    .service-benefits {
+        animation-duration: 0.5s;
+    }
+}
+
+/* Mejoras para landscape en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+    .service-hero {
+        padding: 80px 0 50px; /* Reducido para landscape */
+    }
+    
+    .service-hero h1 {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .service-hero p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Acelerar animaciones en landscape */
+    .service-hero,
+    .service-benefits {
+        animation-duration: 0.6s;
+    }
+}
+
+/* Transiciones suaves para cambios de viewport */
+@media (max-width: 768px) {
+    .service-hero + .service-benefits {
+        padding-top: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-hero + .service-benefits {
+        padding-top: 50px;
+    }
+}
+
+/* Efecto de carga inicial de la página */
+body.loading .service-hero {
+    animation-play-state: paused;
+}
+
+body.loaded .service-hero {
+    animation-play-state: running;
+}

@@ -4,6 +4,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../config/email_config.php';
 
 class EmailService {
     private $mailer;
@@ -15,22 +16,39 @@ class EmailService {
     
     private function configurarSMTP() {
         try {
-            // Configuración del servidor SMTP
+            // Configuración del servidor SMTP desde email_config.php
             $this->mailer->isSMTP();
-            $this->mailer->Host       = 'smtp.gmail.com';
+            $this->mailer->Host       = SMTP_HOST;
             $this->mailer->SMTPAuth   = true;
-            $this->mailer->Username   = 'ceo@ecosdelseo.com'; // ✅ Ya está correcto
-            $this->mailer->Password   = 'abcd efgh ijkl mnop';     // ⚠️ PONER AQUÍ la contraseña de aplicación
-            $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $this->mailer->Port       = 587;
+            $this->mailer->Username   = SMTP_USERNAME;
+            $this->mailer->Password   = SMTP_PASSWORD;
+            
+            // Configuración correcta para Hostinger puerto 465
+            if (SMTP_PORT == 465) {
+                $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            } else {
+                $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            }
+            
+            $this->mailer->Port       = SMTP_PORT;
+            
+            // Configuración adicional para Hostinger
+            $this->mailer->SMTPDebug = 2; // Activar debug temporalmente
+            $this->mailer->Debugoutput = function($str, $level) {
+                error_log("PHPMailer Debug: $str");
+            };
+            $this->mailer->Timeout = 120; // Aumentar timeout
+            $this->mailer->SMTPKeepAlive = false; // Desactivar para evitar problemas
             
             // Configuración del remitente
-            $this->mailer->setFrom('ceo@ecosdelseo.com', 'Ecos del SEO'); // ✅ Ya está correcto
+            $this->mailer->setFrom(EMAIL_NO_REPLY, NOMBRE_REMITENTE);
             $this->mailer->isHTML(true);
             $this->mailer->CharSet = 'UTF-8';
             
         } catch (Exception $e) {
-            error_log("Error configurando SMTP: {$this->mailer->ErrorInfo}");
+            // Log de errores detallado
+            error_log("Error al configurar PHPMailer SMTP: " . $e->getMessage());
+            throw $e;
         }
     }
     
@@ -39,8 +57,16 @@ class EmailService {
      */
     public function enviarNotificacionContacto($datos) {
         try {
+            // Limpiar destinatarios previos
             $this->mailer->clearAddresses();
-            $this->mailer->addAddress('ceo@ecosdelseo.com'); // Tu email real para recibir notificaciones
+            $this->mailer->clearAttachments();
+            $this->mailer->clearReplyTos();
+            
+            // Configurar destinatario
+            $this->mailer->addAddress(EMAIL_ADMIN);
+            
+            // Configurar reply-to al email del cliente
+            $this->mailer->addReplyTo($datos['email'], $datos['nombre']);
             
             $this->mailer->Subject = '🔔 Nuevo contacto desde el sitio web - ' . $datos['nombre'];
             
@@ -50,11 +76,20 @@ class EmailService {
             // Versión texto plano
             $this->mailer->AltBody = $this->generarTextoPlano($datos);
             
-            $this->mailer->send();
-            return true;
+            // Intentar enviar
+            $resultado = $this->mailer->send();
+            
+            if ($resultado) {
+                error_log("Email de notificación enviado exitosamente a: " . EMAIL_ADMIN);
+                return true;
+            } else {
+                error_log("Error al enviar email: " . $this->mailer->ErrorInfo);
+                return false;
+            }
             
         } catch (Exception $e) {
-            error_log("Error enviando email de notificación: {$this->mailer->ErrorInfo}");
+            error_log("Excepción enviando email de notificación: " . $e->getMessage());
+            error_log("PHPMailer ErrorInfo: " . $this->mailer->ErrorInfo);
             return false;
         }
     }
@@ -64,7 +99,11 @@ class EmailService {
      */
     public function enviarConfirmacionCliente($datos) {
         try {
+            // Limpiar destinatarios previos
             $this->mailer->clearAddresses();
+            $this->mailer->clearAttachments();
+            $this->mailer->clearReplyTos();
+            
             $this->mailer->addAddress($datos['email'], $datos['nombre']);
             
             $this->mailer->Subject = '✅ Hemos recibido tu mensaje - Ecos del SEO';
@@ -72,11 +111,24 @@ class EmailService {
             $mensaje = $this->generarPlantillaConfirmacion($datos);
             $this->mailer->Body = $mensaje;
             
-            $this->mailer->send();
-            return true;
+            // Versión texto plano
+            $textoPlano = "Hola {$datos['nombre']},\n\n";
+            $textoPlano .= "Hemos recibido tu mensaje y nos pondremos en contacto contigo pronto.\n\n";
+            $textoPlano .= "Saludos,\nEquipo Ecos del SEO";
+            $this->mailer->AltBody = $textoPlano;
+            
+            $resultado = $this->mailer->send();
+            
+            if ($resultado) {
+                error_log("Email de confirmación enviado exitosamente a: " . $datos['email']);
+                return true;
+            } else {
+                error_log("Error al enviar confirmación: " . $this->mailer->ErrorInfo);
+                return false;
+            }
             
         } catch (Exception $e) {
-            error_log("Error enviando email de confirmación: {$this->mailer->ErrorInfo}");
+            error_log("Excepción enviando email de confirmación: " . $e->getMessage());
             return false;
         }
     }

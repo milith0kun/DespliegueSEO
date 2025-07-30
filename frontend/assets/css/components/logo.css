@@ -122,13 +122,139 @@
     animation-delay: 0.4s;
 }
 
+/* ESTILOS RESPONSIVOS MEJORADOS PARA LAS LETRAS */
+
+/* Tablets grandes */
+@media (max-width: 1024px) {
+    .letter {
+        font-size: 4.5rem;
+        height: 75px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 4.5rem;
+    }
+}
+
+/* Resolución específica 900px */
+@media (max-width: 900px) {
+    .letter {
+        font-size: 4.2rem;
+        height: 70px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 4.2rem;
+    }
+}
+
+/* Resolución específica 800px */
+@media (max-width: 800px) {
+    .letter {
+        font-size: 4rem;
+        height: 65px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 4rem;
+    }
+}
+
+/* Resolución crítica 752px - mantener legibilidad */
+@media (max-width: 752px) {
+    .letter {
+        font-size: 3.8rem;
+        height: 62px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 3.8rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 2.5px rgb(0, 0, 0);
+    }
+}
+
+/* Tablets estándar */
 @media (max-width: 768px) {
     .letter {
-        font-size: 3.2rem;
+        font-size: 3.6rem;
+        height: 60px;
     }
     
     .letter:nth-child(2) {
         font-size: 3.6rem;
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 600px) {
+    .letter {
+        font-size: 3.2rem;
+        height: 55px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 3.2rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 2px rgb(0, 0, 0);
+    }
+}
+
+/* Móviles medianos */
+@media (max-width: 480px) {
+    .letter {
+        font-size: 2.8rem;
+        height: 50px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 2.8rem;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 360px) {
+    .letter {
+        font-size: 2.4rem;
+        height: 45px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 2.4rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 1.5px rgb(0, 0, 0);
+        text-shadow:
+            1px 1px 1px rgba(0, 0, 0, 0.7),
+            2px 2px 0 #3b82f6,
+            2px 2px 10px rgba(59, 130, 246, 0.6),
+            0 0 25px rgba(59, 130, 246, 0.5);
+    }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 320px) {
+    .letter {
+        font-size: 2rem;
+        height: 40px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 2rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 1px rgb(0, 0, 0);
+        text-shadow:
+            1px 1px 0 rgba(0, 0, 0, 0.7),
+            1px 1px 0 #3b82f6,
+            2px 2px 8px rgba(59, 130, 246, 0.5),
+            0 0 20px rgba(59, 130, 246, 0.4);
     }
 }
 
@@ -151,4 +277,242 @@
         4px 4px 25px rgba(59, 130, 246, 0.8),
         0 0 50px rgba(59, 130, 246, 0.9);
     transition: all 0.5s ease;
+}
+
+/* AJUSTES PARA RANGO 322-762px - LETRAS MÁS GRANDES */
+
+/* Rango 762px hasta 600px */
+@media (max-width: 762px) and (min-width: 600px) {
+    .letter {
+        font-size: 4rem; /* Más grande */
+        height: 65px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 4rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 2.7px rgb(0, 0, 0);
+    }
+}
+
+/* Rango 600px hasta 480px */
+@media (max-width: 600px) and (min-width: 480px) {
+    .letter {
+        font-size: 3.8rem; /* Más grande que antes */
+        height: 62px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 3.8rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 2.5px rgb(0, 0, 0);
+    }
+}
+
+/* Rango 480px hasta 360px */
+@media (max-width: 480px) and (min-width: 360px) {
+    .letter {
+        font-size: 3.5rem; /* Más grande */
+        height: 58px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 3.5rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 2.3px rgb(0, 0, 0);
+    }
+}
+
+/* Rango 360px hasta 322px */
+@media (max-width: 360px) and (min-width: 322px) {
+    .letter {
+        font-size: 3.2rem; /* Más grande que antes */
+        height: 55px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 3.2rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 2px rgb(0, 0, 0);
+    }
+}
+
+/* Para 322px exacto */
+@media (max-width: 322px) {
+    .letter {
+        font-size: 2.8rem; /* Más grande que el anterior 2rem */
+        height: 50px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 2.8rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 1.8px rgb(0, 0, 0);
+    }
+}
+
+/* ===== LETRAS SEO - SISTEMA RESPONSIVO FINAL ===== */
+
+/* Desktop óptimo */
+@media (min-width: 1025px) {
+    .letter {
+        font-size: 4.9rem;
+        height: 80px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 4.9rem;
+    }
+}
+
+/* Laptops medianos */
+@media (max-width: 1024px) and (min-width: 901px) {
+    .letter {
+        font-size: 4.7rem;
+        height: 78px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 4.7rem;
+    }
+}
+
+/* Tablets grandes */
+@media (max-width: 900px) and (min-width: 801px) {
+    .letter {
+        font-size: 4.5rem;
+        height: 75px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 4.5rem;
+    }
+}
+
+/* Tablets medianos */
+@media (max-width: 800px) and (min-width: 763px) {
+    .letter {
+        font-size: 4.3rem;
+        height: 72px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 4.3rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 2.8px rgb(0, 0, 0);
+    }
+}
+
+/* RANGO CRÍTICO: 762px hasta 600px - LETRAS MÁS GRANDES */
+@media (max-width: 762px) and (min-width: 600px) {
+    .letter {
+        font-size: 4.2rem; /* MÁS GRANDE */
+        height: 70px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 4.2rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 2.7px rgb(0, 0, 0);
+        text-shadow:
+            1px 1px 1px rgba(0, 0, 0, 0.7),
+            2px 2px 0 #3b82f6,
+            3px 3px 18px rgba(59, 130, 246, 0.7),
+            4px 4px 28px rgba(59, 130, 246, 0.5),
+            0 0 45px rgba(59, 130, 246, 0.6);
+    }
+}
+
+/* RANGO: 600px hasta 480px */
+@media (max-width: 600px) and (min-width: 480px) {
+    .letter {
+        font-size: 4rem; /* Tamaño generoso */
+        height: 68px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 4rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 2.5px rgb(0, 0, 0);
+    }
+}
+
+/* RANGO: 480px hasta 360px */
+@media (max-width: 480px) and (min-width: 360px) {
+    .letter {
+        font-size: 3.7rem; /* Más grande que antes */
+        height: 65px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 3.7rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 2.3px rgb(0, 0, 0);
+    }
+}
+
+/* RANGO: 360px hasta 322px */
+@media (max-width: 360px) and (min-width: 322px) {
+    .letter {
+        font-size: 3.4rem; /* Más grande */
+        height: 62px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 3.4rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 2.1px rgb(0, 0, 0);
+    }
+}
+
+/* MÍNIMO: 322px y menos */
+@media (max-width: 322px) {
+    .letter {
+        font-size: 3rem; /* Más grande que 2rem anterior */
+        height: 58px;
+    }
+    
+    .letter:nth-child(2) {
+        font-size: 3rem;
+    }
+    
+    .letter .text {
+        -webkit-text-stroke: 1.9px rgb(0, 0, 0);
+        text-shadow:
+            1px 1px 1px rgba(0, 0, 0, 0.7),
+            2px 2px 0 #3b82f6,
+            2px 2px 12px rgba(59, 130, 246, 0.6),
+            0 0 30px rgba(59, 130, 246, 0.5);
+    }
+}
+
+/* Animaciones optimizadas para móviles */
+@media (max-width: 600px) {
+    .letter {
+        animation-duration: 15s; /* Más suave */
+    }
+    
+    .letter .text {
+        animation-duration: 5s; /* Glow más lento */
+    }
 }

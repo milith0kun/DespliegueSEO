@@ -1,23 +1,23 @@
-/* Estilos para la sección 1 de software-medida */
+/* Estilos para la sección 1 de software-medida - Diseño Minimalista */
 .service-hero {
-    background: linear-gradient(135deg, #1a237e, #283593, #3949ab);
-    background-size: 300% 300%;
-    animation: gradientShift 15s ease infinite;
+    background: linear-gradient(135deg, #1c3c5c 0%, #294daf 100%);
     color: #ffffff;
-    padding: 140px 0 100px;
-    text-align: center;
+    padding: 140px 0 80px;
+    margin-top: 0;
     position: relative;
     overflow: hidden;
-    box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    /* Animación de entrada */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1.2s ease-out forwards;
+    animation-delay: 0.3s;
 }
 
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Patrón de código en el fondo */
+/* Patrón de fondo sutil y minimalista */
 .service-hero::before {
     content: '';
     position: absolute;
@@ -25,136 +25,144 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z' fill='%23ffffff' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E");
-    opacity: 0.8;
+    background-image: url('../../../assets/images/patterns/circuit-pattern.svg');
+    background-size: cover;
+    opacity: 0.08;
     z-index: 1;
+    animation: pulse 15s infinite alternate;
+}
+
+.service-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+    filter: blur(40px);
+    animation: floatLight 8s ease-in-out infinite;
+}
+
+@keyframes floatLight {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1);
+        opacity: 0.5;
+    }
 }
 
 .service-hero .container {
     position: relative;
     z-index: 2;
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 30px;
+    padding: 0 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* Animación del contenedor */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInUp 1s ease-out forwards;
+    animation-delay: 0.6s;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .service-hero h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 800;
-    margin-bottom: 25px;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    animation: fadeInDown 0.8s ease-out;
-    background: linear-gradient(to right, #ffffff, #e0e0e0);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(90deg, #ffffff, #e0e7ff);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    display: inline-block;
     letter-spacing: -0.5px;
-    position: relative;
-}
-
-/* Efecto de línea debajo del título */
-.service-hero h1::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, #4caf50, #8bc34a);
-    border-radius: 2px;
-    animation: expandWidth 1s ease-out forwards;
-}
-
-@keyframes expandWidth {
-    from { width: 0; }
-    to { width: 80px; }
+    line-height: 1.2;
+    /* Animación específica del título */
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInDown 1s ease-out forwards;
+    animation-delay: 0.8s;
 }
 
 .service-hero p {
-    font-size: 1.4rem;
-    max-width: 700px;
-    margin: 0 auto 40px;
+    font-size: 1.35rem;
+    max-width: 800px;
+    margin: 0 auto 2.8rem;
     line-height: 1.7;
     opacity: 0.95;
-    animation: fadeInUp 0.8s ease-out 0.2s both;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    font-weight: 300;
+    font-weight: 400;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    /* Animación específica del párrafo */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 1s;
 }
 
 .service-hero .btn-primary {
     display: inline-block;
-    background: linear-gradient(to right, #4caf50, #8bc34a);
+    background: #3b82f6;
     color: white;
-    padding: 16px 36px;
-    border-radius: 50px;
     font-weight: 600;
-    font-size: 1.1rem;
+    padding: 16px 34px;
+    border-radius: 50px;
     text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
-    animation: fadeInUp 0.8s ease-out 0.4s both;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
     position: relative;
     overflow: hidden;
+    font-size: 1.1rem;
     letter-spacing: 0.5px;
-    z-index: 1;
+    /* Animación específica del botón */
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    animation: bounceIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    animation-delay: 1.2s;
 }
 
-/* Efecto de brillo al hover */
-.service-hero .btn-primary::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
-    transform: scale(0);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: -1;
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-5px) scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .service-hero .btn-primary:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 12px 30px rgba(76, 175, 80, 0.6);
-    background: linear-gradient(to right, #43a047, #7cb342);
+    background: #2563eb;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
 }
 
-.service-hero .btn-primary:hover::before {
-    transform: scale(1);
-}
-
-/* Efecto de onda al hacer clic */
-.service-hero .btn-primary::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 5px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.5);
-    opacity: 0;
-    border-radius: 100%;
-    transform: scale(1, 1) translate(-50%, -50%);
-    transform-origin: 50% 50%;
-}
-
-.service-hero .btn-primary:active::after {
-    animation: ripple 0.6s ease-out;
-}
-
-@keyframes ripple {
-    0% {
-        transform: scale(0, 0);
-        opacity: 0.5;
-    }
-    100% {
-        transform: scale(20, 20);
-        opacity: 0;
-    }
-}
-
+/* Animaciones base */
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -177,7 +185,16 @@
     }
 }
 
-/* Partículas flotantes mejoradas */
+@keyframes pulse {
+    0% {
+        opacity: 0.05;
+    }
+    100% {
+        opacity: 0.12;
+    }
+}
+
+/* Partículas minimalistas */
 .service-hero .particles {
     position: absolute;
     top: 0;
@@ -192,129 +209,131 @@
     position: absolute;
     display: block;
     pointer-events: none;
-    width: 8px;
-    height: 8px;
-    background-color: rgba(255, 255, 255, 0.5);
+    width: 4px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    animation: float 6s infinite linear;
 }
 
 .service-hero .particle:nth-child(1) {
-    top: 20%;
     left: 10%;
-    animation: float 20s infinite ease-in-out;
+    animation-delay: 0s;
 }
 
 .service-hero .particle:nth-child(2) {
-    top: 60%;
-    left: 80%;
-    width: 12px;
-    height: 12px;
-    animation: float 25s infinite ease-in-out reverse;
+    left: 20%;
+    animation-delay: 2s;
 }
 
 .service-hero .particle:nth-child(3) {
-    top: 40%;
-    left: 40%;
-    width: 6px;
-    height: 6px;
-    animation: float 18s infinite ease-in-out 2s;
+    left: 60%;
+    animation-delay: 4s;
 }
 
 .service-hero .particle:nth-child(4) {
-    top: 80%;
-    left: 20%;
-    width: 10px;
-    height: 10px;
-    animation: float 22s infinite ease-in-out 1s;
+    left: 80%;
+    animation-delay: 6s;
 }
 
 .service-hero .particle:nth-child(5) {
-    top: 30%;
-    left: 70%;
-    width: 7px;
-    height: 7px;
-    animation: float 24s infinite ease-in-out 3s;
+    left: 90%;
+    animation-delay: 8s;
 }
 
 @keyframes float {
     0% {
-        transform: translateY(0) translateX(0) rotate(0deg) scale(1);
-        opacity: 0.8;
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
     }
-    25% {
-        transform: translateY(-20px) translateX(10px) rotate(90deg) scale(1.1);
-        opacity: 0.6;
+    10% {
+        opacity: 1;
     }
-    50% {
-        transform: translateY(-40px) translateX(0) rotate(180deg) scale(1);
-        opacity: 0.8;
-    }
-    75% {
-        transform: translateY(-20px) translateX(-10px) rotate(270deg) scale(0.9);
-        opacity: 0.6;
+    90% {
+        opacity: 1;
     }
     100% {
-        transform: translateY(0) translateX(0) rotate(360deg) scale(1);
-        opacity: 0.8;
+        transform: translateY(-100px) scale(1);
+        opacity: 0;
     }
 }
 
-/* Estilos responsivos */
+/* Responsivo */
+@media (max-width: 1200px) {
+    .service-hero {
+        padding: 60px 0;
+        min-height: 90vh;
+    }
+    
+    .service-hero h1 {
+        font-size: 3.2rem;
+    }
+}
+
 @media (max-width: 992px) {
     .service-hero {
-        padding: 120px 0 80px;
+        padding: 40px 0;
+        min-height: 80vh;
     }
     
     .service-hero h1 {
-        font-size: 3.5rem;
-    }
-    
-    .service-hero p {
-        font-size: 1.3rem;
-        max-width: 90%;
-    }
-}
-
-@media (max-width: 768px) {
-    .service-hero {
-        padding: 100px 0 70px;
-    }
-    
-    .service-hero h1 {
-        font-size: 3rem;
+        font-size: 2.8rem;
     }
     
     .service-hero p {
         font-size: 1.2rem;
     }
+}
+
+@media (max-width: 768px) {
+    .service-hero {
+        padding: 30px 0;
+        min-height: 70vh;
+    }
+    
+    .service-hero .container {
+        padding: 0 15px;
+    }
+    
+    .service-hero h1 {
+        font-size: 2.4rem;
+    }
+    
+    .service-hero p {
+        font-size: 1.15rem;
+    }
     
     .service-hero .btn-primary {
-        padding: 14px 32px;
+        padding: 14px 28px;
         font-size: 1rem;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
     .service-hero {
-        padding: 80px 0 60px;
+        padding: 25px 0;
+        min-height: 65vh;
     }
     
     .service-hero h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     .service-hero p {
-        font-size: 1.1rem;
-        margin-bottom: 30px;
+        font-size: 1.05rem;
     }
     
     .service-hero .btn-primary {
-        padding: 12px 28px;
+        padding: 12px 24px;
         font-size: 0.95rem;
+        width: 100%;
+        max-width: 280px;
     }
-    
-    .service-hero .btn-primary:hover {
-        transform: translateY(-3px) scale(1.03);
+}
+
+@media (max-height: 600px) {
+    .service-hero {
+        min-height: auto;
+        padding: 100px 0 60px;
     }
 }

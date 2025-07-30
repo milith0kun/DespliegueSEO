@@ -1,15 +1,19 @@
 /* Estilos para el formulario de contacto y notificaciones */
 
-/* Estilos para las notificaciones */
+/* Estilos base responsivos para las notificaciones */
 .form-notification {
     display: flex;
     align-items: center;
-    padding: 15px 20px;
-    margin: 20px 0;
-    border-radius: 8px;
+    padding: clamp(8px, 2.5vw, 20px) clamp(10px, 3vw, 25px);
+    margin: clamp(8px, 2vw, 20px) 0;
+    border-radius: clamp(4px, 1vw, 8px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     animation: slideIn 0.3s ease-out forwards;
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+    word-wrap: break-word;
 }
 
 .form-notification.success {
@@ -25,14 +29,17 @@
 }
 
 .form-notification i:first-child {
-    font-size: 1.5rem;
-    margin-right: 15px;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-right: clamp(10px, 2.5vw, 15px);
+    flex-shrink: 0;
 }
 
 .form-notification p {
     flex-grow: 1;
     margin: 0;
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    line-height: 1.4;
+    word-wrap: break-word;
 }
 
 .form-notification .close-notification {
@@ -40,42 +47,53 @@
     border: none;
     color: inherit;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
     opacity: 0.7;
     transition: opacity 0.2s;
+    padding: 5px;
+    margin-left: 10px;
+    flex-shrink: 0;
 }
 
 .form-notification .close-notification:hover {
     opacity: 1;
 }
 
-/* Estilos para el botón de envío */
+/* Estilos responsivos para el botón de envío */
 .submit-btn {
     position: relative;
     overflow: hidden;
+    width: 100%;
+    max-width: clamp(250px, 80vw, 300px);
+    padding: clamp(10px, 2.5vw, 16px) clamp(15px, 4vw, 32px);
+    font-size: clamp(0.8rem, 2vw, 1.1rem);
+    border-radius: clamp(4px, 1vw, 8px);
+    transition: all 0.3s ease;
+    min-height: 44px; /* Mínimo para accesibilidad táctil */
 }
 
 /* Estilos para errores de validación */
 .contact-form input.error,
 .contact-form textarea.error {
     border-color: #dc3545;
-    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    box-shadow: 0 0 0 clamp(1px, 0.3vw, 3px) rgba(220, 53, 69, 0.25);
 }
 
 .error-message {
     color: #dc3545;
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 1.8vw, 0.875rem);
     margin-top: 0.25rem;
     display: block;
+    line-height: 1.3;
 }
 
-/* Estilos para notificaciones */
+/* Estilos responsivos para notificaciones flotantes */
 .notification {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: clamp(10px, 2vw, 20px);
+    right: clamp(10px, 2vw, 20px);
     z-index: 9999;
-    max-width: 400px;
+    max-width: clamp(280px, 80vw, 400px);
     opacity: 0;
     transform: translateX(100%);
     transition: all 0.3s ease;
@@ -89,11 +107,12 @@
 .notification-content {
     display: flex;
     align-items: center;
-    padding: 1rem;
-    border-radius: 8px;
+    padding: clamp(0.8rem, 2.5vw, 1rem);
+    border-radius: clamp(6px, 1.5vw, 8px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     background: white;
     border-left: 4px solid;
+    word-wrap: break-word;
 }
 
 .notification-success .notification-content {
@@ -112,18 +131,20 @@
 }
 
 .notification-content i {
-    margin-right: 0.5rem;
-    font-size: 1.2rem;
+    margin-right: clamp(0.4rem, 1vw, 0.5rem);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    flex-shrink: 0;
 }
 
 .notification-close {
     background: none;
     border: none;
     margin-left: auto;
-    padding: 0.25rem;
+    padding: clamp(0.2rem, 0.5vw, 0.25rem);
     cursor: pointer;
     opacity: 0.7;
     transition: opacity 0.2s;
+    flex-shrink: 0;
 }
 
 .notification-close:hover {
@@ -145,54 +166,58 @@
     to { transform: rotate(360deg); }
 }
 
-/* Responsive para notificaciones */
-@media (max-width: 768px) {
-    .notification {
-        top: 10px;
-        right: 10px;
-        left: 10px;
-        max-width: none;
-    }
-}
-
-/* Animaciones */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 /* Mejoras de accesibilidad para el formulario */
 .contact-form .form-group {
-    margin-bottom: 20px;
+    margin-bottom: clamp(10px, 3vw, 20px);
     position: relative;
+    width: 100%;
+    min-width: 0;
 }
 
 .contact-form label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: clamp(4px, 1vw, 8px);
     font-weight: 500;
+    font-size: clamp(0.8rem, 1.8vw, 1rem);
+    color: #333; /* Texto negro para mejor contraste */
+    line-height: 1.2;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: clamp(8px, 2vw, 14px) clamp(10px, 2.5vw, 16px);
+    border: 2px solid #e1e5e9;
+    border-radius: clamp(3px, 0.8vw, 6px);
+    font-size: clamp(0.8rem, 1.8vw, 1rem);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    background-color: #ffffff; /* Fondo blanco claro */
+    color: #333; /* Texto negro para mejor legibilidad */
+    min-height: 40px; /* Mínimo para accesibilidad táctil */
+    line-height: 1.4;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
     border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    box-shadow: 0 0 0 clamp(1px, 0.3vw, 2px) rgba(52, 152, 219, 0.2);
+    background-color: #ffffff; /* Mantener fondo blanco en focus */
+    color: #333; /* Mantener texto negro en focus */
+}
+
+/* Placeholder con mejor contraste */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #888; /* Placeholder gris claro pero visible */
+    opacity: 1;
+}
+
+.contact-form textarea {
+    min-height: clamp(80px, 15vw, 120px);
+    resize: vertical;
+    max-height: 200px;
 }
 
 /* Indicador visual de campo requerido */
@@ -222,5 +247,244 @@
 /* Solo aplicar después de interacción del usuario */
 .contact-form input:placeholder-shown,
 .contact-form textarea:placeholder-shown {
-    border-color: initial;
+    border-color: #e1e5e9;
 }
+
+/* Responsive específico para diferentes dispositivos */
+
+/* Tablets grandes */
+@media (max-width: 1024px) {
+    .notification {
+        max-width: clamp(300px, 85vw, 350px);
+    }
+    
+    .submit-btn {
+        max-width: clamp(250px, 75vw, 280px);
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    .notification {
+        top: clamp(10px, 2vw, 15px);
+        right: clamp(10px, 2vw, 15px);
+        left: clamp(10px, 2vw, 15px);
+        max-width: none;
+    }
+    
+    .form-notification {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        padding: clamp(10px, 2.5vw, 15px);
+    }
+    
+    .form-notification i:first-child {
+        margin-bottom: clamp(6px, 1.5vw, 8px);
+        margin-right: 0;
+    }
+    
+    .form-notification .close-notification {
+        position: absolute;
+        top: clamp(8px, 2vw, 10px);
+        right: clamp(8px, 2vw, 10px);
+        margin-left: 0;
+    }
+    
+    .submit-btn {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 576px) {
+    .notification {
+        top: clamp(5px, 1.5vw, 10px);
+        right: clamp(5px, 1.5vw, 10px);
+        left: clamp(5px, 1.5vw, 10px);
+    }
+    
+    .notification-content {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        padding: clamp(10px, 2.5vw, 15px);
+    }
+    
+    .notification-content i {
+        margin-bottom: clamp(6px, 1.5vw, 8px);
+        margin-right: 0;
+    }
+    
+    .notification-close {
+        position: absolute;
+        top: clamp(6px, 1.5vw, 8px);
+        right: clamp(6px, 1.5vw, 8px);
+        margin-left: 0;
+    }
+    
+    .contact-form .form-group {
+        margin-bottom: clamp(10px, 2.5vw, 15px);
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .form-notification {
+        padding: clamp(8px, 2vw, 12px) clamp(10px, 2.5vw, 15px);
+        margin: clamp(6px, 1.5vw, 10px) 0;
+        border-radius: clamp(4px, 1vw, 6px);
+    }
+    
+    .form-notification p {
+        font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+        line-height: 1.3;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+        padding: clamp(8px, 2vw, 10px) clamp(10px, 2.5vw, 12px);
+        font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+        min-height: 38px;
+    }
+    
+    .contact-form textarea {
+        min-height: clamp(70px, 12vw, 100px);
+    }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 360px) {
+    .notification {
+        top: 3px;
+        right: 3px;
+        left: 3px;
+    }
+    
+    .notification-content {
+        padding: clamp(8px, 2vw, 12px);
+        font-size: clamp(0.7rem, 1.6vw, 0.8rem);
+    }
+    
+    .form-notification {
+        padding: clamp(6px, 1.5vw, 10px) clamp(8px, 2vw, 12px);
+        margin: clamp(4px, 1vw, 8px) 0;
+    }
+    
+    .contact-form label {
+        font-size: clamp(0.75rem, 1.6vw, 0.85rem);
+        margin-bottom: clamp(3px, 0.8vw, 5px);
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+        padding: clamp(6px, 1.5vw, 8px) clamp(8px, 2vw, 10px);
+        font-size: clamp(0.75rem, 1.6vw, 0.85rem);
+        min-height: 36px;
+    }
+    
+    .submit-btn {
+        padding: clamp(8px, 2vw, 10px) clamp(15px, 4vw, 20px);
+        font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+        min-height: 40px;
+    }
+}
+
+/* Pantallas extremadamente pequeñas */
+@media (max-width: 320px) {
+    .contact-form .form-group {
+        margin-bottom: clamp(8px, 2vw, 12px);
+    }
+    
+    .contact-form label {
+        font-size: 0.75rem;
+        margin-bottom: 3px;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+        padding: 6px 8px;
+        font-size: 0.75rem;
+        min-height: 34px;
+        border-width: 1px;
+    }
+    
+    .contact-form textarea {
+        min-height: 60px;
+    }
+    
+    .submit-btn {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+        min-height: 38px;
+    }
+    
+    .form-notification {
+        padding: 6px 8px;
+        margin: 4px 0;
+        font-size: 0.7rem;
+    }
+    
+    .notification {
+        top: 2px;
+        right: 2px;
+        left: 2px;
+    }
+    
+    .notification-content {
+        padding: 6px 8px;
+        font-size: 0.7rem;
+    }
+}
+
+/* Animaciones */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .form-notification,
+    .notification,
+    .submit-btn {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* Focus mejorado para accesibilidad */
+.contact-form input:focus,
+.contact-form textarea:focus,
+.submit-btn:focus,
+.notification-close:focus,
+.form-notification .close-notification:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+}
+
+/* Modo oscuro (opcional) - DESHABILITADO para mantener colores claros */
+/* @media (prefers-color-scheme: dark) {
+    .notification-content {
+        background: #2d3748;
+        color: #e2e8f0;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+        background-color: #2d3748;
+        border-color: #4a5568;
+        color: #e2e8f0;
+    }
+    
+    .contact-form label {
+        color: #e2e8f0;
+    }
+} */

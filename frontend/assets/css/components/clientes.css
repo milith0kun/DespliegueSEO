@@ -1,9 +1,11 @@
 /* Estilos para la sección de nuestros clientes */
 .clients-section {
-    padding: 5rem 2rem;
+    padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 4vw, 2rem);
     background-color: #ffffff;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Efecto de fondo decorativo sutil */
@@ -22,19 +24,21 @@
 
 .section-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 1rem;
 }
 
 .section-header h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     color: #1a1a1a;
     margin-bottom: 1.5rem;
     font-weight: 700;
     position: relative;
     display: inline-block;
+    line-height: 1.2;
 }
 
 .section-header h2::after {
@@ -50,16 +54,19 @@
 
 .section-header p {
     color: #666;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .clients-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: clamp(1.5rem, 4vw, 3rem);
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
 /* Estilos base para los logos de clientes */
@@ -67,11 +74,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1.5rem;
+    padding: clamp(1rem, 3vw, 1.5rem);
     transition: all 0.3s ease;
-    border-radius: 8px;
+    border-radius: 12px;
     position: relative;
-    height: 120px;
+    height: clamp(100px, 15vw, 120px);
+    background: rgba(248, 250, 252, 0.5);
+    border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
 .client-logo a {
@@ -83,32 +92,44 @@
     justify-content: center;
     text-decoration: none;
     position: relative;
+    color: #64748b;
+    font-weight: 600;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    transition: all 0.3s ease;
 }
 
 .client-logo:hover {
-    background-color: rgba(59, 130, 246, 0.05);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    background-color: rgba(59, 130, 246, 0.08);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
+.client-logo:hover a {
+    color: #3b82f6;
+    transform: scale(1.05);
 }
 
 /* Implementación de logos con CSS */
 .client-logo a::before {
     content: '';
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 60%;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    filter: grayscale(100%);
-    opacity: 0.7;
+    filter: grayscale(100%) opacity(0.6);
     transition: all 0.3s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .client-logo:hover a::before {
-    filter: grayscale(0%);
-    opacity: 1;
-    transform: scale(1.05);
+    filter: grayscale(0%) opacity(1);
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 /* Logos específicos de empresas de marketing digital, desarrollo y SEO */
@@ -144,35 +165,142 @@
     background-image: url('https://logo.clearbit.com/adobe.com');
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
+/* Responsive mejorado */
+/* Tablets grandes */
+@media (max-width: 1200px) {
     .clients-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        max-width: 1000px;
     }
 }
 
+/* Tablets */
 @media (max-width: 768px) {
     .clients-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-    }
-    
-    .clients-section {
-        padding: 4rem 1.5rem;
-    }
-    
-    .section-header h2 {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .clients-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: clamp(1rem, 3vw, 2rem);
+        max-width: 600px;
     }
     
     .client-logo {
-        padding: 1rem;
-        height: 100px;
+        height: clamp(90px, 12vw, 110px);
+        border-radius: 10px;
     }
+    
+    .section-header {
+        margin-bottom: clamp(2rem, 5vw, 3rem);
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 576px) {
+    .clients-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(0.8rem, 2.5vw, 1.5rem);
+        max-width: 400px;
+    }
+    
+    .client-logo {
+        height: clamp(80px, 10vw, 100px);
+        padding: clamp(0.8rem, 2vw, 1.2rem);
+    }
+    
+    .client-logo a {
+        font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 400px) {
+    .clients-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        max-width: 320px;
+    }
+    
+    .client-logo {
+        height: 80px;
+        padding: 0.8rem;
+        border-radius: 8px;
+    }
+    
+    .client-logo a {
+        font-size: 0.75rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .section-header p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 320px) {
+    .clients-section {
+        padding: 2.5rem 0.8rem;
+    }
+    
+    .clients-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        max-width: 250px;
+    }
+    
+    .client-logo {
+        height: 70px;
+        padding: 0.6rem;
+    }
+    
+    .section-header {
+        padding: 0 0.5rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Animación de entrada */
+@media (prefers-reduced-motion: no-preference) {
+    .client-logo {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    .client-logo:nth-child(1) { animation-delay: 0.1s; }
+    .client-logo:nth-child(2) { animation-delay: 0.2s; }
+    .client-logo:nth-child(3) { animation-delay: 0.3s; }
+    .client-logo:nth-child(4) { animation-delay: 0.4s; }
+    .client-logo:nth-child(5) { animation-delay: 0.5s; }
+    .client-logo:nth-child(6) { animation-delay: 0.6s; }
+    .client-logo:nth-child(7) { animation-delay: 0.7s; }
+    .client-logo:nth-child(8) { animation-delay: 0.8s; }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .client-logo {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+    
+    .client-logo:hover {
+        transform: none;
+    }
+}
+
+/* Focus para accesibilidad */
+.client-logo a:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+    border-radius: 8px;
 }

@@ -31,8 +31,7 @@ class UsuarioController {
             $userData = $usuario->login($input['email'], $input['password']);
             
             if ($userData) {
-                // Iniciar sesión
-                session_start();
+                // La sesión ya está iniciada en index.php
                 $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['user_email'] = $userData['email'];
                 $_SESSION['user_rol'] = $userData['rol'];
@@ -60,8 +59,7 @@ class UsuarioController {
 
     public function checkAuth() {
         try {
-            session_start();
-            
+            // La sesión ya está iniciada en index.php
             if (isset($_SESSION['user_id'])) {
                 echo json_encode([
                     'authenticated' => true,
@@ -84,8 +82,7 @@ class UsuarioController {
 
     public function me() {
         try {
-            session_start();
-            
+            // La sesión ya está iniciada en index.php
             if (!isset($_SESSION['user_id'])) {
                 http_response_code(401);
                 echo json_encode(['success' => false, 'message' => 'No autenticado']);
@@ -109,7 +106,7 @@ class UsuarioController {
 
     public function logout() {
         try {
-            session_start();
+            // La sesión ya está iniciada en index.php
             session_destroy();
             echo json_encode(['success' => true, 'message' => 'Logout exitoso']);
         } catch (Exception $e) {

@@ -10,20 +10,20 @@
     border: 3px solid #f1f5f9;
 }
 
-/* Indicador de progreso de scroll */
-.scroll-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #2563eb);
-    z-index: 9999;
-    transition: width 0.1s ease;
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to right, #2563eb, #1d4ed8);
 }
 
-/* Efecto de brillo */
-.scroll-progress::after {
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 6px;
+}
+
+/* ELIMINAR la definición duplicada de .scroll-progress */
+/* Ya está definida en animations.css */
+
+/* Mantener solo el efecto shimmer como utilidad separada */
+.scroll-shimmer::after {
     content: '';
     position: absolute;
     top: 0;
@@ -42,4 +42,34 @@
     100% {
         transform: translateX(150%) skewX(-20deg);
     }
+}
+
+/* Estilos adicionales para mejorar la experiencia de scroll */
+::-webkit-scrollbar-corner {
+    background: #f1f5f9;
+}
+
+/* Para Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #3b82f6 #f1f5f9;
+}
+
+/* Smooth scroll mejorado */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Para compensar header fijo */
+}
+
+/* Prevenir scroll horizontal problemático */
+body {
+    overflow-x: hidden;
+}
+
+/* Contenedores que pueden causar scroll horizontal */
+.container,
+.content-grid,
+section {
+    max-width: 100%;
+    overflow-x: hidden;
 }

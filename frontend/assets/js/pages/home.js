@@ -55,19 +55,11 @@ async function manejarEnvioFormulario(event) {
             telefono: formData.get('phone'),
             empresa: formData.get('company'),
             mensaje: formData.get('message'),
-            interes_servicio: 'general' // Puedes agregar un campo select para esto
+            interes_servicio: 'general'
         };
         
-        // Enviar datos al backend
-        const response = await fetch('http://localhost:8080/api/contactos', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(datos)
-        });
-        
-        const resultado = await response.json();
+        // Enviar datos usando apiService
+        const resultado = await apiService.createContact(datos);
         
         if (resultado.success) {
             // Mostrar mensaje de éxito

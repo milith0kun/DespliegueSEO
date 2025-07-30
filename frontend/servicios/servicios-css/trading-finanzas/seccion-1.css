@@ -114,8 +114,38 @@
 .service-hero .container {
     position: relative;
     z-index: 2;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
+}
+
+/* Responsive overrides */
+@media (max-width: 1024px) {
+    .service-hero .container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-hero .container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-hero .container {
+        max-width: 100%;
+        padding: 0 8px;
+    }
+}
+
+@media (max-width: 320px) {
+    .service-hero .container {
+        max-width: 100%;
+        padding: 0 5px;
+    }
 }
 
 /* Título con efecto de gradiente */

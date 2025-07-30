@@ -71,8 +71,201 @@
 }
 
 /* Mejora: Añadir efecto de scroll suave */
+/* Estilos responsivos y mejoras para software-medida */
+
+/* Smooth scrolling */
 html {
     scroll-behavior: smooth;
+}
+
+/* Eliminar márgenes y bordes para transiciones suaves */
+body, section {
+    margin: 0;
+    border: none;
+}
+
+/* Animaciones de scroll reveal */
+.section-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.section-animate.animate-on-scroll {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Transiciones entre secciones */
+.service-hero {
+    transition: all 0.8s ease-out;
+}
+
+.service-benefits {
+    transition: all 0.8s ease-out;
+}
+
+.service-process {
+    transition: all 0.8s ease-out;
+}
+
+.service-cta {
+    transition: all 0.8s ease-out;
+}
+
+/* Footer con animación de entrada */
+.main-footer {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideInFromBottom 1s ease-out forwards;
+    animation-delay: 0.3s;
+    margin: 0;
+    border: none;
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Optimizaciones de rendimiento */
+.service-hero,
+.service-benefits,
+.service-process,
+.service-cta {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+/* Mejoras para dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+    .benefits-list li:hover,
+    .step:hover {
+        transform: none;
+    }
+    
+    .service-hero .btn-primary:hover,
+    .service-cta .btn-primary:hover {
+        transform: none;
+    }
+}
+
+/* Accesibilidad - Reducir animaciones si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Media queries adicionales */
+@media (max-width: 1200px) {
+    .service-hero .container,
+    .service-benefits .container,
+    .service-process .container,
+    .service-cta .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .benefits-list {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    .process-steps {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .service-hero .container,
+    .service-benefits .container,
+    .service-process .container,
+    .service-cta .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .benefits-list,
+    .process-steps {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mejoras de tipografía */
+.service-hero h1,
+.service-benefits h2,
+.service-process h2,
+.service-cta h2 {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Footer con animación de entrada */
+.main-footer {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInFromBottom 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media queries para dispositivos muy pequeños */
+@media (max-width: 480px) {
+    .service-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .service-hero p {
+        font-size: 1rem;
+    }
+    
+    .service-benefits h2,
+    .service-process h2,
+    .service-cta h2 {
+        font-size: 1.8rem;
+    }
+    
+    .benefits-list li {
+        padding: 20px;
+    }
+    
+    .step {
+        padding: 50px 15px 25px;
+    }
+}
+
+/* Animaciones adicionales */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Mejora: Añadir estilos para testimonios */

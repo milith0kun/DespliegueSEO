@@ -1,14 +1,15 @@
 .particles-container {
     position: relative;
-    width: 220px;  /* Increased from 180px */
-    height: 100px; /* Increased from 80px */
+    width: 100px;  /* Cambiado a cuadrado */
+    height: 100px; /* Mantenido igual para ser cuadrado */
     overflow: visible;
     background: transparent;
     margin: 0;
+    margin-right: auto; /* Pegado a la izquierda */
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transform: translateX(10px) translateY(-5px); /* Adjusted Y translation */
+    transform: translateX(0) translateY(-5px); /* Eliminado translateX para pegarlo a la izquierda */
 }
 
 .logo-container {
@@ -28,7 +29,7 @@
     width: 120%;  /* Increased from 100% */
     height: 120%; /* Increased from 100% */
     inset: -10% -10%; /* Added negative inset to expand the area */
-    z-index: 1;
+    z-index: 1002; /* Aumentado aún más */
     pointer-events: none;
     transform-origin: center center;
 }
@@ -86,7 +87,7 @@
     width: 100%;
     height: 100%;
     inset: 0;
-    z-index: 1;
+    z-index: 1001; /* Aumentado para que aparezca encima */
     pointer-events: none;
     transform-origin: center center;
     transform: translateX(-5px);
@@ -269,4 +270,333 @@
         opacity: 1;
         filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.7));
     }
+}
+
+/* ===== SISTEMA RESPONSIVO FINAL OPTIMIZADO ===== */
+
+/* Desktop y laptops grandes - Base óptima */
+@media (min-width: 1025px) {
+    .particles-container {
+        width: 220px;
+        height: 100px;
+        transform: translateX(10px) translateY(-5px);
+        margin-left: 0;
+    }
+    
+    .logo-container {
+        transform: translate(-50%, -50%) scale(0.55);
+        gap: 12px;
+    }
+}
+
+/* Laptops medianos - Reducción gradual */
+@media (max-width: 1024px) and (min-width: 901px) {
+    .particles-container {
+        width: 210px;
+        height: 95px;
+        transform: translateX(8px) translateY(-4px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .logo-container {
+        transform: translate(-50%, -50%) scale(0.53);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .rotating-elements {
+        width: 118%;
+        height: 118%;
+        inset: -9% -9%;
+    }
+}
+
+/* Tablets grandes - Ajuste equilibrado */
+@media (max-width: 900px) and (min-width: 801px) {
+    .particles-container {
+        width: 200px;
+        height: 90px;
+        transform: translateX(5px) translateY(-3px);
+    }
+    
+    .logo-container {
+        transform: translate(-50%, -50%) scale(0.51);
+        gap: 11px;
+    }
+    
+    .rotating-elements {
+        width: 115%;
+        height: 115%;
+        inset: -7.5% -7.5%;
+    }
+}
+
+/* Tablets medianos - Transición suave */
+@media (max-width: 800px) and (min-width: 763px) {
+    .particles-container {
+        width: 190px;
+        height: 85px;
+        transform: translateX(2px) translateY(-2px);
+    }
+    
+    .logo-container {
+        transform: translate(-50%, -50%) scale(0.49);
+        gap: 10px;
+    }
+    
+    .rotating-elements {
+        width: 112%;
+        height: 112%;
+        inset: -6% -6%;
+    }
+    
+    .element {
+        width: 23px;
+        height: 23px;
+    }
+    
+    .element i {
+        font-size: 1.15rem;
+    }
+}
+
+/* RANGO CRÍTICO: 762px hasta 600px - MÁS GRANDE Y A LA IZQUIERDA */
+@media (max-width: 762px) and (min-width: 600px) {
+    .particles-container {
+        width: 185px;
+        height: 82px;
+        transform: translateX(-18px) translateY(-2px); /* Más a la izquierda */
+        margin-left: 25px; /* Empuje adicional a la izquierda */
+    }
+    
+    .logo-container {
+        transform: translate(-50%, -50%) scale(0.52); /* MÁS GRANDE */
+        gap: 11px;
+    }
+    
+    .rotating-elements {
+        width: 116%;
+        height: 116%;
+        inset: -8% -8%;
+    }
+    
+    .element {
+        width: 24px; /* Elementos más grandes */
+        height: 24px;
+    }
+    
+    .element i {
+        font-size: 1.2rem; /* Iconos más grandes */
+    }
+}
+
+/* NUEVO: Rango específico para 416x881px - LOGO MÁS GRANDE Y A LA IZQUIERDA */
+@media (max-width: 600px) and (min-width: 417px) {
+    .particles-container {
+        width: 190px; /* Más grande */
+        height: 85px; /* Más alto */
+        transform: translateX(-25px) translateY(-2px); /* MÁS a la izquierda */
+        margin-left: 30px; /* Empuje adicional a la izquierda */
+    }
+    
+    .logo-container {
+        transform: translate(-50%, -50%) scale(0.58); /* MUCHO MÁS GRANDE */
+        gap: 12px;
+    }
+    
+    .rotating-elements {
+        width: 118%;
+        height: 118%;
+        inset: -9% -9%;
+    }
+    
+    .element {
+        width: 25px; /* Elementos más grandes */
+        height: 25px;
+    }
+    
+    .element i {
+        font-size: 1.25rem; /* Iconos más grandes */
+    }
+}
+
+/* RANGO: 416px y menos - Mantener tamaño generoso */
+@media (max-width: 416px) and (min-width: 360px) {
+    .particles-container {
+        width: 175px;
+        height: 78px;
+        transform: translateX(-15px) translateY(-1px);
+        margin-left: 20px;
+    }
+    
+    .logo-container {
+        transform: translate(-50%, -50%) scale(0.5); /* Tamaño generoso */
+        gap: 10px;
+    }
+    
+    .rotating-elements {
+        width: 114%;
+        height: 114%;
+        inset: -7% -7%;
+    }
+    
+    .element {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .element i {
+        font-size: 1.1rem;
+    }
+}
+
+/* RANGO: 480px hasta 360px - Equilibrio visual */
+@media (max-width: 480px) and (min-width: 360px) {
+    .particles-container {
+        width: 165px;
+        height: 74px;
+        transform: translateX(-12px) translateY(-1px);
+        margin-left: 18px;
+    }
+    
+    .logo-container {
+        transform: translate(-50%, -50%) scale(0.47); /* Más grande que antes */
+        gap: 9px;
+    }
+    
+    .rotating-elements {
+        width: 110%;
+        height: 110%;
+        inset: -5% -5%;
+    }
+    
+    .element {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .element i {
+        font-size: 1rem;
+    }
+    
+    /* Órbitas optimizadas */
+    @keyframes orbitElement {
+        0% {
+            transform: rotate(0deg) translateX(28px) rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg) translateX(28px) rotate(-360deg);
+        }
+    }
+}
+
+/* RANGO: 360px hasta 322px - Visibilidad garantizada */
+@media (max-width: 360px) and (min-width: 322px) {
+    .particles-container {
+        width: 155px;
+        height: 70px;
+        transform: translateX(-10px) translateY(0);
+        margin-left: 15px;
+    }
+    
+    .logo-container {
+        transform: translate(-50%, -50%) scale(0.44); /* Más grande */
+        gap: 8px;
+    }
+    
+    .rotating-elements {
+        width: 108%;
+        height: 108%;
+        inset: -4% -4%;
+    }
+    
+    .element {
+        width: 19px;
+        height: 19px;
+    }
+    
+    .element i {
+        font-size: 0.95rem;
+    }
+    
+    @keyframes orbitElement {
+        0% {
+            transform: rotate(0deg) translateX(25px) rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg) translateX(25px) rotate(-360deg);
+        }
+    }
+}
+
+/* MÍNIMO: 322px y menos - Tamaño mínimo funcional */
+@media (max-width: 322px) {
+    .particles-container {
+        width: 145px;
+        height: 65px;
+        transform: translateX(-8px) translateY(0);
+        margin-left: 12px;
+    }
+    
+    .logo-container {
+        transform: translate(-50%, -50%) scale(0.4); /* Más grande que 0.3 anterior */
+        gap: 7px;
+    }
+    
+    .rotating-elements {
+        width: 105%;
+        height: 105%;
+        inset: -2.5% -2.5%;
+    }
+    
+    .element {
+        width: 17px;
+        height: 17px;
+    }
+    
+    .element i {
+        font-size: 0.85rem;
+    }
+    
+    @keyframes orbitElement {
+        0% {
+            transform: rotate(0deg) translateX(20px) rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg) translateX(20px) rotate(-360deg);
+        }
+    }
+    
+    /* Efectos reducidos para rendimiento */
+    .logo-container::before {
+        inset: -12px;
+        filter: blur(8px);
+    }
+    
+    .logo-container::after {
+        inset: -8px;
+        filter: blur(4px);
+    }
+}
+
+/* Transiciones suaves universales */
+.particles-container,
+.logo-container,
+.rotating-elements,
+.element {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Optimización de rendimiento para móviles */
+@media (max-width: 600px) {
+    .rotating-elements {
+        animation-duration: 25s; /* Más fluido */
+    }
+    
+    .element.search { animation-duration: 15s; }
+    .element.analytics { animation-duration: 16s; }
+    .element.globe { animation-duration: 17s; }
+    .element.keywords { animation-duration: 18s; }
+    .element.content { animation-duration: 19s; }
+    .element.mobile { animation-duration: 20s; }
+    .element.code { animation-duration: 21s; }
 }
