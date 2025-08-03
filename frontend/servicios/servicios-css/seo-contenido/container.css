@@ -1,0 +1,116 @@
+/* Estilos de contenedor para seo-contenido */
+
+/* Contenedor principal para evitar overflow */
+.content-grid {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Contenedores de sección */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Prevenir overflow en todas las secciones */
+.service-hero,
+.service-benefits,
+.service-process,
+.service-cta {
+    width: 100%;
+    max-width: 100%;
+    
+    box-sizing: border-box;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Asegurar que el body no tenga scroll horizontal */
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Responsive containers */
+@media (max-width: 1199px) {
+    .container {
+        max-width: 100%;
+        padding: 0 30px;
+    }
+}
+
+@media (max-width: 991px) {
+    .container {
+        padding: 0 25px;
+    }
+}
+
+@media (max-width: 767px) {
+    .container {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 575px) {
+    .container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 479px) {
+    .container {
+        padding: 0 12px;
+    }
+}
+
+/* Prevenir elementos que se salgan del contenedor */
+* {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Elementos decorativos que pueden causar overflow */
+.light-circle {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* Asegurar que los elementos absolutos no causen scroll */
+.service-hero::after,
+.service-hero .light-circle {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* Grid responsivo mejorado */
+.benefits-list,
+.process-steps {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* Texto que no debe causar overflow */
+h1, h2, h3, h4, h5, h6, p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+/* Botones responsivos */
+.btn-primary {
+    max-width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+}

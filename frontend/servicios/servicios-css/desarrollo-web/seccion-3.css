@@ -1,8 +1,8 @@
 /* Estilos para la sección 3 de desarrollo-web - Diseño Minimalista */
 
 .service-process {
-    padding: var(--spacing-3xl) var(--spacing-xl);
-    background: var(--white);
+    padding: 4rem 2rem;
+    background: #ffffff;
     position: relative;
     overflow: hidden;
 }
@@ -19,16 +19,16 @@
     font-size: clamp(1.8rem, 5vw, 2.5rem);
     color: #1a1a1a;
     font-weight: 700;
-    margin-bottom: var(--spacing-3xl);
-    font-family: var(--font-family-heading);
+    margin-bottom: 4rem;
+    font-family: 'Poppins', sans-serif;
     letter-spacing: -0.02em;
 }
 
 .process-steps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-xl);
-    margin-top: var(--spacing-2xl);
+    gap: 2rem;
+    margin-top: 3rem;
     position: relative;
     align-items: start;
 }
@@ -41,7 +41,7 @@
     left: 12.5%;
     width: 75%;
     height: 2px;
-    background: linear-gradient(90deg, transparent 0%, var(--gray-300) 20%, var(--primary-color) 50%, var(--gray-300) 80%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, #cbd5e0 20%, #667eea 50%, #cbd5e0 80%, transparent 100%);
     z-index: 1;
     border-radius: 2px;
 }
@@ -50,8 +50,8 @@
     text-align: center;
     position: relative;
     z-index: 2;
-    transition: var(--transition-normal);
-    padding: 0 var(--spacing-sm);
+    transition: 300ms ease-in-out;
+    padding: 0 0.5rem;
 }
 
 .step:hover {
@@ -60,38 +60,38 @@
 
 /* Círculos minimalistas */
 .step h3 {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    color: var(--white);
+    background: linear-gradient(135deg, #667eea, #5a67d8);
+    color: #ffffff;
     width: 150px;
     height: 150px;
-    border-radius: var(--border-radius-full);
+    border-radius: 9999px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto var(--spacing-xl);
-    font-size: var(--font-size-sm);
+    margin: 0 auto 2rem;
+    font-size: 0.875rem;
     box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
-    transition: var(--transition-normal);
+    transition: 300ms ease-in-out;
     position: relative;
     font-weight: 600;
-    font-family: var(--font-family-heading);
+    font-family: 'Poppins', sans-serif;
     flex-direction: column;
-    padding: var(--spacing-md);
+    padding: 1rem;
     text-align: center;
     line-height: 1.3;
-    border: 3px solid var(--white);
+    border: 3px solid #ffffff;
 }
 
 /* Número del paso más prominente */
 .step h3 .step-number {
-    font-size: var(--font-size-2xl);
+    font-size: 1.5rem;
     font-weight: 800;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: 0.25rem;
     display: block;
 }
 
 .step h3 .step-title {
-    font-size: var(--font-size-xs);
+    font-size: 0.75rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -101,7 +101,7 @@
 .step:hover h3 {
     box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3);
     transform: scale(1.05);
-    background: linear-gradient(135deg, var(--primary-dark), #4338ca);
+    background: linear-gradient(135deg, #5a67d8, #4338ca);
 }
 
 /* Efecto de pulso sutil */
@@ -110,7 +110,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: var(--border-radius-full);
+    border-radius: 9999px;
     border: 1px solid rgba(102, 126, 234, 0.3);
     animation: pulse-ring 3s infinite;
     top: 0;
@@ -129,20 +129,20 @@
 }
 
 .step p {
-    color: var(--gray-600);
-    font-size: var(--font-size-base);
+    color: #4a5568;
+    font-size: 1rem;
     line-height: 1.6;
-    margin-top: var(--spacing-lg);
-    transition: var(--transition-normal);
+    margin-top: 1.5rem;
+    transition: 300ms ease-in-out;
     max-width: 200px;
     margin-left: auto;
     margin-right: auto;
-    font-family: var(--font-family-base);
+    font-family: 'Poppins', sans-serif;
     font-weight: 400;
 }
 
 .step:hover p {
-    color: var(--gray-800);
+    color: #1a202c;
 }
 
 /* Animaciones de entrada */
@@ -169,111 +169,219 @@
 @keyframes fadeInDown {
     from {
         opacity: 0;
-        transform: translateY(-30px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
 /* Media queries para responsividad */
 @media (max-width: 992px) {
     .service-process {
-        padding: var(--spacing-2xl) var(--spacing-lg);
+        padding: 3rem 1.5rem;
     }
     
     .service-process h2 {
         font-size: clamp(1.6rem, 4vw, 2.2rem);
-        margin-bottom: var(--spacing-2xl);
+        margin-bottom: 3rem;
     }
     
     .process-steps {
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-2xl);
-        row-gap: var(--spacing-3xl);
+        gap: 2rem;
+        row-gap: 3rem;
+        justify-items: center;
     }
     
     .process-steps::before {
         display: none;
     }
     
+    .step {
+        width: 100%;
+        max-width: 280px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
     .step h3 {
-        width: 120px;
-        height: 120px;
-        margin-bottom: var(--spacing-lg);
+        width: 140px;
+        height: 140px;
+        margin-bottom: 1.5rem;
+        padding: 0.5rem;
+        font-size: 0.75rem;
     }
     
     .step h3 .step-number {
-        font-size: var(--font-size-xl);
+        font-size: 1.25rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .step h3 .step-title {
+        font-size: 0.75rem;
+        line-height: 1.2;
     }
     
     .step p {
-        max-width: 250px;
+        max-width: 100%;
+        text-align: center;
+        font-size: 0.875rem;
     }
 }
 
 @media (max-width: 768px) {
     .service-process {
-        padding: var(--spacing-xl) var(--spacing-md);
+        padding: 2rem 1rem;
     }
     
     .process-steps {
         grid-template-columns: 1fr;
-        gap: var(--spacing-2xl);
-        max-width: 400px;
+        gap: 2rem;
+        max-width: 350px;
         margin: 0 auto;
+        justify-items: center;
+    }
+    
+    .step {
+        width: 100%;
+        max-width: 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     
     .step h3 {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
     }
     
     .step h3 .step-number {
-        font-size: var(--font-size-lg);
+        font-size: 1.125rem;
+        margin-bottom: 4px;
     }
     
     .step h3 .step-title {
         font-size: 0.7rem;
+        line-height: 1.1;
+        letter-spacing: 0.3px;
     }
     
     .step p {
-        font-size: var(--font-size-sm);
-        max-width: 300px;
+        font-size: 0.875rem;
+        max-width: 100%;
+        text-align: center;
+        line-height: 1.5;
+        margin-top: 1rem;
     }
 }
 
 @media (max-width: 576px) {
     .service-process {
-        padding: var(--spacing-2xl) var(--spacing-sm);
+        padding: 2rem 0.5rem;
     }
     
     .service-process h2 {
-        margin-bottom: var(--spacing-xl);
+        margin-bottom: 1.5rem;
+        font-size: clamp(1.4rem, 6vw, 1.8rem);
+    }
+    
+    .process-steps {
+        gap: 1.5rem;
+        max-width: 300px;
+    }
+    
+    .step {
+        max-width: 280px;
+    }
+    
+    .step h3 {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 0.5rem;
+        padding: 0.25rem;
+    }
+    
+    .step h3 .step-number {
+        font-size: 1rem;
+        margin-bottom: 2px;
+    }
+    
+    .step h3 .step-title {
+        font-size: 0.65rem;
+        line-height: 1;
+        letter-spacing: 0.2px;
+    }
+    
+    .step p {
+        font-size: 0.875rem;
+        line-height: 1.4;
+        margin-top: 0.5rem;
+        text-align: center;
+    }
+}
+
+/* Media query adicional para dispositivos muy pequeños */
+@media (max-width: 480px) {
+    .service-process {
+        padding: 1.5rem 0.25rem;
+    }
+    
+    .service-process h2 {
+        font-size: clamp(1.2rem, 7vw, 1.6rem);
+        margin-bottom: 1rem;
+    }
+    
+    .process-steps {
+        gap: 1rem;
+        max-width: 280px;
+    }
+    
+    .step {
+        max-width: 260px;
     }
     
     .step h3 {
         width: 90px;
         height: 90px;
+        margin-bottom: 0.25rem;
+        padding: 8px;
     }
     
     .step h3 .step-number {
-        font-size: var(--font-size-base);
+        font-size: 0.9rem;
+        margin-bottom: 1px;
+    }
+    
+    .step h3 .step-title {
+        font-size: 0.6rem;
+        line-height: 0.9;
     }
     
     .step p {
-        font-size: var(--font-size-sm);
+        font-size: 0.8rem;
+        line-height: 1.3;
+        margin-top: 8px;
+    }
+    
+    /* Eliminar hover effects en dispositivos muy pequeños */
+    .step:hover {
+        transform: none;
+    }
+    
+    .step:hover h3 {
+        transform: none;
+        box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
     }
 }

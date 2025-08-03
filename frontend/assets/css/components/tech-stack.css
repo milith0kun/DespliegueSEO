@@ -1,7 +1,7 @@
-/* Estilos para la sección de tecnologías */
+/* Estilos para la sección de tecnologías - Mejorado */
 .tech-stack-section {
     position: relative;
-    min-height: 55vh;
+    padding: 3rem 0; /* Añadido padding consistente con otras secciones */
     background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
     color: white;
     overflow: hidden;
@@ -13,7 +13,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 1; /* Aseguramos que esté detrás del contenido */
+    z-index: 1;
 }
 
 .tech-layer {
@@ -24,9 +24,9 @@
     justify-content: space-around;
     align-items: center;
     opacity: 0.1;
-    will-change: transform; /* Optimización para animaciones */
+    will-change: transform;
     transition: opacity 0.3s ease;
-    visibility: visible; /* Cambiado de hidden a visible para que se muestren los iconos */
+    visibility: visible;
 }
 
 .tech-layer:hover {
@@ -34,7 +34,7 @@
 }
 
 .tech-layer i {
-    font-size: 5rem;
+    font-size: 4rem; /* Reducido de 5rem para mejor proporción */
     color: white;
     transition: transform 0.3s ease, color 0.3s ease;
 }
@@ -47,55 +47,144 @@
 .tech-content {
     position: relative;
     z-index: 2;
-    padding: 4rem 2rem;
+    padding: 2rem; /* Reducido de 4rem a 2rem para simetría */
     text-align: center;
+    max-width: 1200px; /* Añadido max-width para consistencia */
+    margin: 0 auto; /* Centrado */
 }
 
 .tech-content h2 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    margin-bottom: 1rem;
+    font-size: clamp(1.8rem, 4vw, 2.4rem); /* Reducido para simetría con otras secciones */
+    margin-bottom: 0.8rem; /* Reducido de 1rem */
     background: linear-gradient(135deg, #3B82F6, #2563EB);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    position: relative;
+}
+
+/* Línea decorativa bajo el título - Consistente con otras secciones */
+.tech-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #1e40af);
+    border-radius: 2px;
+}
+
+.tech-content p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+    max-width: 600px;
+    margin: 0 auto 2rem; /* Añadido margin-bottom */
+    line-height: 1.5;
 }
 
 .tech-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-    max-width: 1200px;
-    margin: 3rem auto 0;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Reducido de 250px */
+    gap: 1.5rem; /* Reducido de 2rem */
+    margin-top: 2rem; /* Reducido de 3rem */
+    max-width: 1000px; /* Reducido de 1200px */
+    margin: 2rem auto 0;
 }
 
 .tech-item {
     background: rgba(255, 255, 255, 0.05);
-    padding: 2rem;
-    border-radius: 15px;
+    padding: 1.5rem; /* Reducido de 2rem */
+    border-radius: 12px; /* Reducido de 15px */
     backdrop-filter: blur(10px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    will-change: transform; /* Optimización para animaciones */
+    will-change: transform;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Añadido borde sutil */
 }
 
 .tech-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+    transform: translateY(-6px); /* Reducido de -10px */
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2); /* Reducido */
 }
 
 .tech-item i {
-    font-size: 2.5rem;
+    font-size: 2.2rem; /* Reducido de 2.5rem */
     color: #3B82F6;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem; /* Reducido de 1rem */
 }
 
 .tech-item h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.1rem; /* Reducido de 1.25rem */
+    margin-bottom: 0.4rem; /* Reducido de 0.5rem */
+    color: white;
+    font-weight: 600;
 }
 
 .tech-item p {
     color: #a0aec0;
+    font-size: 0.85rem; /* Reducido ligeramente */
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Media queries mejoradas */
+@media (max-width: 992px) {
+    .tech-stack-section {
+        padding: 2.5rem 0;
+    }
+    
+    .tech-content {
+        padding: 1.5rem;
+    }
+    
+    .tech-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tech-stack-section {
+        padding: 2rem 0;
+    }
+    
+    .tech-content {
+        padding: 1rem;
+    }
+    
+    .tech-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .tech-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+    
+    .tech-item {
+        padding: 1.2rem;
+    }
+    
+    .tech-layer i {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tech-stack-section {
+        padding: 1.5rem 0;
+    }
+    
+    .tech-grid {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+    }
+    
+    .tech-item {
+        padding: 1rem;
+    }
 }
 
 /* Animaciones para estadísticas - Modificado para evitar conflictos */

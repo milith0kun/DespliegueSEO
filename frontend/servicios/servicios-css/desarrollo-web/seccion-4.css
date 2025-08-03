@@ -21,33 +21,27 @@
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(50px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
 @keyframes slideInFromLeft {
     from {
         opacity: 0;
-        transform: translateX(-100px);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
     }
 }
 
 @keyframes slideInFromRight {
     from {
         opacity: 0;
-        transform: translateX(100px);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
     }
 }
 
@@ -123,11 +117,9 @@
 @keyframes slideInDown {
     from {
         opacity: 0;
-        transform: translateY(-50px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
@@ -145,11 +137,9 @@
 @keyframes slideInUp {
     from {
         opacity: 0;
-        transform: translateY(50px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 

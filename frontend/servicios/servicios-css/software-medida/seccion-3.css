@@ -1,9 +1,21 @@
-/* Estilos para la sección 3 de software-medida - Diseño Minimalista */
+/* Estilos para la sección de proceso - Diseño secuencial con timeline */
 .service-process {
-    padding: 5rem 2rem;
-    background: #f8fafc;
+    padding: 6rem 2rem;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
     position: relative;
     overflow: hidden;
+}
+
+.service-process::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+    z-index: 1;
 }
 
 .service-process .container {
@@ -15,10 +27,10 @@
 
 .service-process h2 {
     text-align: center;
-    font-size: clamp(1.8rem, 5vw, 2.5rem);
-    color: #1a1a1a;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    color: #1e293b;
     font-weight: 700;
-    margin-bottom: 3.5rem;
+    margin-bottom: 5rem;
     font-family: 'Poppins', sans-serif;
     position: relative;
 }
@@ -26,118 +38,117 @@
 .service-process h2::after {
     content: '';
     position: absolute;
-    bottom: -15px;
+    bottom: -25px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #f59e0b, #ef4444, #8b5cf6);
     border-radius: 2px;
 }
 
 .process-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
+    margin-top: 3rem;
     position: relative;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .step {
     background: #ffffff;
-    border-radius: 12px;
-    padding: 2.5rem 1.5rem 2rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: 2px solid #f1f5f9;
     text-align: center;
     position: relative;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: calc(50% - 1rem);
+    margin-bottom: 2rem;
+}
+
+.step:nth-child(even) {
+    margin-top: 3rem;
+}
+
+.step:nth-child(odd) {
+    margin-top: 0;
 }
 
 .step:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: #3b82f6;
 }
 
 .step h3 {
-    color: #1a1a1a;
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1.2rem;
     font-family: 'Poppins', sans-serif;
     position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
 }
 
-.step h3::before {
-    content: counter(step-counter);
-    counter-increment: step-counter;
-    position: absolute;
-    top: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 40px;
-    background: #3b82f6;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    font-weight: 700;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-}
-
-.process-steps {
-    counter-reset: step-counter;
+.step:hover h3 {
+    color: #3b82f6;
 }
 
 .step p {
-    color: #666;
-    line-height: 1.6;
-    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.7;
     margin: 0;
+    font-size: 1.05rem;
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+.step:hover p {
+    color: #475569;
 }
 
 /* Responsivo */
 @media (max-width: 768px) {
     .service-process {
-        padding: 3rem 1rem;
+        padding: 4rem 1rem;
     }
     
     .process-steps {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         gap: 1.5rem;
     }
     
     .step {
-        padding: 2rem 1.5rem 1.5rem;
+        width: 100%;
+        margin-top: 0 !important;
+        margin-bottom: 1.5rem;
+        padding: 1.8rem 1.5rem;
     }
 }
-.step h3::after {
-    content: attr(data-step);
-    position: absolute;
-    top: -50px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    z-index: 0;
-    line-height: 50px;
-}
 
-.step:nth-child(1) h3::after {
-    content: '1';
-}
-
-.step:nth-child(2) h3::after {
-    content: '2';
-}
-
-.step:nth-child(3) h3::after {
-    content: '3';
-}
-
-.step:nth-child(4) h3::after {
-    content: '4';
+@media (max-width: 480px) {
+    .service-process {
+        padding: 3rem 0.5rem;
+    }
+    
+    .service-process h2 {
+        margin-bottom: 4rem;
+    }
+    
+    .step {
+        padding: 1.5rem 1.2rem;
+    }
+    
+    .step h3 {
+        font-size: 1.2rem;
+    }
+    
+    .step p {
+        font-size: 1rem;
+    }
 }

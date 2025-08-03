@@ -91,12 +91,12 @@
             </div>
             <!-- Navegación Desktop -->
             <ul class="nav-menu">
-                <li><a href="../index.html#inicio" aria-label="Ir a la página de inicio">Inicio</a></li>
-                <li><a href="../index.html#servicios" aria-label="Ver servicios">Servicios</a></li>
-                <li><a href="../index.html#proceso" aria-label="Ver proceso de trabajo">Proceso</a></li>
-                <li><a href="../index.html#casos" aria-label="Ver casos de éxito">Casos de Éxito</a></li>
-                <li><a href="../index.html#contacto" aria-label="Ir a la página de contacto">Contacto</a></li>
-                <li><a href="../admin/login.html" class="login-btn" aria-label="Acceder a la cuenta">Acceder</a></li>
+                <li><a href="#inicio" aria-label="Ir a la página de inicio">Inicio</a></li>
+                <li><a href="#servicios" aria-label="Ver servicios">Servicios</a></li>
+                <li><a href="#proceso" aria-label="Ver proceso de trabajo">Proceso</a></li>
+                <li><a href="#casos" aria-label="Ver casos de éxito">Casos de Éxito</a></li>
+                <li><a href="#contacto" aria-label="Ir a la página de contacto">Contacto</a></li>
+                <li><a href="admin/login.html" class="login-btn" aria-label="Acceder a la cuenta">Acceder</a></li>
             </ul>
             
             <!-- Botón Móvil -->
@@ -115,14 +115,14 @@
                 <!-- Menú Desplegable -->
                 <div class="mobile-dropdown-menu" id="mobile-dropdown-menu">
                     <ul class="mobile-dropdown-nav">
-                        <li><a href="../index.html#inicio" aria-label="Ir a la página de inicio">Inicio</a></li>
-                        <li><a href="../index.html#servicios" aria-label="Ver servicios">Servicios</a></li>
-                        <li><a href="../index.html#proceso" aria-label="Ver proceso de trabajo">Proceso</a></li>
-                        <li><a href="../index.html#casos" aria-label="Ver casos de éxito">Casos de Éxito</a></li>
-                        <li><a href="../index.html#contacto" aria-label="Ir a la página de contacto">Contacto</a></li>
+                        <li><a href="#inicio" aria-label="Ir a la página de inicio">Inicio</a></li>
+                        <li><a href="#servicios" aria-label="Ver servicios">Servicios</a></li>
+                        <li><a href="#proceso" aria-label="Ver proceso de trabajo">Proceso</a></li>
+                        <li><a href="#casos" aria-label="Ver casos de éxito">Casos de Éxito</a></li>
+                        <li><a href="#contacto" aria-label="Ir a la página de contacto">Contacto</a></li>
                     </ul>
                     <div class="mobile-dropdown-login">
-                        <a href="../admin/login.html" class="mobile-dropdown-login-btn" aria-label="Acceder a la cuenta">Acceder</a>
+                        <a href="admin/login.html" class="mobile-dropdown-login-btn" aria-label="Acceder a la cuenta">Acceder</a>
                     </div>
                 </div>
             </div>
@@ -175,6 +175,9 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Separador entre secciones -->
+        <div class="section-separator"></div>
         
         <!-- Nuestro Proceso -->
         <section class="service-process">
@@ -282,100 +285,9 @@
     <!-- Scripts -->
     <script src="../assets/js/mobile-menu.js"></script>
     <script src="../assets/js/main.js"></script>
-<!-- Agregar antes del cierre del body -->
-<script>
-// Mejorar animaciones y transiciones
-document.addEventListener('DOMContentLoaded', function() {image.pngimage.png 
-    // Activar animaciones cuando la página esté cargada
-    document.body.classList.remove('loading');
-    document.body.classList.add('loaded');
-    
-    // Intersection Observer para animaciones al hacer scroll
-    const observerOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -100px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Agregar clase de animación específica
-                if (entry.target.classList.contains('service-benefits')) {
-                    entry.target.style.animationDelay = '0.2s';
-                }
-                if (entry.target.classList.contains('service-cta')) {
-                    entry.target.style.animationDelay = '0.1s';
-                }
-            }
-        });
-    }, observerOptions);
-    
-    // Observar todas las secciones
-    document.querySelectorAll('section, .main-footer').forEach(section => {
-        section.classList.add('section-animate');
-        observer.observe(section);
-    });
-    
-    // Smooth scroll mejorado para enlaces internos
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                // Agregar animación de salida a la sección actual
-                const currentSection = document.querySelector('.service-hero');
-                if (currentSection) {
-                    currentSection.classList.add('exit-animation');
-                }
-                
-                // Scroll suave al target
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-                
-                // Remover animación de salida después del scroll
-                setTimeout(() => {
-                    if (currentSection) {
-                        currentSection.classList.remove('exit-animation');
-                    }
-                }, 800);
-            }
-        });
-    });
-    
-    // Animación de entrada escalonada para elementos del hero
-    const heroElements = document.querySelectorAll('.service-hero h1, .service-hero p, .service-hero .btn-primary');
-    heroElements.forEach((element, index) => {
-        element.style.animationDelay = `${0.8 + (index * 0.2)}s`;
-    });
-});
-
-// Preloader y optimización de carga
-window.addEventListener('load', function() {
-    document.body.classList.add('loaded');
-    
-    // Activar animaciones después de que todo esté cargado
-    setTimeout(() => {
-        document.querySelector('.service-hero').style.opacity = '1';
-    }, 100);
-});
-
-// Optimización de scroll para mejor rendimiento
-let ticking = false;
-
-function updateAnimations() {
-    // Aquí puedes agregar animaciones basadas en scroll
-    ticking = false;
-}
-
-window.addEventListener('scroll', function() {
-    if (!ticking) {
-        requestAnimationFrame(updateAnimations);
-        ticking = true;
-    }
-});
+<!-- Reemplazar el script inline (líneas 285-379) con esta conexión -->
+<!-- Antes del cierre del body -->
+<script src="../assets/js/desarrollo-web-animations.js"></script>
 </script>
 </body>
 </html>

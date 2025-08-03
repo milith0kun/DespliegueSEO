@@ -1,0 +1,81 @@
+/* ==========================================================================
+   Scroll Fix - Correcciones para el scroll y posicionamiento
+   ========================================================================== */
+
+/* Corrección del scroll vertical */
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    position: relative;
+}
+
+/* Asegurar que las secciones no causen scroll horizontal */
+.service-section {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Asegurar que los contenedores generales no se salgan */
+.container {
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Optimizaciones para móviles pequeños */
+@media (max-width: 576px) {
+    /* Eliminar efectos hover en móviles */
+    .btn-primary:hover,
+    .service-card:hover,
+    .process-step:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+}
+
+/* Responsividad adicional para pantallas muy pequeñas */
+@media (max-width: 360px) {
+    body {
+        font-size: 14px;
+    }
+    
+    /* Asegurar que los elementos no se desborden */
+    * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Corrección para elementos flotantes */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Prevenir zoom en inputs en iOS */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    select,
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="color"] {
+        font-size: 16px;
+    }
+}

@@ -1,60 +1,13 @@
-/* Estilos para la sección 1 de software-medida - Diseño Minimalista */
+/* Estilos minimalistas para la sección hero de software-medida */
 .service-hero {
-    background: linear-gradient(135deg, #1c3c5c 0%, #294daf 100%);
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
     color: #ffffff;
-    padding: 140px 0 80px;
-    margin-top: 0;
+    padding: 6rem 2rem 4rem;
+    margin-top: 75px;
     position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    min-height: 100vh;
+    min-height: 50vh;
     display: flex;
     align-items: center;
-    /* Animación de entrada */
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 1.2s ease-out forwards;
-    animation-delay: 0.3s;
-}
-
-/* Patrón de fondo sutil y minimalista */
-.service-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../../../assets/images/patterns/circuit-pattern.svg');
-    background-size: cover;
-    opacity: 0.08;
-    z-index: 1;
-    animation: pulse 15s infinite alternate;
-}
-
-.service-hero::after {
-    content: '';
-    position: absolute;
-    bottom: -50px;
-    right: -50px;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0) 70%);
-    border-radius: 50%;
-    z-index: 1;
-    filter: blur(40px);
-    animation: floatLight 8s ease-in-out infinite;
-}
-
-@keyframes floatLight {
-    0%, 100% {
-        transform: translateY(0) scale(1);
-        opacity: 0.3;
-    }
-    50% {
-        transform: translateY(-20px) scale(1.1);
-        opacity: 0.5;
-    }
 }
 
 .service-hero .container {
@@ -62,62 +15,32 @@
     z-index: 2;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    /* Animación del contenedor */
-    opacity: 0;
-    transform: translateY(20px);
-    animation: slideInUp 1s ease-out forwards;
-    animation-delay: 0.6s;
-}
-
-@keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .service-hero h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 700;
     margin-bottom: 1.5rem;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(90deg, #ffffff, #e0e7ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: #ffffff;
     letter-spacing: -0.5px;
     line-height: 1.2;
-    /* Animación específica del título */
-    opacity: 0;
-    transform: translateY(-20px);
-    animation: fadeInDown 1s ease-out forwards;
-    animation-delay: 0.8s;
+    font-family: 'Poppins', sans-serif;
 }
 
 .service-hero p {
-    font-size: 1.35rem;
-    max-width: 800px;
-    margin: 0 auto 2.8rem;
-    line-height: 1.7;
-    opacity: 0.95;
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+    opacity: 0.9;
     font-weight: 400;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    /* Animación específica del párrafo */
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1s ease-out forwards;
-    animation-delay: 1s;
+    color: #e2e8f0;
 }
 
 .service-hero .btn-primary {
@@ -125,194 +48,46 @@
     background: #3b82f6;
     color: white;
     font-weight: 600;
-    padding: 16px 34px;
-    border-radius: 50px;
+    padding: 1rem 2rem;
+    border-radius: 8px;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-    position: relative;
-    overflow: hidden;
-    font-size: 1.1rem;
-    letter-spacing: 0.5px;
-    /* Animación específica del botón */
-    opacity: 0;
-    transform: translateY(20px) scale(0.9);
-    animation: bounceIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-    animation-delay: 1.2s;
-}
-
-@keyframes bounceIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px) scale(0.9);
-    }
-    60% {
-        opacity: 1;
-        transform: translateY(-5px) scale(1.05);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
 }
 
 .service-hero .btn-primary:hover {
     background: #2563eb;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
-}
-
-/* Animaciones base */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes pulse {
-    0% {
-        opacity: 0.05;
-    }
-    100% {
-        opacity: 0.12;
-    }
-}
-
-/* Partículas minimalistas */
-.service-hero .particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.service-hero .particle {
-    position: absolute;
-    display: block;
-    pointer-events: none;
-    width: 4px;
-    height: 4px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    animation: float 6s infinite linear;
-}
-
-.service-hero .particle:nth-child(1) {
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.service-hero .particle:nth-child(2) {
-    left: 20%;
-    animation-delay: 2s;
-}
-
-.service-hero .particle:nth-child(3) {
-    left: 60%;
-    animation-delay: 4s;
-}
-
-.service-hero .particle:nth-child(4) {
-    left: 80%;
-    animation-delay: 6s;
-}
-
-.service-hero .particle:nth-child(5) {
-    left: 90%;
-    animation-delay: 8s;
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(100vh) scale(0);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100px) scale(1);
-        opacity: 0;
-    }
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 /* Responsivo */
-@media (max-width: 1200px) {
-    .service-hero {
-        padding: 60px 0;
-        min-height: 90vh;
-    }
-    
-    .service-hero h1 {
-        font-size: 3.2rem;
-    }
-}
-
-@media (max-width: 992px) {
-    .service-hero {
-        padding: 40px 0;
-        min-height: 80vh;
-    }
-    
-    .service-hero h1 {
-        font-size: 2.8rem;
-    }
-    
-    .service-hero p {
-        font-size: 1.2rem;
-    }
-}
-
 @media (max-width: 768px) {
     .service-hero {
-        padding: 30px 0;
-        min-height: 70vh;
-    }
-    
-    .service-hero .container {
-        padding: 0 15px;
+        padding: 4rem 1rem 3rem;
+        margin-top: 60px;
     }
     
     .service-hero h1 {
-        font-size: 2.4rem;
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
     }
     
     .service-hero p {
-        font-size: 1.15rem;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
     }
     
     .service-hero .btn-primary {
-        padding: 14px 28px;
-        font-size: 1rem;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 480px) {
     .service-hero {
-        padding: 25px 0;
-        min-height: 65vh;
+        padding: 3rem 0.5rem 2rem;
     }
     
     .service-hero h1 {
@@ -320,20 +95,6 @@
     }
     
     .service-hero p {
-        font-size: 1.05rem;
-    }
-    
-    .service-hero .btn-primary {
-        padding: 12px 24px;
-        font-size: 0.95rem;
-        width: 100%;
-        max-width: 280px;
-    }
-}
-
-@media (max-height: 600px) {
-    .service-hero {
-        min-height: auto;
-        padding: 100px 0 60px;
+        font-size: 1rem;
     }
 }

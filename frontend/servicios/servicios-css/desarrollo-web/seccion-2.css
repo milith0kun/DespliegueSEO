@@ -1,7 +1,16 @@
 /* Estilos para la sección 2 de desarrollo-web - Consistente con la página principal */
 
+/* Separador entre secciones */
+.section-separator {
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #667eea 50%, transparent 100%);
+    margin: 0;
+    border: none;
+    opacity: 0.6;
+}
+
 .service-benefits {
-    padding: 5rem 2rem;
+    padding: 2.25rem 1.5rem;
     background: #ffffff;
     position: relative;
     overflow: hidden;
@@ -14,7 +23,7 @@
 
 .service-benefits h2 {
     text-align: center;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.625rem;
     font-size: clamp(1.8rem, 5vw, 2.5rem);
     color: #1a1a1a;
     font-weight: 700;
@@ -25,7 +34,7 @@
 .service-benefits .services-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem;
+    gap: 1.875rem;
     justify-content: center;
 }
 
@@ -39,7 +48,7 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    padding: 2.4rem 1.4rem;
+    padding: 1.8rem 1.05rem;
     border: 1px solid #f0f0f0;
 }
 
@@ -50,9 +59,9 @@
 
 /* Iconos de servicio - Idénticos a la página principal */
 .service-benefits .service-icon {
-    margin: 0 auto 1.5rem;
-    width: 150px;
-    height: 150px;
+    margin: 0 auto 1.125rem;
+    width: 112px;
+    height: 112px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,7 +87,7 @@
 /* Títulos y párrafos - Idénticos a la página principal */
 .service-benefits .service-card h3 {
     font-size: 1.4rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     color: #000000;
     font-weight: 600;
     transition: color 0.3s ease;
@@ -103,11 +112,9 @@
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
@@ -125,33 +132,33 @@
 @media (max-width: 992px) {
     .service-benefits .services-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        gap: 1.5rem;
     }
     
     .service-benefits {
-        padding: 4rem 1.5rem;
+        padding: 3rem 1.125rem;
     }
 }
 
 @media (max-width: 768px) {
     .service-benefits {
-        padding: 3rem 1rem;
+        padding: 2.25rem 0.75rem;
     }
     
     .service-benefits .services-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1.125rem;
         max-width: 450px;
         margin: 0 auto;
     }
     
     .service-benefits .service-card {
-        padding: 2rem 1.5rem;
+        padding: 1.5rem 1.125rem;
     }
     
     .service-benefits .service-icon {
-        width: 100px;
-        height: 100px;
+        width: 75px;
+        height: 75px;
     }
     
     .service-benefits .service-icon i {
@@ -161,11 +168,11 @@
 
 @media (max-width: 576px) {
     .service-benefits {
-        padding: 2.5rem 1rem;
+        padding: 1.875rem 0.75rem;
     }
     
     .service-benefits .service-card {
-        padding: 1.5rem 1rem;
+        padding: 1.125rem 0.75rem;
     }
     
     .service-benefits .service-card h3 {
@@ -183,12 +190,12 @@
     }
     
     .service-benefits .service-card {
-        padding: 1.2rem 0.8rem;
+        padding: 0.9rem 0.6rem;
     }
     
     .service-benefits .service-icon {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
     }
     
     .service-benefits .service-icon i {
@@ -225,7 +232,7 @@
     text-align: center;
     font-size: 2.5rem;
     color: #0f172a;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.625rem;
     position: relative;
     font-weight: 800;
     letter-spacing: -0.5px;
@@ -248,16 +255,16 @@
 .benefits-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.8rem;
+    gap: 2.1rem;
     list-style: none;
     padding: 0;
-    margin-top: 3rem;
+    margin-top: 2.25rem;
 }
 
 .benefits-list li {
     background: white;
     border-radius: 16px;
-    padding: 35px 30px;
+    padding: 26px 22px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
@@ -303,7 +310,7 @@
 .benefits-list li strong::before {
     content: '✓';
     position: absolute;
-    left: -15px;
+    left: 0;
     color: #3b82f6;
     font-weight: bold;
     font-size: 1.2rem;
@@ -326,10 +333,10 @@
 .benefits-list li::after {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%);
     opacity: 0;
     transform: scale(0.5);
@@ -367,7 +374,7 @@
 /* Media queries mejoradas para responsividad */
 @media (max-width: 1200px) {
     .service-benefits {
-        padding: 100px 0 80px;
+        padding: 60px 0 50px;
     }
     
     .benefits-list {
@@ -377,12 +384,12 @@
 
 @media (max-width: 992px) {
     .service-benefits {
-        padding: 80px 0 70px;
+        padding: 50px 0 40px;
     }
     
     .service-benefits h2 {
         font-size: 2.2rem;
-        margin-bottom: 3rem;
+        margin-bottom: 2.5rem;
     }
     
     .benefits-list {
@@ -390,31 +397,31 @@
     }
     
     .benefits-list li {
-        padding: 30px 25px;
+        padding: 22px 18px;
     }
 }
 
 @media (max-width: 768px) {
     .service-benefits {
-        padding: 70px 0 60px;
+        padding: 30px 0 26px;
     }
     
     .service-benefits .container {
-        padding: 0 15px;
+        padding: 0 11px;
     }
     
     .benefits-list {
         grid-template-columns: 1fr;
-        gap: 1.8rem;
+        gap: 1.35rem;
     }
     
     .service-benefits h2 {
         font-size: 2rem;
-        margin-bottom: 2.5rem;
+        margin-bottom: 1.875rem;
     }
     
     .benefits-list li {
-        padding: 25px 20px;
+        padding: 18px 15px;
         text-align: left;
     }
     
@@ -425,24 +432,24 @@
 
 @media (max-width: 576px) {
     .service-benefits {
-        padding: 60px 0 50px;
+        padding: 26px 0 22px;
     }
     
     .service-benefits .container {
-        padding: 0 10px;
+        padding: 0 7px;
     }
     
     .service-benefits h2 {
         font-size: 1.8rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
     
     .benefits-list {
-        gap: 1.5rem;
+        gap: 1.125rem;
     }
     
     .benefits-list li {
-        padding: 20px 15px;
+        padding: 15px 11px;
         border-radius: 12px;
     }
     
@@ -459,7 +466,7 @@
     }
     
     .benefits-list li {
-        padding: 18px 12px;
+        padding: 13px 9px;
     }
 }
 .benefits-list li:hover {
@@ -468,21 +475,21 @@
 
 @media (max-width: 576px) {
     .service-benefits {
-        padding: 60px 0 40px;
+        padding: 45px 0 30px;
     }
     
     .service-benefits h2 {
         font-size: 1.9rem;
-        margin-bottom: 2.5rem;
+        margin-bottom: 1.875rem;
     }
     
     .benefits-list li {
-        padding: 25px 20px;
+        padding: 18px 15px;
     }
     
     .benefits-list li strong {
         font-size: 1.2rem;
-        margin-bottom: 0.8rem;
+        margin-bottom: 0.6rem;
     }
     
     .benefits-list li {

@@ -21,82 +21,11 @@ body {
     font-family: 'Poppins', sans-serif;
     line-height: 1;
     color: #1E293B;
-    background-color: #F8F9FA;
-    width: 100%;
-    min-width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    overflow-x: hidden; /* Cambiar de auto a hidden */
-}
-
-/* Estilos responsivos para el body mejorados */
-@media (max-width: 1200px) {
-    body {
-        width: 100%;
-        min-width: 100%;
-        max-width: 100%; /* Añadir max-width */
-        overflow-x: hidden;
-    }
-}
-
-@media (max-width: 1024px) {
-    body {
-        width: 100%;
-        min-width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-}
-
-@media (max-width: 768px) {
-    body {
-        width: 100%;
-        min-width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-}
-
-@media (max-width: 576px) {
-    body {
-        width: 100%;
-        min-width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        width: 100%;
-        min-width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-}
-
-@media (max-width: 360px) {
-    body {
-        width: 100%;
-        min-width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-}
-
-@media (max-width: 320px) {
-    body {
-        width: 100%;
-        min-width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
+  
 }
 
 /* Block elements mejorados */
-article, aside, footer , nav, section, main {
+article, aside, footer , nav {
     display: block;
     width: 100%;
     max-width: 100%;
@@ -166,7 +95,7 @@ button {
 }
 
 /* Contenedores principales responsivos mejorados */
-.container, .main-container, .content-wrapper, .section-container {
+ .main-container, .content-wrapper {
     width: 100%;
     max-width: 1200px; /* Restaurar max-width para centrado */
     margin: 0 auto; /* Centrar */
@@ -174,27 +103,8 @@ button {
     box-sizing: border-box;
 }
 
-/* Content Grid - Añadir definición global */
-.content-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    box-sizing: border-box;
-}
 
-/* Asegurar que todas las secciones ocupen el ancho completo */
-section {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    box-sizing: border-box;
-    overflow-x: hidden; /* Añadir */
-}
+
 
 /* Grids responsivos - Añadir */
 .services-grid,

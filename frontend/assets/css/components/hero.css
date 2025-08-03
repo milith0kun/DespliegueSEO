@@ -1,12 +1,10 @@
-/* Estilos base para la sección hero */
 .hero-section {
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    background-image: 
-        radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    background-image: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
         linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    min-height: 100vh;
-    padding: 70px 0 100px; /* Cambiado de 140px a 70px para coincidir con la altura del header */
+    min-height: 61vh;
+    padding: 124px 0 14px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,7 +19,6 @@
     margin-left: -50vw;
     margin-right: -50vw;
 }
-
 /* Capas de fondo */
 .hero-section::before {
     content: '';
@@ -225,13 +222,40 @@
 }
 
 /* Responsividad mejorada */
+/* Pantallas muy anchas */
+@media (min-width: 1400px) {
+    .hero-section {
+    padding: 126px 0 49px;
+    min-height: 64vh;
+}
+    
+    .hero-content {
+        max-width: 1400px;
+        padding: 0 2rem;
+        transform: translateY(-40px);
+    }
+}
+
+/* Laptops y tablets grandes */
+@media (max-width: 1200px) {
+    .hero-section {
+    min-height: 64vh;
+    padding: 68px 0 1px;
+}
+    
+    .hero-content {
+        max-width: 1000px;
+        padding: 0 1.5rem;
+        transform: translateY(-35px);
+    }
+}
+
 /* Tablets grandes y laptops pequeñas */
 @media (max-width: 1024px) {
     .hero-section {
-        min-height: 80vh;
-        padding: 120px 0 80px;
-        justify-content: center;
-    }
+    min-height: 59vh;
+    padding: 101px 0 26px;
+}
     
     .hero-content {
         max-width: 900px;
@@ -243,29 +267,32 @@
 /* Tablets */
 @media (max-width: 768px) {
     .hero-section {
-        min-height: 70vh;
-        padding: 100px 0 60px;
-        justify-content: center;
-    }
-
+    min-height: 52vh;
+    padding: 110px 0 22px;
+}
+    
     .hero-content {
         padding: 0 1rem;
         transform: translateY(-25px);
     }
 
     .hero-section h1 {
-        font-size: 2rem;
-        max-width: 100%;
+        font-size: clamp(1.8rem, 5vw, 2.2rem);
+        margin-bottom: 1.2rem;
+    }
+
+    .hero-section h2 {
+        font-size: clamp(1rem, 3vw, 1.4rem);
     }
 
     .hero-subtitle {
-        font-size: 1.25rem;
-        max-width: 100%;
+        font-size: clamp(1rem, 3vw, 1.3rem);
+        margin-bottom: 1.2rem;
     }
 
     .hero-description {
-        font-size: 1rem;
-        max-width: 100%;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        margin-bottom: 2rem;
     }
 
     .hero-cta {
@@ -278,21 +305,16 @@
         width: 100%;
         max-width: 280px;
         justify-content: center;
-    }
-    
-    .hero-section::before {
-        background-position: center center;
-        background-size: cover;
+        padding: 0.8rem 1.8rem;
     }
 }
 
 /* Móviles grandes */
 @media (max-width: 576px) {
     .hero-section {
-        min-height: 60vh;
-        padding: 80px 0 60px;
-        justify-content: center;
-    }
+    min-height: 50vh;
+    padding: 110px 0 22px;
+}
     
     .hero-content {
         padding: 0 1rem;
@@ -300,17 +322,24 @@
     }
     
     .hero-section h1 {
-        font-size: 1.8rem;
+        font-size: clamp(1.6rem, 6vw, 1.9rem);
         line-height: 1.1;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-section h2 {
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+        padding: 0.15rem 0.75rem;
     }
     
     .hero-subtitle {
-        font-size: 1.1rem;
+        font-size: clamp(0.95rem, 4vw, 1.1rem);
+        margin-bottom: 1rem;
     }
     
     .hero-description {
-        font-size: 0.9rem;
-        margin-bottom: 2rem;
+        font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+        margin-bottom: 1.8rem;
     }
     
     .primary-btn, .secondary-btn {
@@ -319,20 +348,14 @@
         width: 100%;
         max-width: 250px;
     }
-    
-    .hero-section::before {
-        background-size: cover;
-        background-position: center center;
-    }
 }
 
 /* Móviles pequeños */
 @media (max-width: 480px) {
     .hero-section {
-        min-height: 55vh;
-        padding: 70px 0 50px;
-        justify-content: center;
-    }
+    min-height: 45vh;
+    padding: 110px 0 22px;
+}
     
     .hero-content {
         padding: 0 0.75rem;
@@ -340,22 +363,22 @@
     }
     
     .hero-section h1 {
-        font-size: 1.6rem;
-        margin-bottom: 1rem;
+        font-size: clamp(1.4rem, 7vw, 1.7rem);
+        margin-bottom: 0.8rem;
     }
     
     .hero-section h2 {
-        font-size: 1rem;
-        padding: 0.15rem 0.75rem;
+        font-size: clamp(0.8rem, 4.5vw, 1rem);
+        padding: 0.1rem 0.6rem;
     }
     
     .hero-subtitle {
-        font-size: 1rem;
-        margin-bottom: 1rem;
+        font-size: clamp(0.9rem, 4.5vw, 1rem);
+        margin-bottom: 0.8rem;
     }
     
     .hero-description {
-        font-size: 0.85rem;
+        font-size: clamp(0.8rem, 4vw, 0.9rem);
         margin-bottom: 1.5rem;
     }
     
@@ -373,10 +396,9 @@
 /* Móviles muy pequeños */
 @media (max-width: 360px) {
     .hero-section {
-        min-height: 50vh;
-        padding: 60px 0 40px;
-        justify-content: center;
-    }
+    min-height: 40vh;
+    padding: 110px 0 22px;
+}
     
     .hero-content {
         padding: 0 0.5rem;
@@ -384,19 +406,23 @@
     }
     
     .hero-section h1 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
+        margin-bottom: 0.6rem;
     }
     
     .hero-section h2 {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+        padding: 0.1rem 0.5rem;
     }
     
     .hero-subtitle {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
+        margin-bottom: 0.6rem;
     }
     
     .hero-description {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+        margin-bottom: 1.2rem;
     }
     
     .primary-btn, .secondary-btn {
@@ -406,16 +432,79 @@
     }
 }
 
-/* Ajustes para pantallas muy anchas */
-@media (min-width: 1400px) {
+/* Ajustes para pantallas con altura limitada */
+@media (max-height: 600px) {
     .hero-section {
-        padding: 160px 0 120px;
-        justify-content: center;
+        min-height: 40vh;
+        padding: 30px 0 25px;
     }
     
     .hero-content {
-        max-width: 1400px;
-        padding: 0 2rem;
-        transform: translateY(-50px);
+        transform: translateY(-20px);
+    }
+    
+    .hero-section h1 {
+        margin-bottom: 1rem;
+    }
+    
+    .hero-description {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-height: 500px) {
+    .hero-section {
+        min-height: 35vh;
+        padding: 25px 0 20px;
+    }
+    
+    .hero-content {
+        transform: translateY(-15px);
+    }
+    
+    .hero-section h1 {
+        margin-bottom: 0.8rem;
+    }
+    
+    .hero-description {
+        margin-bottom: 1.2rem;
+    }
+}
+
+/* Optimizaciones para dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+    .primary-btn:hover, .secondary-btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .primary-btn:active {
+        transform: scale(0.98);
+    }
+    
+    .secondary-btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Reducir animaciones para usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .hero-content {
+        transform: none;
+    }
+    
+    .primary-btn, .secondary-btn {
+        transition: none;
+    }
+    
+    .primary-btn:hover, .secondary-btn:hover {
+        transform: none;
+    }
+    
+    @keyframes ripple {
+        0%, 100% {
+            transform: scale(0, 0);
+            opacity: 0;
+        }
     }
 }

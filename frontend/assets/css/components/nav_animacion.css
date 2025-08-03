@@ -2,10 +2,10 @@
    ANIMACIONES DEL HEADER AL HACER SCROLL
 ======================================== */
 
-/* Padding base para el body en escritorio */
-body {
-    padding-top: 75px; /* Reducido de 85px a 70px - altura exacta del header */
-}
+/* Padding base para el body en escritorio - ELIMINADO PARA QUITAR SCROLL */
+/* body {
+    padding-top: 75px;
+} */
 
 /* Estado del header al hacer scroll */
 .main-header.scrolled {
@@ -75,10 +75,9 @@ body {
     align-items: center;
 }
 
-/* Botón de login ajustado */
 .login-btn {
     padding: 0.35rem 1.75rem;
-    height: 25px;
+    height: 39px;
     min-width: 80px;
     display: inline-flex;
     align-items: center;
@@ -200,9 +199,7 @@ body {
         padding-top: 18px;
     }
     
-    body {
-        padding-top: 78px;
-    }
+    
 }
 
 /* Móviles pequeños (360px) */
@@ -224,9 +221,9 @@ body {
         padding-top: 15px;
     }
     
-    body {
-        padding-top: 70px; /* Cambiado de 75px a 70px */
-    }
+    /* body {
+        padding-top: 70px;
+    } */
 }
 
 /* Optimización de rendimiento */

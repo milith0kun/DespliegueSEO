@@ -8,7 +8,7 @@
     display: inline-block;
     padding: 0.02em;
     transform-style: preserve-3d;
-    animation: float 8s ease-in-out infinite;
+    
     height: 80px;
 }
 
@@ -46,33 +46,43 @@
 @keyframes glowPulse {
     0%, 100% {
         text-shadow: 
-            1px 1px 1px rgba(0, 0, 0, 0.7),
+            1px 1px 2px rgba(0, 0, 0, 0.8),
             2px 2px 0 #3b82f6,
             3px 3px 15px rgba(59, 130, 246, 0.6),
-            0 0 35px rgba(59, 130, 246, 0.5);
+            0 0 25px rgba(59, 130, 246, 0.4),
+            0 0 35px rgba(59, 130, 246, 0.3);
+        filter: brightness(1);
+    }
+    25% {
+        text-shadow: 
+            1px 1px 2px rgba(0, 0, 0, 0.8),
+            2px 2px 0 #60a5fa,
+            3px 3px 25px rgba(96, 165, 250, 0.8),
+            0 0 40px rgba(96, 165, 250, 0.6),
+            0 0 60px rgba(96, 165, 250, 0.4);
+        filter: brightness(1.1);
     }
     50% {
         text-shadow: 
-            1px 1px 1px rgba(0, 0, 0, 0.7),
-            2px 2px 0 #3b82f6,
-            3px 3px 20px rgba(59, 130, 246, 0.8),
-            0 0 45px rgba(59, 130, 246, 0.7);
+            1px 1px 2px rgba(0, 0, 0, 0.8),
+            2px 2px 0 #2563eb,
+            3px 3px 30px rgba(37, 99, 235, 0.9),
+            0 0 50px rgba(37, 99, 235, 0.7),
+            0 0 80px rgba(37, 99, 235, 0.5);
+        filter: brightness(1.2);
+    }
+    75% {
+        text-shadow: 
+            1px 1px 2px rgba(0, 0, 0, 0.8),
+            2px 2px 0 #60a5fa,
+            3px 3px 25px rgba(96, 165, 250, 0.8),
+            0 0 40px rgba(96, 165, 250, 0.6),
+            0 0 60px rgba(96, 165, 250, 0.4);
+        filter: brightness(1.1);
     }
 }
 
 .letter::before {
-    background: radial-gradient(
-        circle at 30% 30%, 
-        rgba(255,255,255,0.4), 
-        rgba(96, 165, 250, 0.2) 40%,
-        transparent 70%
-    );
-    opacity: 0.85;
-    mix-blend-mode: soft-light;
-}
-
-.letter::before {
-    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -89,286 +99,57 @@
 
 @keyframes float {
     0%, 100% {
-        transform: translateZ(10px) translateX(0) translateY(0) rotateY(1deg) rotateX(-0.5deg) rotateZ(0deg);
+        transform: translateZ(15px) translateX(0) translateY(0) rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(1);
     }
     25% {
-        transform: translateZ(20px) translateX(3px) translateY(5px) rotateY(2deg) rotateX(1deg) rotateZ(0.5deg);
+        transform: translateZ(25px) translateX(8px) translateY(-6px) rotateY(3deg) rotateX(-2deg) rotateZ(1deg) scale(1.02);
     }
     50% {
-        transform: translateZ(25px) translateX(5px) translateY(-8px) rotateY(3deg) rotateX(-1.5deg) rotateZ(1deg);
+        transform: translateZ(15px) translateX(0) translateY(0) rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(1);
     }
     75% {
-        transform: translateZ(20px) translateX(3px) translateY(3px) rotateY(2deg) rotateX(0.5deg) rotateZ(0.5deg);
+        transform: translateZ(25px) translateX(-8px) translateY(6px) rotateY(-3deg) rotateX(2deg) rotateZ(-1deg) scale(1.02);
     }
 }
 
 .letter {
-    animation: float 12s ease-in-out infinite;
+    animation: float 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    transform-origin: center;
+    transform: translateY(-3px);
+    transition: all 0.3s ease;
+}
+
+.letter:hover {
+    animation-duration: 4s;
+    filter: brightness(1.2);
 }
 
 .letter .text {
-    animation: glowPulse 4s ease-in-out infinite;
+    animation: glowPulse 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    transition: all 0.3s ease;
 }
 
-.letter:nth-child(1) {
-    animation-delay: 0s;
+.letter:hover .text {
+    animation-duration: 2s;
+    transform: scale(1.05);
 }
 
-.letter:nth-child(2) {
-    animation-delay: 0.2s;
-}
 
-.letter:nth-child(3) {
-    animation-delay: 0.4s;
-}
 
 /* ESTILOS RESPONSIVOS MEJORADOS PARA LAS LETRAS */
 
-/* Tablets grandes */
-@media (max-width: 1024px) {
-    .letter {
-        font-size: 4.5rem;
-        height: 75px;
-    }
-    
-    .letter:nth-child(2) {
-        font-size: 4.5rem;
-    }
-}
 
-/* Resolución específica 900px */
-@media (max-width: 900px) {
-    .letter {
-        font-size: 4.2rem;
-        height: 70px;
-    }
-    
-    .letter:nth-child(2) {
-        font-size: 4.2rem;
-    }
-}
 
-/* Resolución específica 800px */
-@media (max-width: 800px) {
-    .letter {
-        font-size: 4rem;
-        height: 65px;
-    }
-    
-    .letter:nth-child(2) {
-        font-size: 4rem;
-    }
-}
 
-/* Resolución crítica 752px - mantener legibilidad */
-@media (max-width: 752px) {
-    .letter {
-        font-size: 3.8rem;
-        height: 62px;
-    }
-    
-    .letter:nth-child(2) {
-        font-size: 3.8rem;
-    }
-    
-    .letter .text {
-        -webkit-text-stroke: 2.5px rgb(0, 0, 0);
-    }
-}
-
-/* Tablets estándar */
-@media (max-width: 768px) {
-    .letter {
-        font-size: 3.6rem;
-        height: 60px;
-    }
-    
-    .letter:nth-child(2) {
-        font-size: 3.6rem;
-    }
-}
-
-/* Móviles grandes */
-@media (max-width: 600px) {
-    .letter {
-        font-size: 3.2rem;
-        height: 55px;
-    }
-    
-    .letter:nth-child(2) {
-        font-size: 3.2rem;
-    }
-    
-    .letter .text {
-        -webkit-text-stroke: 2px rgb(0, 0, 0);
-    }
-}
-
-/* Móviles medianos */
-@media (max-width: 480px) {
-    .letter {
-        font-size: 2.8rem;
-        height: 50px;
-    }
-    
-    .letter:nth-child(2) {
-        font-size: 2.8rem;
-    }
-}
-
-/* Móviles pequeños */
-@media (max-width: 360px) {
-    .letter {
-        font-size: 2.4rem;
-        height: 45px;
-    }
-    
-    .letter:nth-child(2) {
-        font-size: 2.4rem;
-    }
-    
-    .letter .text {
-        -webkit-text-stroke: 1.5px rgb(0, 0, 0);
-        text-shadow:
-            1px 1px 1px rgba(0, 0, 0, 0.7),
-            2px 2px 0 #3b82f6,
-            2px 2px 10px rgba(59, 130, 246, 0.6),
-            0 0 25px rgba(59, 130, 246, 0.5);
-    }
-}
-
-/* Móviles muy pequeños */
-@media (max-width: 320px) {
-    .letter {
-        font-size: 2rem;
-        height: 40px;
-    }
-    
-    .letter:nth-child(2) {
-        font-size: 2rem;
-    }
-    
-    .letter .text {
-        -webkit-text-stroke: 1px rgb(0, 0, 0);
-        text-shadow:
-            1px 1px 0 rgba(0, 0, 0, 0.7),
-            1px 1px 0 #3b82f6,
-            2px 2px 8px rgba(59, 130, 246, 0.5),
-            0 0 20px rgba(59, 130, 246, 0.4);
-    }
-}
-
-@keyframes gradientMove {
-    0% {
-        background-position: 0% center;
-    }
-    50% {
-        background-position: 100% center;
-    }
-    100% {
-        background-position: 0% center;
-    }
-}
-.letter:hover .text {
-    text-shadow: 
-        1px 1px 0 #000,
-        2px 2px 0 #3b82f6,
-        3px 3px 15px rgba(59, 130, 246, 0.9),
-        4px 4px 25px rgba(59, 130, 246, 0.8),
-        0 0 50px rgba(59, 130, 246, 0.9);
-    transition: all 0.5s ease;
-}
-
-/* AJUSTES PARA RANGO 322-762px - LETRAS MÁS GRANDES */
-
-/* Rango 762px hasta 600px */
-@media (max-width: 762px) and (min-width: 600px) {
-    .letter {
-        font-size: 4rem; /* Más grande */
-        height: 65px;
-    }
-    
-    .letter:nth-child(2) {
-        font-size: 4rem;
-    }
-    
-    .letter .text {
-        -webkit-text-stroke: 2.7px rgb(0, 0, 0);
-    }
-}
-
-/* Rango 600px hasta 480px */
-@media (max-width: 600px) and (min-width: 480px) {
-    .letter {
-        font-size: 3.8rem; /* Más grande que antes */
-        height: 62px;
-    }
-    
-    .letter:nth-child(2) {
-        font-size: 3.8rem;
-    }
-    
-    .letter .text {
-        -webkit-text-stroke: 2.5px rgb(0, 0, 0);
-    }
-}
-
-/* Rango 480px hasta 360px */
-@media (max-width: 480px) and (min-width: 360px) {
-    .letter {
-        font-size: 3.5rem; /* Más grande */
-        height: 58px;
-    }
-    
-    .letter:nth-child(2) {
-        font-size: 3.5rem;
-    }
-    
-    .letter .text {
-        -webkit-text-stroke: 2.3px rgb(0, 0, 0);
-    }
-}
-
-/* Rango 360px hasta 322px */
-@media (max-width: 360px) and (min-width: 322px) {
-    .letter {
-        font-size: 3.2rem; /* Más grande que antes */
-        height: 55px;
-    }
-    
-    .letter:nth-child(2) {
-        font-size: 3.2rem;
-    }
-    
-    .letter .text {
-        -webkit-text-stroke: 2px rgb(0, 0, 0);
-    }
-}
-
-/* Para 322px exacto */
-@media (max-width: 322px) {
-    .letter {
-        font-size: 2.8rem; /* Más grande que el anterior 2rem */
-        height: 50px;
-    }
-    
-    .letter:nth-child(2) {
-        font-size: 2.8rem;
-    }
-    
-    .letter .text {
-        -webkit-text-stroke: 1.8px rgb(0, 0, 0);
-    }
-}
 
 /* ===== LETRAS SEO - SISTEMA RESPONSIVO FINAL ===== */
 
 /* Desktop óptimo */
 @media (min-width: 1025px) {
     .letter {
-        font-size: 4.9rem;
-        height: 80px;
-    }
+    font-size: 4.9rem;
+    height: 120px;
+}
     
     .letter:nth-child(2) {
         font-size: 4.9rem;
@@ -378,9 +159,9 @@
 /* Laptops medianos */
 @media (max-width: 1024px) and (min-width: 901px) {
     .letter {
-        font-size: 4.7rem;
-        height: 78px;
-    }
+    font-size: 4.7rem;
+    height: 105px;
+}
     
     .letter:nth-child(2) {
         font-size: 4.7rem;

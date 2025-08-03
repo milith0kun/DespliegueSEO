@@ -30,9 +30,9 @@ Este documento contiene información esencial para que el asistente de IA (Gemin
 
 - **Iniciar Servidor de Desarrollo:**
   ```bash
-  php -S localhost:8080 -t .
+  php -S localhost:8000 -t .
   ```
-  *Este comando sirve todo el proyecto desde la raíz, y las reglas de `.htaccess` se encargan de redirigir las peticiones correctamente.*
+  *Este comando sirve todo el proyecto desde la raíz. El archivo `index.php` procesa automáticamente las rutas y sirve el contenido del frontend sin redirecciones.*
 
 - **Instalar/Actualizar Dependencias PHP:**
   ```bash
@@ -41,7 +41,7 @@ Este documento contiene información esencial para que el asistente de IA (Gemin
 
 ## 4. Endpoints Principales de la API
 
-La API se accede a través de `http://localhost:8080/api/`.
+La API se accede a través de `http://localhost:8000/api/`.
 
 - **Contactos:**
     - `POST /api/contacto/crear`: Crea un nuevo registro de contacto desde el formulario público.
@@ -63,3 +63,23 @@ La API se accede a través de `http://localhost:8080/api/`.
     3.  **Backend (Controlador):** La lógica de recepción está en `api/controllers/ContactoController.php` (método `crear`).
     4.  **Backend (Modelo):** La lógica de guardado en BD está en `api/models/Contacto.php` (método `crear`).
     5.  **Base de Datos:** Si se añaden campos, modificar el esquema en `base-de-datos/esquemas/`.
+
+## 6. Correcciones Recientes Implementadas
+
+### ✅ Errores JavaScript Corregidos:
+- **admin.js**: Eliminadas referencias a funciones inexistentes, implementadas funciones faltantes
+- **api-config.js**: Mejorado manejo de errores y detección de respuestas HTML vs JSON
+- **Páginas admin**: `admin.html` y `login.html` cargan sin errores de consola
+
+### ✅ Configuración de Servidor Optimizada:
+- **index.php**: Eliminada redirección, ahora sirve contenido directamente
+- **.htaccess**: Reglas específicas para assets, servicios y admin
+- **Rutas de assets**: Procesamiento automático de rutas CSS/JS en el HTML
+- **Servidor local**: Funcionando estable en `localhost:8000`
+
+### ✅ Estado Actual:
+- ✅ Frontend completamente funcional sin errores JavaScript
+- ✅ Backend API operativo con manejo de errores mejorado
+- ✅ Configuración lista para despliegue en Hostinger
+- ✅ Formulario de contacto integrado y funcionando
+- ✅ Panel de administración accesible y operativo

@@ -44,32 +44,3 @@
     }
 }
 
-/* Estilos adicionales para mejorar la experiencia de scroll */
-::-webkit-scrollbar-corner {
-    background: #f1f5f9;
-}
-
-/* Para Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: #3b82f6 #f1f5f9;
-}
-
-/* Smooth scroll mejorado */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px; /* Para compensar header fijo */
-}
-
-/* Prevenir scroll horizontal problemático */
-body {
-    overflow-x: hidden;
-}
-
-/* Contenedores que pueden causar scroll horizontal */
-.container,
-.content-grid,
-section {
-    max-width: 100%;
-    overflow-x: hidden;
-}

@@ -4,10 +4,24 @@
  * para evitar duplicación y facilitar el mantenimiento
  */
 
+// Función para detectar el entorno y configurar la URL base
+function getBaseUrl() {
+    const hostname = window.location.hostname;
+    const protocol = window.location.protocol;
+    
+    // Si estamos en desarrollo local
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        return 'http://localhost:8000'; // Servidor PHP local
+    }
+    
+    // Si estamos en producción
+    return `${protocol}//${hostname}`;
+}
+
 // Configuración base de la API
 const API_CONFIG = {
-    // URL base del servidor
-    BASE_URL: 'http://localhost:8080',
+    // URL base del servidor (detectada automáticamente)
+    BASE_URL: getBaseUrl(),
     
     // Endpoints de la API
     ENDPOINTS: {
@@ -68,22 +82,53 @@ class ApiService {
             }
         };
         
+        console.log('🌐 ApiService: Making request');
+        console.log('📍 URL:', url);
+        console.log('⚙️ Config:', config);
+        
         try {
+            console.log('📡 Sending fetch request...');
             const response = await fetch(url, config);
+            console.log('📨 Response received:', {
+                status: response.status,
+                statusText: response.statusText,
+                headers: Object.fromEntries(response.headers.entries())
+            });
             
             // Verificar si la respuesta es JSON
             const contentType = response.headers.get('content-type');
+            
+            if (!response.ok) {
+                // Si hay error HTTP, intentar leer como texto primero
+                let errorMessage = `Error HTTP: ${response.status}`;
+                try {
+                    if (contentType && contentType.includes('application/json')) {
+                        const errorData = await response.json();
+                        errorMessage = errorData.message || errorMessage;
+                    } else {
+                        const errorText = await response.text();
+                        // Si es HTML, extraer mensaje de error más limpio
+                        if (errorText.includes('<br />')) {
+                            const match = errorText.match(/<b>([^<]+)<\/b>/);
+                            errorMessage = match ? match[1] : 'Error del servidor';
+                        } else {
+                            errorMessage = errorText.substring(0, 100) + '...';
+                        }
+                    }
+                } catch (parseError) {
+                    console.error('Error al parsear respuesta de error:', parseError);
+                }
+                throw new Error(errorMessage);
+            }
+            
+            // Para respuestas exitosas, verificar que sea JSON
             if (!contentType || !contentType.includes('application/json')) {
                 throw new Error('El servidor no devolvió una respuesta JSON válida');
             }
             
             const data = await response.json();
-            
-            if (!response.ok) {
-                throw new Error(data.message || `Error HTTP: ${response.status}`);
-            }
-            
             return data;
+            
         } catch (error) {
             console.error(`Error en petición a ${url}:`, error);
             throw error;
@@ -92,10 +137,26 @@ class ApiService {
     
     // Métodos específicos para autenticación
     async login(email, password) {
-        return this.request(this.endpoints.AUTH.LOGIN, {
-            method: 'POST',
-            body: JSON.stringify({ email, password })
-        });
+        console.log('🔐 ApiService: Iniciando login');
+        console.log('📧 Email:', email);
+        console.log('🌐 URL:', this.buildUrl(this.endpoints.AUTH.LOGIN));
+        
+        try {
+            const payload = { email, password };
+            console.log('📦 Payload:', payload);
+            
+            const result = await this.request(this.endpoints.AUTH.LOGIN, {
+                method: 'POST',
+                body: JSON.stringify(payload)
+            });
+            
+            console.log('✅ Login response:', result);
+            return result;
+            
+        } catch (error) {
+            console.error('❌ Login error:', error);
+            throw error;
+        }
     }
     
     async checkAuth() {

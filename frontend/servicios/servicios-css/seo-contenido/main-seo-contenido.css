@@ -1,4 +1,5 @@
 /* Archivo principal para seo-contenido */
+@import url('./container.css');
 @import url('./seccion-1.css');
 @import url('./seccion-2.css');
 @import url('./seccion-3.css');

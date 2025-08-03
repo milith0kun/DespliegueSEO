@@ -1,21 +1,34 @@
-/* Estilos para la sección 2 de software-medida - Diseño Minimalista */
+/* Estilos para la sección de beneficios - Diseño de tarjetas con iconos */
 .service-benefits {
     padding: 5rem 2rem;
-    background: #ffffff;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
     position: relative;
-    overflow: hidden;
+}
+
+.service-benefits::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23cbd5e1" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>') repeat;
+    opacity: 0.4;
+    z-index: 1;
 }
 
 .service-benefits .container {
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 .service-benefits h2 {
     text-align: center;
-    margin-bottom: 3.5rem;
-    font-size: clamp(1.8rem, 5vw, 2.5rem);
-    color: #1a1a1a;
+    margin-bottom: 4rem;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    color: #1e293b;
     font-weight: 700;
     font-family: 'Poppins', sans-serif;
     position: relative;
@@ -24,20 +37,20 @@
 .service-benefits h2::after {
     content: '';
     position: absolute;
-    bottom: -15px;
+    bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
     border-radius: 2px;
 }
 
-/* Lista de beneficios con diseño de tarjetas minimalistas */
+/* Lista de beneficios con diseño de tarjetas */
 .benefits-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -45,66 +58,93 @@
 
 .benefits-list li {
     background: #ffffff;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid #f0f0f0;
-    transition: all 0.3s ease;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
     position: relative;
-    border-left: 4px solid #3b82f6;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .benefits-list li:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-    border-left-width: 6px;
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: #3b82f6;
 }
 
 .benefits-list li strong {
     display: block;
-    color: #1a1a1a;
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
     font-family: 'Poppins', sans-serif;
+    position: relative;
 }
 
-.benefits-list li:hover strong {
-    color: #3b82f6;
-}
-
-/* Texto descriptivo */
-.benefits-list li {
-    color: #666;
-    line-height: 1.6;
-    font-size: 1rem;
-}
-
-/* Iconos minimalistas */
-.benefits-list li::before {
-    content: '';
+.benefits-list li strong::before {
+    content: '✦';
     position: absolute;
-    top: -10px;
-    right: 20px;
-    width: 20px;
-    height: 20px;
-    background: #3b82f6;
-    border-radius: 50%;
-    opacity: 0.8;
+    left: -1.5rem;
+    top: 0;
+    color: #3b82f6;
+    font-size: 1.1rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.benefits-list li:hover strong::before {
+    opacity: 1;
+    left: -1.2rem;
+}
+
+.benefits-list li p {
+    color: #64748b;
+    line-height: 1.7;
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 400;
 }
 
 /* Responsivo */
 @media (max-width: 768px) {
     .service-benefits {
-        padding: 3rem 1rem;
+        padding: 4rem 1rem;
     }
     
     .benefits-list {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 2rem;
     }
     
     .benefits-list li {
-        padding: 1.5rem;
+        padding: 2rem 1.5rem;
+    }
+    
+    .benefits-list li strong::before {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-benefits {
+        padding: 3rem 0.5rem;
+    }
+    
+    .service-benefits h2 {
+        margin-bottom: 3rem;
+    }
+    
+    .benefits-list li {
+        padding: 1.8rem 1.2rem;
+    }
+    
+    .benefits-list li strong {
+        font-size: 1.2rem;
+    }
+    
+    .benefits-list li p {
+        font-size: 1rem;
     }
 }

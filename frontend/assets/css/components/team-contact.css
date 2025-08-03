@@ -1,18 +1,60 @@
-/* Estilos para la sección de Contacto */
+/* Estilos mejorados para la sección de Contacto */
 .team-contact-section {
-    padding: 4rem 2rem;
-    background: #ffffff;
+    padding: clamp(0.5rem, 1.5vw, 1rem) clamp(0.5rem, 1vw, 1rem); /* Reducido el padding superior */
+    background: #ffffff; /* Cambiado a blanco para coincidir con la sección de equipo */
     position: relative;
+    overflow: hidden;
+    min-height: auto; /* Cambiado de 100vh a auto para reducir altura */
+}
+
+/* Elementos decorativos de fondo para la sección principal */
+.team-contact-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 70%, rgba(148, 123, 177, 0.05) 0%, transparent 50%); /* Paleta morada */
+    z-index: 0;
+    
+}
+
+.team-contact-section::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    right: -30%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle at 70% 30%, rgba(148, 123, 177, 0.08) 0%, transparent 60%); /* Paleta morada */
+    z-index: 0;
+    animation: teamFloat 25s ease-in-out infinite reverse;
+}
+
+@keyframes teamFloat {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -30px) rotate(1deg); }
+    66% { transform: translate(-20px, 20px) rotate(-1deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1) opacity(1); }
+    50% { transform: scale(1.1) opacity(0.8); }
 }
 
 .section-container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0.5rem auto 0 auto; /* Reducido el margin superior */
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Cambiado a fracciones iguales para mejor balance */
-    gap: 2rem;
-    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(0.4rem, 1vw, 0.8rem); /* Reducido el gap */
+    align-items: start;
     justify-content: center;
+    min-height: auto;
+    padding: 0 clamp(0.2rem, 1vw, 0.5rem);
+    position: relative;
+    z-index: 1;
 }
 
 .section-header h2 {
@@ -24,16 +66,7 @@
     display: inline-block;
 }
 
-.section-header h2::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background-color: #4a6cf7;
-}
+
 
 .section-header p {
     font-size: 1.2rem;
@@ -42,216 +75,213 @@
     margin: 0 auto;
 }
 
-/* Estilos para la sección de contacto - MEJORADOS */
+/* Estilos mejorados para la sección de contacto - ALTURA REDUCIDA */
 .contact-section {
-    padding: 3rem 2.5rem;
-    background-color: rgb(205, 208, 253);
-    border-radius: 15px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    padding: 1.15rem 1.6rem; /* Altura reducida aún más */
+    background: linear-gradient(145deg, #ffffff 0%, #f8f4fb 50%, #f0e6f7 100%); /* Gradiente con tonos morados suaves para coincidir con equipo */
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: 
+        0 8px 32px rgba(148, 123, 177, 0.25),
+        0 4px 16px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9); /* Sombras con color azul */
     margin: 0 auto;
     width: 100%;
-    max-width: 550px;
+    max-width: 350px; /* Reducido de 400px */
     position: relative;
     overflow: hidden;
-    transform: translateX(0); /* Eliminado el desplazamiento negativo */
+    transform: translateX(0);
+    border: 3px solid #947bb1; /* Borde morado */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    transition: all 0.3s ease;
+    outline: 2px solid rgba(148, 123, 177, 0.3); /* Outline morado */
+    outline-offset: 2px;
 }
 
-/* Elementos decorativos */
+.contact-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 12px 40px rgba(148, 123, 177, 0.35),
+        0 6px 20px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    border: 3px solid #7a5f8a; /* Borde morado más oscuro en hover */
+    background: linear-gradient(145deg, #ffffff 0%, #f0e6f7 50%, #e6d9f0 100%);
+    outline: 2px solid rgba(148, 123, 177, 0.4); /* Outline morado más visible en hover */
+    outline-offset: 3px;
+}
+
+/* Elementos decorativos mejorados */
 .contact-section::before {
     content: '';
     position: absolute;
-    top: -80px;
-    right: -80px;
-    width: 500px;
-    height: 500px;
-    background-color: rgba(77, 100, 194, 0.08);
+    top: -100px;
+    right: -100px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(148, 123, 177, 0.1) 0%, rgba(184, 157, 209, 0.05) 50%, transparent 100%);
     border-radius: 50%;
     z-index: 0;
+    animation: pulse 4s ease-in-out infinite;
 }
 
 .contact-section::after {
     content: '';
     position: absolute;
-    bottom: -60px;
-    left: -60px;
-    width: 150px;
-    height: 150px;
-    background-color: rgba(74, 108, 247, 0.05);
+    bottom: -80px;
+    left: -80px;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(184, 157, 209, 0.08) 0%, rgba(148, 123, 177, 0.03) 50%, transparent 100%);
     border-radius: 50%;
     z-index: 0;
+    animation: pulse 6s ease-in-out infinite reverse;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1) opacity(1); }
+    50% { transform: scale(1.1) opacity(0.8); }
 }
 
 .contact-section .section-header {
     text-align: center;
     position: relative;
     z-index: 1;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem; /* Aumentado para dar más espacio */
+    padding: 0.1rem; /* Reducido 20px: de 0.3rem a 0.1rem */
+    background: linear-gradient(135deg, rgba(148, 123, 177, 0.05) 0%, rgba(184, 157, 209, 0.03) 100%);
+    border-radius: 8px;
+    border: 1px solid rgba(148, 123, 177, 0.1);
 }
 
 .contact-section .section-header h2 {
-    margin-bottom: 1rem;
-    color: #333;
+    margin-bottom: 0.8rem; /* Aumentado para dar espacio al pseudo-elemento ::after */
+    color: #2c3e50;
     font-weight: 700;
-    font-size: 2.2rem;
+    font-size: 1.2rem; /* Reducido de 1.4rem */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #947bb1 0%, #b89dd1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.contact-section .section-header h2::after {
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, #4a6cf7, #6a89ff);
-    border-radius: 2px;
+
+
+@keyframes shimmer {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; transform: translateX(-50%) scaleX(1.1); }
 }
 
 .contact-section .section-header p {
-    color: #666;
-    margin: 0 auto 1rem;
-    font-size: 1.1rem;
+    color: #5a6c7d;
+    margin: 0 auto 0.05rem; /* Reducido 20px: de 0.2rem a 0.05rem */
+    font-size: 0.8rem; /* Reducido de 0.9rem */
     max-width: 90%;
+    line-height: 1.2; /* Reducido de 1.3 */
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .contact-form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
-    margin-top: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 0.25rem; /* Reducido 20px: de 0.4rem a 0.25rem */
+    margin-top: 0.1rem; /* Reducido 20px: de 0.3rem a 0.1rem */
     position: relative;
     z-index: 1;
     width: 100%;
+    padding: 0.1rem; /* Reducido 20px: de 0.3rem a 0.1rem */
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
 }
 
 .form-group {
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.05rem; /* Reducido 20px: de 0.2rem a 0.05rem */
     position: relative;
     width: 100%;
-}
-
-.form-group.full-width {
-    grid-column: 1 / -1;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.6rem;
-    font-weight: 500;
-    color: #333; /* Texto más oscuro para mejor contraste */
-    transition: color 0.3s ease;
-    font-size: 0.95rem;
+    margin-bottom: 0.05rem; /* Reducido 20px: de 0.2rem a 0.05rem */
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 0.7rem; /* Reducido de 0.8rem */
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
+/* INPUTS con padding vertical reducido 20px */
 .form-group input,
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 1rem 1.2rem;
-    border: 1px solid #e0e0e0;
+    padding: 0.25rem 0.6rem; /* Reducido 20px verticalmente: de 0.4rem a 0.25rem */
+    border: 2px solid #e8ecf4;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 0.75rem; /* Reducido de 0.8rem */
     transition: all 0.3s ease;
-    background-color: #ffffff; /* Fondo blanco claro */
-    color: #333; /* Texto negro para mejor legibilidad */
-    min-width: 100%;
+    background: linear-gradient(145deg, #ffffff 0%, #fafbff 100%);
+    box-sizing: border-box;
+    min-height: 28px; /* Reducido 20px: de 32px a 28px */
+    line-height: 1.2; /* Reducido de 1.3 */
+    color: #2c3e50;
+    font-weight: 500;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-    border-color: #4a6cf7;
-    box-shadow: 0 0 0 4px rgba(74, 108, 247, 0.1);
     outline: none;
-    background-color: #ffffff; /* Mantener fondo blanco en focus */
-    color: #333; /* Mantener texto negro en focus */
+    border-color: #947bb1;
+    box-shadow: 
+        0 0 0 3px rgba(148, 123, 177, 0.15),
+        inset 0 2px 4px rgba(0, 0, 0, 0.05),
+        0 4px 12px rgba(148, 123, 177, 0.1);
+    transform: translateY(-1px);
+    background: #ffffff;
 }
 
-/* Estilos para los campos con placeholder */
+/* Placeholders más pequeños */
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: #888; /* Placeholder gris claro pero visible */
-    font-size: 0.95rem;
+    color: #aaa;
+    font-size: 0.7rem; /* Reducido de 0.8rem */
 }
 
-/* Ajuste general para todos los campos del formulario */
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 1rem 1.2rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background-color: #ffffff; /* Fondo blanco claro */
-    color: #333; /* Texto negro para mejor legibilidad */
-    min-width: 100%;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-    border-color: #4a6cf7;
-    box-shadow: 0 0 0 4px rgba(74, 108, 247, 0.1);
-    outline: none;
-    background-color: #fff;
-}
-
-/* Ajuste específico para el área de mensaje */
+/* Textarea con altura reducida 20px */
 .form-group textarea {
     resize: vertical;
-    min-height: 100px; /* Reducido para que sea menos alto */
-    max-height: 200px;
-    width: 100%; /* Asegura que ocupe todo el ancho disponible */
-    box-sizing: border-box;
+    min-height: 35px; /* Reducido 20px: de 45px a 35px */
+    max-height: 60px; /* Reducido 20px: de 80px a 60px */
+    font-family: inherit;
+    line-height: 1.3;
 }
 
-/* Hacer que el grupo del mensaje ocupe todo el ancho */
-.form-group:has(textarea) {
-    grid-column: 1 / -1; /* Hace que ocupe ambas columnas */
-    width: 100%;
-}
-
-/* Ajuste general para todos los campos del formulario */
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 1rem 1.2rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background-color: #f8f9fa;
-    color: #444;
-    min-width: 100%; /* Asegurar que ocupe todo el ancho */
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-    border-color: #4a6cf7;
-    box-shadow: 0 0 0 4px rgba(74, 108, 247, 0.1);
-    outline: none;
-    background-color: #fff;
-}
-
+/* Botón con padding vertical reducido 20px */
 .submit-btn {
-    grid-column: 1 / -1;
-    background: linear-gradient(135deg, #4a6cf7, #3a5bd9);
+    background: linear-gradient(135deg, #947bb1 0%, #b89dd1 50%, #947bb1 100%);
     color: white;
     border: none;
-    padding: 1rem 2rem;
-    font-size: 1.05rem;
+    padding: 0.45rem 1rem; /* Reducido 20px verticalmente: de 0.6rem a 0.45rem */
+    font-size: 0.8rem; /* Reducido de 0.9rem */
     font-weight: 600;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
     overflow: hidden;
-    margin-top: 0.8rem;
-    box-shadow: 0 4px 15px rgba(74, 108, 247, 0.25);
+    margin-top: 0.3rem; /* Reducido 20px: de 0.5rem a 0.3rem */
+    min-height: 32px; /* Reducido 20px: de 36px a 32px */
+    box-shadow: 
+        0 4px 12px rgba(148, 123, 177, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     width: 100%;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .submit-btn::before {
@@ -261,14 +291,16 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    transition: all 0.4s ease;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.6s ease;
 }
 
 .submit-btn:hover {
-    background: linear-gradient(135deg, #3a5bd9, #2a4bc9);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(74, 108, 247, 0.35);
+    background: linear-gradient(135deg, #7a5f8a 0%, #a085b8 50%, #7a5f8a 100%);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 20px rgba(148, 123, 177, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .submit-btn:hover::before {
@@ -276,8 +308,10 @@
 }
 
 .submit-btn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(74, 108, 247, 0.3);
+    transform: translateY(0);
+    box-shadow: 
+        0 4px 8px rgba(148, 123, 177, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .submit-btn i {
@@ -285,41 +319,38 @@
     font-size: 1.2rem;
 }
 
-/* Estilos para los enlaces adicionales */
 .additional-contact {
-    display: flex;
-    justify-content: center;
-    margin-top: 1.5rem;
-    position: relative;
-    z-index: 1;
-    width: 100%;
+    margin-top: 0.05rem; /* Reducido 20px: de 0.2rem a 0.05rem */
+    text-align: center;
 }
 
 .additional-contact a {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    padding: 0.7rem 1.2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    color: #555;
+    justify-content: center;
+    padding: 0.1rem 0.4rem; /* Reducido 20px verticalmente: de 0.2rem a 0.1rem */
     background-color: #f0f4ff;
+    color: #947bb1;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.7rem; /* Añadido para reducir tamaño */
+    transition: all 0.3s ease;
     border: 1px solid #e0e7ff;
-    margin: 0 0.5rem;
+    margin: 0;
 }
 
 .additional-contact a:hover {
     background-color: #e0e7ff;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(74, 108, 247, 0.15);
-    color: #3a5bd9;
+    box-shadow: 0 4px 12px rgba(148, 123, 177, 0.15);
+    color: #7a5f8a;
 }
 
 .additional-contact a i {
     margin-right: 0.6rem;
     font-size: 1.1rem;
-    color: #4a6cf7;
+    color: #947bb1;
 }
 
 /* Estilos para los campos con placeholder */
@@ -332,7 +363,7 @@
 /* Estilos para los campos requeridos */
 .form-group label:not([for="phone"]):not([for="company"])::after {
     content: ' *';
-    color: #4a6cf7;
+    color: #947bb1;
 }
 
 /* Corregir el problema de desbordamiento en campos de entrada */
@@ -343,223 +374,291 @@
     height: 3.2rem; /* Altura fija para todos los inputs */
 }
 
-/* Estilos responsivos */
+/* Estilos responsivos mejorados */
 @media (max-width: 992px) {
     .section-container {
         grid-template-columns: 1fr;
-        transform: translateX(0);
-        gap: clamp(1rem, 3vw, 2rem);
+        gap: clamp(0.4rem, 1.5vw, 0.8rem); /* Muy reducido */
+        max-width: 100%;
+        padding: 0 clamp(0.2rem, 0.8vw, 0.4rem);
     }
     
     .contact-section {
         margin: 0 auto;
-        max-width: clamp(300px, 90vw, 550px);
+        max-width: clamp(280px, 80vw, 350px); /* Reducido */
         transform: translateX(0);
     }
 }
 
+/* Media queries optimizadas para móviles */
 @media (max-width: 768px) {
-    .contact-form {
-        grid-template-columns: 1fr;
-        gap: clamp(0.8rem, 2vw, 1.2rem);
+    .team-contact-section {
+        padding: clamp(0.4rem, 1vw, 0.8rem) clamp(0.3rem, 0.8vw, 0.8rem); /* Aún más reducido */
     }
     
     .contact-section {
-        padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
-        max-width: clamp(280px, 95vw, 500px);
+        padding: clamp(0.4rem, 1.5vw, 0.6rem) clamp(0.4rem, 1.5vw, 0.6rem); /* Muy reducido */
+        max-width: clamp(260px, 85vw, 320px);
+        margin: 0 auto;
+    }
+    
+    .contact-section .section-header {
+        margin-bottom: clamp(0.6rem, 1.5vw, 1rem); /* Reducido */
+        text-align: center;
+        padding: clamp(0.3rem, 1vw, 0.5rem);
     }
     
     .contact-section .section-header h2 {
-        font-size: clamp(1.5rem, 4vw, 2.2rem);
+        font-size: clamp(1.3rem, 3vw, 1.6rem); /* Reducido */
+        margin-bottom: 0.3rem;
     }
     
     .contact-section .section-header p {
-        font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-    }
-}
-
-@media (max-width: 576px) {
-    .team-contact-section {
-        padding: clamp(2rem, 5vw, 3rem) clamp(0.5rem, 2vw, 1rem);
+        font-size: clamp(0.8rem, 2vw, 0.95rem); /* Reducido */
+        margin-bottom: 0.6rem;
     }
     
-    .contact-section {
-        padding: clamp(1.2rem, 3vw, 2rem) clamp(0.8rem, 2.5vw, 1.5rem);
-        max-width: clamp(260px, 98vw, 450px);
-        border-radius: clamp(8px, 2vw, 15px);
+    .contact-form {
+        gap: 0.5rem; /* Reducido */
+        margin-top: 0.6rem;
+    }
+    
+    .form-group {
+        margin-bottom: 0.3rem; /* Reducido */
+    }
+    
+    .form-group label {
+        font-size: clamp(0.75rem, 1.8vw, 0.85rem); /* Reducido */
+        margin-bottom: 0.2rem;
     }
     
     .form-group input,
     .form-group textarea,
     .form-group select {
-        padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1rem, 3vw, 1.2rem);
-        font-size: clamp(0.85rem, 2vw, 1rem);
-        min-height: 40px;
+        padding: clamp(0.4rem, 1.5vw, 0.6rem) clamp(0.6rem, 1.8vw, 0.8rem); /* Reducido */
+        font-size: clamp(0.75rem, 1.8vw, 0.85rem); /* Reducido */
+        min-height: 32px; /* Reducido */
+        border-radius: 5px;
     }
     
     .form-group textarea {
-        min-height: clamp(80px, 15vw, 100px);
+        min-height: 35px; /* Muy reducido */
+        max-height: 60px; /* Muy reducido */
     }
     
     .submit-btn {
-        padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1.5rem, 4vw, 2rem);
-        font-size: clamp(0.9rem, 2.2vw, 1.05rem);
-        margin-top: clamp(0.5rem, 1.5vw, 0.8rem);
+        padding: clamp(0.5rem, 2vw, 0.7rem) clamp(1rem, 3vw, 1.4rem); /* Reducido */
+        font-size: clamp(0.75rem, 1.8vw, 0.85rem); /* Reducido */
+        min-height: 36px; /* Reducido */
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-section {
+        padding: clamp(0.8rem, 2vw, 1.2rem) clamp(0.6rem, 1.5vw, 1rem); /* Muy reducido */
+        max-width: clamp(260px, 95vw, 380px); /* Reducido */
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: clamp(0.3rem, 1.2vw, 0.5rem) clamp(0.5rem, 1.5vw, 0.7rem); /* Muy reducido */
+        font-size: clamp(0.7rem, 1.6vw, 0.8rem); /* Reducido */
+        min-height: 30px; /* Muy reducido */
+    }
+    
+    .form-group textarea {
+        min-height: 30px; /* Mínimo absoluto */
+        max-height: 50px; /* Muy reducido */
+    }
+    
+    .submit-btn {
+        padding: clamp(0.4rem, 1.5vw, 0.6rem) clamp(0.8rem, 2.5vw, 1.2rem); /* Muy reducido */
+        font-size: clamp(0.7rem, 1.6vw, 0.8rem); /* Reducido */
+        min-height: 32px; /* Muy reducido */
     }
 }
 
 @media (max-width: 480px) {
     .team-contact-section {
-        padding: clamp(1.5rem, 4vw, 3rem) clamp(0.5rem, 1.5vw, 1rem);
+        padding: clamp(0.4rem, 1.2vw, 0.8rem) clamp(0.2rem, 0.8vw, 0.6rem); /* Reducido para móviles */
+    }
+    
+    .section-container {
+        gap: clamp(0.4rem, 1.2vw, 0.8rem);
+        padding: 0 clamp(0.1rem, 0.5vw, 0.3rem);
     }
     
     .contact-section {
-        padding: clamp(1rem, 2.5vw, 2rem) clamp(0.8rem, 2vw, 1.5rem);
-        transform: translateX(0);
-        max-width: clamp(240px, 100vw, 400px);
+        padding: clamp(0.8rem, 2vw, 1.5rem) clamp(0.5rem, 1.5vw, 1rem);
+        max-width: clamp(240px, 98vw, 380px);
+        margin: 0 auto;
     }
     
     .contact-section .section-header h2 {
-        font-size: clamp(1.3rem, 3.5vw, 1.8rem);
-        margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
+        font-size: clamp(1.2rem, 2.8vw, 1.5rem);
+        margin-bottom: 0.2rem;
     }
     
     .contact-section .section-header p {
-        font-size: clamp(0.85rem, 2.2vw, 1rem);
-    }
-    
-    .form-group {
-        margin-bottom: clamp(0.8rem, 2vw, 1.2rem);
-    }
-    
-    .form-group label {
-        font-size: clamp(0.8rem, 2vw, 0.95rem);
-        margin-bottom: clamp(0.4rem, 1vw, 0.6rem);
-    }
-}
-
-/* Móviles muy pequeños */
-@media (max-width: 360px) {
-    .contact-section {
-        padding: clamp(0.8rem, 2vw, 1.5rem) clamp(0.6rem, 1.5vw, 1.2rem);
-        max-width: clamp(220px, 100vw, 350px);
-        border-radius: clamp(6px, 1.5vw, 12px);
-    }
-    
-    .contact-section .section-header h2 {
-        font-size: clamp(1.2rem, 3vw, 1.6rem);
-    }
-    
-    .contact-section .section-header p {
-        font-size: clamp(0.8rem, 2vw, 0.95rem);
-    }
-    
-    .contact-form {
-        gap: clamp(0.6rem, 1.5vw, 1rem);
-        margin-top: clamp(1rem, 2.5vw, 1.5rem);
-    }
-    
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-        padding: clamp(0.6rem, 1.8vw, 0.8rem) clamp(0.8rem, 2.2vw, 1rem);
         font-size: clamp(0.8rem, 1.8vw, 0.9rem);
-        min-height: 36px;
-        border-radius: clamp(4px, 1vw, 6px);
-    }
-    
-    .form-group textarea {
-        min-height: clamp(60px, 12vw, 80px);
-    }
-    
-    .submit-btn {
-        padding: clamp(0.6rem, 1.8vw, 0.8rem) clamp(1.2rem, 3vw, 1.5rem);
-        font-size: clamp(0.8rem, 2vw, 0.9rem);
-        min-height: 38px;
-    }
-    
-    .additional-contact a {
-        padding: clamp(0.5rem, 1.5vw, 0.7rem) clamp(0.8rem, 2vw, 1.2rem);
-        font-size: clamp(0.75rem, 1.8vw, 0.85rem);
-        margin: 0 clamp(0.2rem, 0.8vw, 0.5rem);
-    }
-}
-
-/* Pantallas extremadamente pequeñas */
-@media (max-width: 320px) {
-    .contact-section {
-        padding: 0.8rem 0.6rem;
-        max-width: 100%;
-        margin: 0;
-        border-radius: 6px;
-    }
-    
-    .contact-section .section-header h2 {
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .contact-section .section-header p {
-        font-size: 0.8rem;
-        margin-bottom: 0.8rem;
-    }
-    
-    .contact-form {
-        gap: 0.6rem;
-        margin-top: 1rem;
-    }
-    
-    .form-group {
-        margin-bottom: 0.8rem;
-    }
-    
-    .form-group label {
-        font-size: 0.8rem;
         margin-bottom: 0.4rem;
     }
     
     .form-group input,
     .form-group textarea,
     .form-group select {
-        padding: 0.6rem 0.8rem;
-        font-size: 0.8rem;
-        min-height: 34px;
-        border-radius: 4px;
+        padding: 0.45rem 0.6rem; /* Muy compacto */
+        font-size: 0.75rem;
+        min-height: 32px;
     }
     
     .form-group textarea {
-        min-height: 60px;
+        min-height: clamp(35px, 7vw, 45px); /* Aún más compacto */
+        max-height: clamp(55px, 10vw, 70px);
+        padding: clamp(0.3rem, 1.2vw, 0.5rem) clamp(0.5rem, 1.8vw, 0.7rem);
+        font-size: clamp(0.7rem, 1.6vw, 0.8rem);
     }
     
     .submit-btn {
-        padding: 0.6rem 1.2rem;
+        padding: 0.55rem 1rem;
         font-size: 0.8rem;
         min-height: 36px;
-        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .team-contact-section {
+        padding: clamp(0.3rem, 1vw, 0.6rem) clamp(0.1rem, 0.5vw, 0.4rem); /* Reducido para pantallas pequeñas */
     }
     
-    .additional-contact {
-        margin-top: 1rem;
+    .section-container {
+        gap: clamp(0.3rem, 1vw, 0.6rem);
+        padding: 0;
+    }
+    
+    .contact-section {
+        padding: clamp(0.6rem, 1.8vw, 1.2rem) clamp(0.4rem, 1.2vw, 0.8rem);
+        max-width: clamp(220px, 100vw, 340px);
+        border-radius: clamp(4px, 1vw, 8px);
+        margin: 0;
+    }
+    
+    .contact-section .section-header h2 {
+        font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+        margin-bottom: 0.1rem;
+    }
+    
+    .contact-section .section-header p {
+        font-size: clamp(0.75rem, 1.6vw, 0.85rem);
+        margin-bottom: 0.3rem;
+    }
+    
+    .contact-form {
+        gap: clamp(0.4rem, 1.2vw, 0.7rem);
+        margin-top: clamp(0.6rem, 1.5vw, 1rem);
+    }
+    
+    .form-group {
+        margin-bottom: clamp(0.5rem, 1.2vw, 0.8rem);
+    }
+    
+    .form-group label {
+        font-size: 0.75rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: clamp(0.5rem, 1.5vw, 0.7rem) clamp(0.6rem, 1.8vw, 0.9rem);
+        font-size: clamp(0.75rem, 1.6vw, 0.85rem);
+        min-height: 34px;
+        border-radius: clamp(3px, 0.8vw, 5px);
+    }
+    
+    .form-group textarea {
+        min-height: clamp(55px, 10vw, 70px);
+    }
+    
+    .submit-btn {
+        padding: clamp(0.5rem, 1.5vw, 0.7rem) clamp(1rem, 2.8vw, 1.4rem);
+        font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+        min-height: 36px;
+        margin-top: clamp(0.3rem, 0.8vw, 0.5rem);
     }
     
     .additional-contact a {
-        padding: 0.5rem 0.8rem;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* Pantallas extremadamente pequeñas */
+@media (max-width: 320px) {
+    .team-contact-section {
+        padding: 0.2rem 0.1rem; /* Mínimo padding para pantallas muy pequeñas */
+    }
+    
+    .section-container {
+        gap: 0.3rem;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .contact-section {
+        padding: 0.6rem 0.4rem;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 4px;
+    }
+    
+    .contact-section .section-header {
+        margin-bottom: 0.8rem;
+    }
+    
+    .contact-section .section-header h2 {
+        font-size: 1.1rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .contact-section .section-header p {
         font-size: 0.75rem;
-        margin: 0 0.2rem;
+        margin-bottom: 0.4rem;
     }
     
-    .floating-chat {
-        bottom: 15px;
-        right: 15px;
+    .contact-form {
+        gap: 0.4rem;
+        margin-top: 0.8rem;
     }
     
-    .chat-btn {
-        width: 45px;
-        height: 45px;
+    .form-group {
+        margin-bottom: 0.6rem;
     }
     
-    .chat-btn i {
-        font-size: 22px;
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.75rem;
+        min-height: 32px;
+        border-radius: 3px;
+    }
+    
+    .form-group textarea {
+        min-height: 32px; /* Mínimo absoluto */
+        max-height: 60px;
+        padding: 0.3rem 0.5rem;
+        font-size: 0.7rem;
+        line-height: 1.1;
+    }
+    
+    .submit-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        min-height: 34px;
+        margin-top: 0.4rem;
     }
 }
 
@@ -604,7 +703,7 @@
 
 /* Estilos para el estado de carga del botón */
 .submit-btn:disabled {
-    background: linear-gradient(135deg, #6a89ff, #4a6cf7);
+    background: linear-gradient(135deg, #b89dd1, #947bb1);
     cursor: not-allowed;
     opacity: 0.8;
 }
@@ -634,7 +733,7 @@
 .chat-btn {
     width: clamp(50px, 12vw, 70px);
     height: clamp(50px, 12vw, 70px);
-    background: linear-gradient(135deg, #4a6cf7, #6a89ff);
+    background: linear-gradient(135deg, #947bb1, #b89dd1);
     border: none;
     border-radius: 50%;
     color: white;
@@ -642,7 +741,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(74, 108, 247, 0.4);
+    box-shadow: 0 4px 20px rgba(148, 123, 177, 0.4);
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     animation: pulse 2s infinite;
     position: relative;
@@ -651,8 +750,8 @@
 
 .chat-btn:hover {
     transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 8px 30px rgba(74, 108, 247, 0.6);
-    background: linear-gradient(135deg, #6a89ff, #4a6cf7);
+    box-shadow: 0 8px 30px rgba(148, 123, 177, 0.6);
+    background: linear-gradient(135deg, #b89dd1, #947bb1);
 }
 
 .chat-btn:active {
@@ -672,13 +771,13 @@
 /* Animación de pulso con color morado */
 @keyframes pulse {
     0% {
-        box-shadow: 0 4px 20px rgba(74, 108, 247, 0.4), 0 0 0 0 rgba(74, 108, 247, 0.7);
+        box-shadow: 0 4px 20px rgba(148, 123, 177, 0.4), 0 0 0 0 rgba(148, 123, 177, 0.7);
     }
     70% {
-        box-shadow: 0 4px 20px rgba(74, 108, 247, 0.4), 0 0 0 10px rgba(74, 108, 247, 0);
+        box-shadow: 0 4px 20px rgba(148, 123, 177, 0.4), 0 0 0 10px rgba(148, 123, 177, 0);
     }
     100% {
-        box-shadow: 0 4px 20px rgba(74, 108, 247, 0.4), 0 0 0 0 rgba(74, 108, 247, 0);
+        box-shadow: 0 4px 20px rgba(148, 123, 177, 0.4), 0 0 0 0 rgba(148, 123, 177, 0);
     }
 }
 
@@ -703,7 +802,7 @@
 
 .submit-btn {
     grid-column: 1 / -1;
-    background: linear-gradient(135deg, #4a6cf7, #3a5bd9);
+    background: linear-gradient(135deg, #947bb1, #7a5f8a);
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -719,7 +818,7 @@
     position: relative;
     overflow: hidden;
     margin-top: 0.8rem;
-    box-shadow: 0 4px 15px rgba(74, 108, 247, 0.25);
+    box-shadow: 0 4px 15px rgba(148, 123, 177, 0.25);
     width: 100%;
 }
 
@@ -735,9 +834,9 @@
 }
 
 .submit-btn:hover {
-    background: linear-gradient(135deg, #3a5bd9, #2a4bc9);
+    background: linear-gradient(135deg, #7a5f8a, #6a4f7a);
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(74, 108, 247, 0.35);
+    box-shadow: 0 8px 20px rgba(148, 123, 177, 0.35);
 }
 
 .submit-btn:hover::before {
@@ -746,7 +845,7 @@
 
 .submit-btn:active {
     transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(74, 108, 247, 0.3);
+    box-shadow: 0 4px 10px rgba(148, 123, 177, 0.3);
 }
 
 .submit-btn i {
@@ -781,14 +880,14 @@
 .additional-contact a:hover {
     background-color: #e0e7ff;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(74, 108, 247, 0.15);
-    color: #3a5bd9;
+    box-shadow: 0 4px 12px rgba(148, 123, 177, 0.15);
+    color: #7a5f8a;
 }
 
 .additional-contact a i {
     margin-right: 0.6rem;
     font-size: 1.1rem;
-    color: #4a6cf7;
+    color: #947bb1;
 }
 
 /* Estilos para los campos con placeholder */
@@ -801,7 +900,7 @@
 /* Estilos para los campos requeridos */
 .form-group label:not([for="phone"]):not([for="company"])::after {
     content: ' *';
-    color: #4a6cf7;
+    color: #947bb1;
 }
 
 /* Corregir el problema de desbordamiento en campos de entrada */
@@ -827,210 +926,15 @@
     }
 }
 
-@media (max-width: 768px) {
-    .contact-form {
-        grid-template-columns: 1fr;
-        gap: clamp(0.8rem, 2vw, 1.2rem);
-    }
-    
-    .contact-section {
-        padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
-        max-width: clamp(280px, 95vw, 500px);
-    }
-    
-    .contact-section .section-header h2 {
-        font-size: clamp(1.5rem, 4vw, 2.2rem);
-    }
-    
-    .contact-section .section-header p {
-        font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-    }
-}
 
-@media (max-width: 576px) {
-    .team-contact-section {
-        padding: clamp(2rem, 5vw, 3rem) clamp(0.5rem, 2vw, 1rem);
-    }
-    
-    .contact-section {
-        padding: clamp(1.2rem, 3vw, 2rem) clamp(0.8rem, 2.5vw, 1.5rem);
-        max-width: clamp(260px, 98vw, 450px);
-        border-radius: clamp(8px, 2vw, 15px);
-    }
-    
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-        padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1rem, 3vw, 1.2rem);
-        font-size: clamp(0.85rem, 2vw, 1rem);
-        min-height: 40px;
-    }
-    
-    .form-group textarea {
-        min-height: clamp(80px, 15vw, 100px);
-    }
-    
-    .submit-btn {
-        padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1.5rem, 4vw, 2rem);
-        font-size: clamp(0.9rem, 2.2vw, 1.05rem);
-        margin-top: clamp(0.5rem, 1.5vw, 0.8rem);
-    }
-}
 
-@media (max-width: 480px) {
-    .team-contact-section {
-        padding: clamp(1.5rem, 4vw, 3rem) clamp(0.5rem, 1.5vw, 1rem);
-    }
-    
-    .contact-section {
-        padding: clamp(1rem, 2.5vw, 2rem) clamp(0.8rem, 2vw, 1.5rem);
-        transform: translateX(0);
-        max-width: clamp(240px, 100vw, 400px);
-    }
-    
-    .contact-section .section-header h2 {
-        font-size: clamp(1.3rem, 3.5vw, 1.8rem);
-        margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
-    }
-    
-    .contact-section .section-header p {
-        font-size: clamp(0.85rem, 2.2vw, 1rem);
-    }
-    
-    .form-group {
-        margin-bottom: clamp(0.8rem, 2vw, 1.2rem);
-    }
-    
-    .form-group label {
-        font-size: clamp(0.8rem, 2vw, 0.95rem);
-        margin-bottom: clamp(0.4rem, 1vw, 0.6rem);
-    }
-}
 
-/* Móviles muy pequeños */
-@media (max-width: 360px) {
-    .contact-section {
-        padding: clamp(0.8rem, 2vw, 1.5rem) clamp(0.6rem, 1.5vw, 1.2rem);
-        max-width: clamp(220px, 100vw, 350px);
-        border-radius: clamp(6px, 1.5vw, 12px);
-    }
-    
-    .contact-section .section-header h2 {
-        font-size: clamp(1.2rem, 3vw, 1.6rem);
-    }
-    
-    .contact-section .section-header p {
-        font-size: clamp(0.8rem, 2vw, 0.95rem);
-    }
-    
-    .contact-form {
-        gap: clamp(0.6rem, 1.5vw, 1rem);
-        margin-top: clamp(1rem, 2.5vw, 1.5rem);
-    }
-    
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-        padding: clamp(0.6rem, 1.8vw, 0.8rem) clamp(0.8rem, 2.2vw, 1rem);
-        font-size: clamp(0.8rem, 1.8vw, 0.9rem);
-        min-height: 36px;
-        border-radius: clamp(4px, 1vw, 6px);
-    }
-    
-    .form-group textarea {
-        min-height: clamp(60px, 12vw, 80px);
-    }
-    
-    .submit-btn {
-        padding: clamp(0.6rem, 1.8vw, 0.8rem) clamp(1.2rem, 3vw, 1.5rem);
-        font-size: clamp(0.8rem, 2vw, 0.9rem);
-        min-height: 38px;
-    }
-    
-    .additional-contact a {
-        padding: clamp(0.5rem, 1.5vw, 0.7rem) clamp(0.8rem, 2vw, 1.2rem);
-        font-size: clamp(0.75rem, 1.8vw, 0.85rem);
-        margin: 0 clamp(0.2rem, 0.8vw, 0.5rem);
-    }
-}
 
-/* Pantallas extremadamente pequeñas */
-@media (max-width: 320px) {
-    .contact-section {
-        padding: 0.8rem 0.6rem;
-        max-width: 100%;
-        margin: 0;
-        border-radius: 6px;
-    }
-    
-    .contact-section .section-header h2 {
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .contact-section .section-header p {
-        font-size: 0.8rem;
-        margin-bottom: 0.8rem;
-    }
-    
-    .contact-form {
-        gap: 0.6rem;
-        margin-top: 1rem;
-    }
-    
-    .form-group {
-        margin-bottom: 0.8rem;
-    }
-    
-    .form-group label {
-        font-size: 0.8rem;
-        margin-bottom: 0.4rem;
-    }
-    
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-        padding: 0.6rem 0.8rem;
-        font-size: 0.8rem;
-        min-height: 34px;
-        border-radius: 4px;
-    }
-    
-    .form-group textarea {
-        min-height: 60px;
-    }
-    
-    .submit-btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.8rem;
-        min-height: 36px;
-        margin-top: 0.5rem;
-    }
-    
-    .additional-contact {
-        margin-top: 1rem;
-    }
-    
-    .additional-contact a {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.75rem;
-        margin: 0 0.2rem;
-    }
-    
-    .floating-chat {
-        bottom: 15px;
-        right: 15px;
-    }
-    
-    .chat-btn {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .chat-btn i {
-        font-size: 22px;
-    }
-}
+
+
+
+
+
 
 /* Estilos para los mensajes del formulario */
 .form-message {
@@ -1073,7 +977,7 @@
 
 /* Estilos para el estado de carga del botón */
 .submit-btn:disabled {
-    background: linear-gradient(135deg, #6a89ff, #4a6cf7);
+    background: linear-gradient(135deg, #b89dd1, #947bb1);
     cursor: not-allowed;
     opacity: 0.8;
 }
@@ -1103,11 +1007,11 @@
     .chat-btn {
         width: clamp(55px, 10vw, 65px);
         height: clamp(55px, 10vw, 65px);
-        box-shadow: 0 4px 18px rgba(74, 108, 247, 0.4);
+        box-shadow: 0 4px 18px rgba(148, 123, 177, 0.4);
     }
     
     .chat-btn:hover {
-        box-shadow: 0 6px 25px rgba(74, 108, 247, 0.6);
+        box-shadow: 0 6px 25px rgba(148, 123, 177, 0.6);
     }
     
     .chat-btn i {
@@ -1125,11 +1029,11 @@
     .chat-btn {
         width: clamp(50px, 9vw, 60px);
         height: clamp(50px, 9vw, 60px);
-        box-shadow: 0 3px 15px rgba(74, 108, 247, 0.4);
+        box-shadow: 0 3px 15px rgba(148, 123, 177, 0.4);
     }
     
     .chat-btn:hover {
-        box-shadow: 0 5px 20px rgba(74, 108, 247, 0.6);
+        box-shadow: 0 5px 20px rgba(148, 123, 177, 0.6);
     }
     
     .chat-btn i {
@@ -1147,11 +1051,11 @@
     .chat-btn {
         width: clamp(48px, 8.5vw, 55px);
         height: clamp(48px, 8.5vw, 55px);
-        box-shadow: 0 3px 12px rgba(74, 108, 247, 0.4);
+        box-shadow: 0 3px 12px rgba(148, 123, 177, 0.4);
     }
     
     .chat-btn:hover {
-        box-shadow: 0 4px 18px rgba(74, 108, 247, 0.6);
+        box-shadow: 0 4px 18px rgba(148, 123, 177, 0.6);
     }
     
     .chat-btn i {
@@ -1169,11 +1073,11 @@
     .chat-btn {
         width: clamp(45px, 8vw, 52px);
         height: clamp(45px, 8vw, 52px);
-        box-shadow: 0 2px 10px rgba(74, 108, 247, 0.4);
+        box-shadow: 0 2px 10px rgba(148, 123, 177, 0.4);
     }
     
     .chat-btn:hover {
-        box-shadow: 0 3px 15px rgba(74, 108, 247, 0.6);
+        box-shadow: 0 3px 15px rgba(148, 123, 177, 0.6);
     }
     
     .chat-btn i {
@@ -1191,11 +1095,11 @@
     .chat-btn {
         width: clamp(42px, 7.5vw, 48px);
         height: clamp(42px, 7.5vw, 48px);
-        box-shadow: 0 2px 8px rgba(74, 108, 247, 0.4);
+        box-shadow: 0 2px 8px rgba(148, 123, 177, 0.4);
     }
     
     .chat-btn:hover {
-        box-shadow: 0 3px 12px rgba(74, 108, 247, 0.6);
+        box-shadow: 0 3px 12px rgba(148, 123, 177, 0.6);
     }
     
     .chat-btn i {
@@ -1213,12 +1117,12 @@
     .chat-btn {
         width: 40px;
         height: 40px;
-        box-shadow: 0 2px 6px rgba(74, 108, 247, 0.4);
+        box-shadow: 0 2px 6px rgba(148, 123, 177, 0.4);
     }
     
     .chat-btn:hover {
         transform: scale(1.05) translateY(-1px);
-        box-shadow: 0 2px 10px rgba(74, 108, 247, 0.6);
+        box-shadow: 0 2px 10px rgba(148, 123, 177, 0.6);
     }
     
     .chat-btn i {
@@ -1228,13 +1132,13 @@
     /* Reducir la animación en pantallas muy pequeñas */
     @keyframes pulse {
         0% {
-            box-shadow: 0 2px 6px rgba(74, 108, 247, 0.4), 0 0 0 0 rgba(74, 108, 247, 0.7);
+            box-shadow: 0 2px 6px rgba(148, 123, 177, 0.4), 0 0 0 0 rgba(148, 123, 177, 0.7);
         }
         70% {
-            box-shadow: 0 2px 6px rgba(74, 108, 247, 0.4), 0 0 0 6px rgba(74, 108, 247, 0);
+            box-shadow: 0 2px 6px rgba(148, 123, 177, 0.4), 0 0 0 6px rgba(148, 123, 177, 0);
         }
         100% {
-            box-shadow: 0 2px 6px rgba(74, 108, 247, 0.4), 0 0 0 0 rgba(74, 108, 247, 0);
+            box-shadow: 0 2px 6px rgba(148, 123, 177, 0.4), 0 0 0 0 rgba(148, 123, 177, 0);
         }
     }
 }
@@ -1257,10 +1161,10 @@
 /* Modo oscuro */
 @media (prefers-color-scheme: dark) {
     .chat-btn {
-        box-shadow: 0 4px 20px rgba(74, 108, 247, 0.6);
+        box-shadow: 0 4px 20px rgba(148, 123, 177, 0.6);
     }
     
     .chat-btn:hover {
-        box-shadow: 0 8px 30px rgba(74, 108, 247, 0.8);
+        box-shadow: 0 8px 30px rgba(148, 123, 177, 0.8);
     }
 }

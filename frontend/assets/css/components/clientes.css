@@ -41,16 +41,7 @@
     line-height: 1.2;
 }
 
-.section-header h2::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: -10px;
-    width: 50px;
-    height: 3px;
-    background-color: #3B82F6;
-    transform: translateX(-50%);
-}
+
 
 .section-header p {
     color: #666;
@@ -94,7 +85,7 @@
     position: relative;
     color: #64748b;
     font-weight: 600;
-    font-size: clamp(0.8rem, 2vw, 1rem);
+    font-size: clamp(0.8rem, 2vw, 3rem);
     transition: all 0.3s ease;
 }
 
