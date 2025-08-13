@@ -3,74 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Admin - Ecos del SEO</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Panel de Administración - Marketing SEO</title>
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.css">
 </head>
 <body>
-    <header class="header">
-        <h1><i class="fas fa-tachometer-alt"></i> Panel de Mensajes</h1>
-        <div class="user-info">
-            <span id="user-name">Visitante</span>
-            <!-- Eliminar botón de logout -->
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="header-left">
+            <button class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <img src="../assets/images/logo.png" alt="Logo" class="logo-img">
+                <span class="logo-text">Admin Panel</span>
+            </div>
+        </div>
+        <div class="header-center">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Buscar..." id="global-search">
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="notifications">
+                <button class="notification-btn" id="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notification-count">3</span>
+                </button>
+                <div class="notification-dropdown" id="notification-dropdown">
+                    <div class="notification-header">
+                        <h4>Notificaciones</h4>
+                        <button class="mark-all-read">Marcar todas como leídas</button>
+                    </div>
+                    <div class="notification-list" id="notification-list">
+                        <!-- Notificaciones dinámicas -->
+                    </div>
+                </div>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <img src="../assets/images/default-avatar.png" alt="Usuario" id="user-avatar">
+                </div>
+                <div class="user-details">
+                    <span class="user-name" id="user-name">Administrador</span>
+                    <span class="user-role" id="user-role">Admin</span>
+                </div>
+                <div class="user-dropdown">
+                    <button class="dropdown-toggle" id="user-dropdown-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" id="user-dropdown-menu">
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-user"></i> Perfil
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-cog"></i> Configuración
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout" id="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
     
     <div class="container">
-        <div class="stats">
-            <div class="stat-card">
-                <i class="fas fa-envelope"></i>
-                <h3 id="total-messages">0</h3>
-                <p>Mensajes Totales</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-clock"></i>
-                <h3 id="today-messages">0</h3>
-                <p>Mensajes Hoy</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-users"></i>
-                <h3 id="unique-contacts">0</h3>
-                <p>Contactos Únicos</p>
-            </div>
-            <!-- Agregar nuevas tarjetas -->
-            <div class="stat-card">
-                <i class="fas fa-chart-line"></i>
-                <h3 id="this-week-messages">0</h3>
-                <p>Esta Semana</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-star"></i>
-                <h3 id="priority-messages">0</h3>
-                <p>Prioritarios</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-clock"></i>
-                <h3 id="avg-response-time">0h</h3>
-                <p>Tiempo Promedio</p>
-            </div>
-        </div>
-        
-        <div class="messages-section">
-            <div class="section-header">
-                <h2><i class="fas fa-inbox"></i> Mensajes de Contacto</h2>
-                <button class="refresh-btn" id="refresh-btn">
-                    <i class="fas fa-sync-alt"></i> Actualizar
-                </button>
-                
-                <!-- Agregar controles de selección masiva -->
-                <div class="bulk-actions" id="bulk-actions" style="display: none;">
-                    <span id="selected-count">0 seleccionados</span>
-                    <button class="bulk-btn btn-mark-read" id="bulk-mark-read">
-                        <i class="fas fa-check"></i> Marcar como Gestionados
-                    </button>
-                    <button class="bulk-btn btn-delete" id="bulk-delete">
-                        <i class="fas fa-trash"></i> Eliminar Seleccionados
+        <!-- Dashboard Section -->
+        <div class="dashboard-section">
+            <div class="dashboard-header">
+                <h2><i class="fas fa-chart-pie"></i> Dashboard</h2>
+                <div class="dashboard-controls">
+                    <select id="time-range">
+                        <option value="today">Hoy</option>
+                        <option value="week" selected>Esta Semana</option>
+                        <option value="month">Este Mes</option>
+                        <option value="year">Este Año</option>
+                    </select>
+                    <button class="export-btn" id="export-data">
+                        <i class="fas fa-download"></i> Exportar
                     </button>
                 </div>
             </div>
-            <!-- Agregar antes de messages-list -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>Mensajes por Día</h3>
+                    <canvas id="messages-chart" width="400" height="200"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Servicios Más Solicitados</h3>
+                    <canvas id="services-chart" width="400" height="200"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Estado de Mensajes</h3>
+                    <div class="progress-stats">
+                        <div class="progress-item">
+                            <span class="progress-label">Nuevos</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-new" style="width: 0%"></div>
+                            </div>
+                            <span class="progress-value" id="progress-new-value">0%</span>
+                        </div>
+                        <div class="progress-item">
+                            <span class="progress-label">Gestionados</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-managed" style="width: 0%"></div>
+                            </div>
+                            <span class="progress-value" id="progress-managed-value">0%</span>
+                        </div>
+                        <div class="progress-item">
+                            <span class="progress-label">Prioritarios</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-priority" style="width: 0%"></div>
+                            </div>
+                            <span class="progress-value" id="progress-priority-value">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="total-messages">0</h3>
+                    <p>Total Mensajes</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-envelope-open"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="unread-messages">0</h3>
+                    <p>Sin Leer</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-reply"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="replied-messages">0</h3>
+                    <p>Respondidos</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="avg-response-time">0h</h3>
+                    <p>Tiempo Promedio</p>
+                </div>
+            </div>
+        </div>
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" data-tab="messages">
+                <i class="fas fa-envelope"></i> Mensajes
+            </button>
+            <button class="tab-btn" data-tab="users">
+                <i class="fas fa-users"></i> Usuarios
+            </button>
+            <button class="tab-btn" data-tab="security">
+                <i class="fas fa-shield-alt"></i> Seguridad
+            </button>
+        </div>
+
+        <!-- Messages Section -->
+        <div class="tab-content active" id="messages-tab">
+            <div class="messages-section">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2><i class="fas fa-inbox"></i> Mensajes de Contacto</h2>
+                        <div class="quick-stats">
+                            <span class="quick-stat new"><i class="fas fa-circle"></i> <span id="quick-new">0</span> Nuevos</span>
+                            <span class="quick-stat managed"><i class="fas fa-check-circle"></i> <span id="quick-managed">0</span> Gestionados</span>
+                        </div>
+                    </div>
+                    <div class="section-actions">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="quick-search" placeholder="Buscar por nombre, email o empresa...">
+                            <button class="clear-search" id="clear-search">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="action-btn refresh-btn" id="refresh-btn">
+                                <i class="fas fa-sync-alt"></i> Actualizar
+                            </button>
+                            <button class="action-btn filter-toggle" id="filter-toggle">
+                                <i class="fas fa-filter"></i> Filtros
+                            </button>
+                            <button class="action-btn export-messages" id="export-messages">
+                                <i class="fas fa-file-export"></i> Exportar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Controles de selección masiva mejorados -->
+                <div class="bulk-actions" id="bulk-actions" style="display: none;">
+                    <div class="bulk-info">
+                        <span id="selected-count">0 seleccionados</span>
+                        <button class="select-all-btn" id="select-all">
+                            <i class="fas fa-check-square"></i> Seleccionar Todo
+                        </button>
+                    </div>
+                    <div class="bulk-buttons">
+                        <button class="bulk-btn btn-mark-read" id="bulk-mark-read">
+                            <i class="fas fa-check"></i> Marcar Gestionados
+                        </button>
+                        <button class="bulk-btn btn-mark-priority" id="bulk-mark-priority">
+                            <i class="fas fa-star"></i> Marcar Prioritarios
+                        </button>
+                        <button class="bulk-btn btn-archive" id="bulk-archive">
+                            <i class="fas fa-archive"></i> Archivar
+                        </button>
+                        <button class="bulk-btn btn-delete" id="bulk-delete">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div class="pagination-controls">
                 <div class="pagination-info">
                     <span id="pagination-info">Mostrando 1-10 de 25 mensajes</span>
@@ -94,79 +255,323 @@
                 </div>
             </div>
             <div class="messages-list" id="messages-list">
-                <div class="loading">
-                    <i class="fas fa-spinner fa-spin"></i> Cargando mensajes...
+                <table class="messages-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" id="select-all-messages">
+                            </th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Servicio</th>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="messages-tbody">
+                        <tr>
+                            <td colspan="7" class="loading">
+                                <i class="fas fa-spinner fa-spin"></i> Cargando mensajes...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+        <div class="filters-section">
+            <div class="filters-header">
+                <h3><i class="fas fa-filter"></i> Filtros</h3>
+                <button class="clear-filters-btn" id="clear-filters">
+                    <i class="fas fa-times"></i> Limpiar
+                </button>
+            </div>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="filter-estado">Estado:</label>
+                    <select id="filter-estado">
+                        <option value="">Todos</option>
+                        <option value="nuevo">Nuevos</option>
+                        <option value="gestionado">Gestionados</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-servicio">Servicio:</label>
+                    <select id="filter-servicio">
+                        <option value="">Todos</option>
+                        <option value="seo">SEO</option>
+                        <option value="desarrollo-web">Desarrollo Web</option>
+                        <option value="paid-media">Paid Media</option>
+                        <option value="social-media">Social Media</option>
+                        <option value="ux-ui">UX/UI</option>
+                        <option value="software">Software a Medida</option>
+                        <option value="trading">Trading</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="search-text">Buscar:</label>
+                    <input type="text" id="search-text" placeholder="Nombre, email o mensaje...">
+                </div>
+                <div class="filter-group">
+                    <label for="filter-fecha">Fecha:</label>
+                    <input type="date" id="filter-fecha">
                 </div>
             </div>
         </div>
-    
-    <!-- Agregar después de .stats -->
-    <div class="filters-section">
-        <div class="filters-header">
-            <h3><i class="fas fa-filter"></i> Filtros</h3>
-            <button class="clear-filters-btn" id="clear-filters">
-                <i class="fas fa-times"></i> Limpiar
-            </button>
         </div>
-        <div class="filters-grid">
-            <div class="filter-group">
-                <label for="filter-estado">Estado:</label>
-                <select id="filter-estado">
-                    <option value="">Todos</option>
-                    <option value="nuevo">Nuevos</option>
-                    <option value="gestionado">Gestionados</option>
-                </select>
+        <!-- Users Section -->
+        <div class="tab-content" id="users-tab">
+            <div class="users-section">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2><i class="fas fa-users"></i> Gestión de Usuarios</h2>
+                        <div class="quick-stats">
+                            <span class="quick-stat active"><i class="fas fa-user-check"></i> <span id="quick-active-users">0</span> Activos</span>
+                            <span class="quick-stat inactive"><i class="fas fa-user-times"></i> <span id="quick-inactive-users">0</span> Inactivos</span>
+                        </div>
+                    </div>
+                    <div class="section-actions">
+                        <button class="btn btn-primary" id="add-user-btn">
+                            <i class="fas fa-plus"></i> Agregar Usuario
+                        </button>
+                    </div>
+                </div>
+
+                <div class="users-table-container">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                                <th>Último Acceso</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <!-- Los usuarios se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="filter-group">
-                <label for="filter-servicio">Servicio:</label>
-                <select id="filter-servicio">
-                    <option value="">Todos</option>
-                    <option value="seo">SEO</option>
-                    <option value="desarrollo-web">Desarrollo Web</option>
-                    <option value="paid-media">Paid Media</option>
-                    <option value="social-media">Social Media</option>
-                    <option value="ux-ui">UX/UI</option>
-                    <option value="software">Software a Medida</option>
-                    <option value="trading">Trading</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label for="search-text">Buscar:</label>
-                <input type="text" id="search-text" placeholder="Nombre, email o mensaje...">
-            </div>
-            <div class="filter-group">
-                <label for="filter-fecha">Fecha:</label>
-                <input type="date" id="filter-fecha">
+        </div>
+        <!-- Security Section -->
+        <div class="tab-content" id="security-tab">
+            <div class="security-section">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2><i class="fas fa-shield-alt"></i> Registro de Seguridad</h2>
+                        <div class="quick-stats">
+                            <span class="quick-stat warning"><i class="fas fa-exclamation-triangle"></i> <span id="quick-warnings">0</span> Alertas</span>
+                            <span class="quick-stat info"><i class="fas fa-info-circle"></i> <span id="quick-events">0</span> Eventos</span>
+                        </div>
+                    </div>
+                    <div class="section-actions">
+                        <select id="security-filter" class="filter-select">
+                            <option value="all">Todos los eventos</option>
+                            <option value="login">Inicios de sesión</option>
+                            <option value="user_changes">Cambios de usuario</option>
+                            <option value="data_changes">Cambios de datos</option>
+                            <option value="security_alerts">Alertas de seguridad</option>
+                        </select>
+                        <button class="btn btn-secondary" id="export-security-btn">
+                            <i class="fas fa-download"></i> Exportar
+                        </button>
+                    </div>
+                </div>
+                <div class="security-table-container">
+                    <table class="security-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha/Hora</th>
+                                <th>Tipo</th>
+                                <th>Usuario</th>
+                                <th>Acción</th>
+                                <th>IP</th>
+                                <th>Detalles</th>
+                            </tr>
+                        </thead>
+                        <tbody id="security-table-body">
+                            <!-- Los eventos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
     
-    </div>
-    
-    <!-- Agregar modal para vista detallada -->
+    <!-- Modal mejorado para vista detallada -->
     <div class="modal" id="message-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="modal-title">Detalle del Mensaje</h3>
+                <div class="modal-title-section">
+                    <h3 id="modal-title">Detalle del Mensaje</h3>
+                    <div class="modal-badges" id="modal-badges">
+                        <!-- Badges dinámicos -->
+                    </div>
+                </div>
                 <button class="close-modal" id="close-modal">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="modal-body" id="modal-body">
-                <!-- Contenido dinámico -->
+            <div class="modal-body">
+                <div class="modal-tabs">
+                    <button class="tab-btn active" data-tab="details">
+                        <i class="fas fa-info-circle"></i> Detalles
+                    </button>
+                    <button class="tab-btn" data-tab="history">
+                        <i class="fas fa-history"></i> Historial
+                    </button>
+                    <button class="tab-btn" data-tab="response">
+                        <i class="fas fa-reply"></i> Responder
+                    </button>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="details-tab">
+                        <div id="modal-body">
+                            <!-- Contenido dinámico de detalles -->
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="history-tab">
+                        <div class="interaction-history">
+                            <div class="history-item">
+                                <div class="history-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="history-content">
+                                    <h4>Mensaje recibido</h4>
+                                    <p>El cliente envió su consulta inicial</p>
+                                    <small class="history-date">Hace 2 horas</small>
+                                </div>
+                            </div>
+                            <!-- Más elementos de historial se agregarán dinámicamente -->
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="response-tab">
+                        <div class="response-form">
+                            <div class="response-templates">
+                                <label>Plantillas de respuesta:</label>
+                                <select id="response-template">
+                                    <option value="">Seleccionar plantilla...</option>
+                                    <option value="thanks">Agradecimiento inicial</option>
+                                    <option value="info-request">Solicitar más información</option>
+                                    <option value="quote">Enviar cotización</option>
+                                    <option value="meeting">Programar reunión</option>
+                                </select>
+                            </div>
+                            <div class="response-editor">
+                                <label for="response-text">Mensaje de respuesta:</label>
+                                <textarea id="response-text" rows="6" placeholder="Escribe tu respuesta aquí..."></textarea>
+                            </div>
+                            <div class="response-actions">
+                                <button class="response-btn send-email" id="send-email">
+                                    <i class="fas fa-paper-plane"></i> Enviar Email
+                                </button>
+                                <button class="response-btn save-draft" id="save-draft">
+                                    <i class="fas fa-save"></i> Guardar Borrador
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <button class="modal-btn btn-reply" id="modal-reply">
-                    <i class="fas fa-reply"></i> Responder
+                <div class="modal-actions-left">
+                    <button class="modal-btn btn-mark-read" id="modal-mark-read">
+                        <i class="fas fa-check"></i> Marcar Gestionado
+                    </button>
+                    <button class="modal-btn btn-mark-priority" id="modal-priority">
+                        <i class="fas fa-star"></i> Prioritario
+                    </button>
+                </div>
+                <div class="modal-actions-right">
+                    <button class="modal-btn btn-archive" id="modal-archive">
+                        <i class="fas fa-archive"></i> Archivar
+                    </button>
+                    <button class="modal-btn btn-delete" id="modal-delete">
+                        <i class="fas fa-trash"></i> Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Toast notifications -->
+    <div class="toast-container" id="toast-container">
+        <!-- Notificaciones toast dinámicas -->
+    </div>
+    <!-- Confirmation modal -->
+    <div class="confirmation-modal" id="confirmation-modal">
+        <div class="confirmation-content">
+            <div class="confirmation-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3 id="confirmation-title">¿Estás seguro?</h3>
+            <p id="confirmation-message">Esta acción no se puede deshacer.</p>
+            <div class="confirmation-actions">
+                <button class="confirmation-btn cancel" id="confirmation-cancel">
+                    Cancelar
                 </button>
-                <button class="modal-btn btn-mark-priority" id="modal-priority">
-                    <i class="fas fa-star"></i> Marcar Prioritario
+                <button class="confirmation-btn confirm" id="confirmation-confirm">
+                    Confirmar
                 </button>
             </div>
         </div>
     </div>
-    <!-- Agregar antes del cierre de </body> -->
+    <!-- Modal para Agregar/Editar Usuario -->
+    <div id="user-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="user-modal-title"><i class="fas fa-user-plus"></i> Agregar Usuario</h3>
+                <span class="close" id="close-user-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="user-form">
+                    <input type="hidden" id="user-id" name="id">
+                    <div class="form-group">
+                        <label for="user-name">Nombre Completo *</label>
+                        <input type="text" id="user-name" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-email">Email *</label>
+                        <input type="email" id="user-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-password">Contraseña *</label>
+                        <input type="password" id="user-password" name="password" required>
+                        <small class="form-help">Mínimo 8 caracteres</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-role">Rol *</label>
+                        <select id="user-role" name="rol" required>
+                            <option value="">Seleccionar rol</option>
+                            <option value="admin">Administrador</option>
+                            <option value="editor">Editor</option>
+                            <option value="viewer">Visualizador</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-status">Estado</label>
+                        <select id="user-status" name="activo">
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancel-user-btn">Cancelar</button>
+                <button type="submit" class="btn btn-primary" id="save-user-btn" form="user-form">
+                    <i class="fas fa-save"></i> Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Cargar API Config ANTES de los módulos -->
     <script src="../assets/js/configuracion/api-config.js"></script>
-    <script src="js/admin.js"></script>
+    <script type="module" src="js/admin.main.js"></script>
+    <script src="js/admin-users.js"></script>
 </body>
 </html>

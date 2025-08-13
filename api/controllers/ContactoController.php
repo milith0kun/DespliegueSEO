@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/Contacto.php';
-require_once __DIR__ . '/../utils/EmailService.php';
+require_once __DIR__ . '/../utils/emailservice.php';
 
 class ContactoController {
     private $contactoModel;
@@ -17,7 +17,7 @@ class ContactoController {
     public function crear() {
         try {
             // Verificar método POST
-            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            if (!isset($_SERVER['REQUEST_METHOD']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
                 http_response_code(405);
                 echo json_encode(['success' => false, 'message' => 'Método no permitido']);
                 return;
@@ -90,8 +90,12 @@ class ContactoController {
      */
     public function index() {
         try {
-            // Verificar autenticación (implementar según tu sistema de auth)
-            // $this->verificarAutenticacion();
+            // Verificar autenticación usando sesiones
+            if (!isset($_SESSION['user_id'])) {
+                http_response_code(401);
+                echo json_encode(['success' => false, 'message' => 'No autenticado']);
+                return;
+            }
             
             $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
             $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 10;
@@ -132,6 +136,13 @@ class ContactoController {
      */
     public function estadisticas() {
         try {
+            // Verificar autenticación usando sesiones
+            if (!isset($_SESSION['user_id'])) {
+                http_response_code(401);
+                echo json_encode(['success' => false, 'message' => 'No autenticado']);
+                return;
+            }
+            
             $stats = $this->contactoModel->obtenerEstadisticas();
             
             echo json_encode([
@@ -151,7 +162,14 @@ class ContactoController {
      */
     public function actualizarEstado($id) {
         try {
-            if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
+            // Verificar autenticación usando sesiones
+            if (!isset($_SESSION['user_id'])) {
+                http_response_code(401);
+                echo json_encode(['success' => false, 'message' => 'No autenticado']);
+                return;
+            }
+            
+            if (!isset($_SERVER['REQUEST_METHOD']) || $_SERVER['REQUEST_METHOD'] !== 'PUT') {
                 http_response_code(405);
                 echo json_encode(['success' => false, 'message' => 'Método no permitido']);
                 return;
@@ -186,7 +204,14 @@ class ContactoController {
      */
     public function eliminar($id) {
         try {
-            if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
+            // Verificar autenticación usando sesiones
+            if (!isset($_SESSION['user_id'])) {
+                http_response_code(401);
+                echo json_encode(['success' => false, 'message' => 'No autenticado']);
+                return;
+            }
+            
+            if (!isset($_SERVER['REQUEST_METHOD']) || $_SERVER['REQUEST_METHOD'] !== 'DELETE') {
                 http_response_code(405);
                 echo json_encode(['success' => false, 'message' => 'Método no permitido']);
                 return;

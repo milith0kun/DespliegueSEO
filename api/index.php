@@ -4,55 +4,23 @@
  * Maneja todas las solicitudes HTTP y las enruta a los controladores correspondientes
  */
 
-// Cargar configuración global
+// Iniciar output buffering para evitar output no deseado
+ob_start();
+
+// Cargar configuración global primero
 require_once __DIR__ . '/../config.php';
 
-// La sesión ya se inicia en config.php
+// La sesión ya está configurada e iniciada en config.php
 
-// Configuración dinámica de CORS
-$allowedOrigins = [
-    'http://localhost:8000',
-    'http://localhost:8080',
-    'http://localhost',
-    'https://localhost',
-    'https://marketingseodespliegue.com',
-    'http://marketingseodespliegue.com',
-    'https://www.marketingseodespliegue.com',
-    'http://www.marketingseodespliegue.com',
-    'https://ecosdelseo.com',
-    'http://ecosdelseo.com',
-    'https://www.ecosdelseo.com',
-    'http://www.ecosdelseo.com'
-];
+// Cargar configuración de base de datos
+require_once __DIR__ . '/config/database.php';
 
-// Agregar SITE_URL si está definido
-if (defined('SITE_URL')) {
-    $allowedOrigins[] = SITE_URL;
-    $allowedOrigins[] = str_replace('http://', 'https://', SITE_URL);
-    
-    // Agregar variaciones con www si no es localhost
-    if (!IS_LOCAL) {
-        $siteUrlWithWww = str_replace('://', '://www.', SITE_URL);
-        $allowedOrigins[] = $siteUrlWithWww;
-        $allowedOrigins[] = str_replace('http://', 'https://', $siteUrlWithWww);
-    }
-}
-
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-if (in_array($origin, $allowedOrigins)) {
-    header("Access-Control-Allow-Origin: $origin");
+// Configuración simple de CORS
+if (IS_LOCAL) {
+    header("Access-Control-Allow-Origin: http://localhost:8080");
 } else {
-    // En desarrollo, permitir cualquier origen
-    if (IS_LOCAL) {
-        header("Access-Control-Allow-Origin: *");
-    } else {
-        header("Access-Control-Allow-Origin: https://marketingseodespliegue.com");
-    }
+    header("Access-Control-Allow-Origin: https://ecosdelseo.com");
 }
-
-// Log para debugging
-error_log("CORS Origin: $origin");
-error_log("Allowed Origins: " . implode(', ', $allowedOrigins));
 
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
@@ -60,47 +28,37 @@ header("Access-Control-Allow-Credentials: true");
 header("Content-Type: application/json; charset=UTF-8");
 
 // Manejar preflight requests
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit();
 }
 
-require_once __DIR__ . '/controllers/UsuarioController.php';
+
 require_once __DIR__ . '/controllers/ContactoController.php';
+require_once __DIR__ . '/controllers/UsuariosController.php';
+require_once __DIR__ . '/models/EventoSeguridad.php';
 
-// Obtener la ruta y método
-$request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$method = $_SERVER['REQUEST_METHOD'];
+// Obtener la ruta y método con verificación de existencia
+$request = isset($_SERVER['REQUEST_URI']) ? parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) : '/';
+$method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
 
-// Normalizar la ruta - remover /api si está presente al inicio
-// Esto permite que funcione tanto con /api/auth/login como con auth/login
+// Normalizar la ruta - remover /api si está presente
 if (strpos($request, '/api/') === 0) {
-    $request = substr($request, 4); // Remover '/api'
+    $request = substr($request, 4);
 } elseif (strpos($request, '/api') === 0) {
-    $request = substr($request, 4); // Remover '/api'
+    $request = substr($request, 4);
 }
 
-// Si la ruta está vacía después de remover /api, establecer como raíz
-if (empty($request) || $request === '/') {
+// Establecer ruta raíz si está vacía
+if (empty($request) || $request === '/' || $request === '/index.php') {
     $request = '/';
 }
-
-// Si accedemos directamente a api/index.php, establecer como raíz
-if (strpos($_SERVER['SCRIPT_NAME'], '/api/index.php') !== false && $request === '/index.php') {
-    $request = '/';
-}
-
-// Debugging mejorado - log de rutas y variables del servidor
-error_log("API Request: $method $request");
-error_log("REQUEST_URI: " . $_SERVER['REQUEST_URI']);
-error_log("HTTP_HOST: " . $_SERVER['HTTP_HOST']);
-error_log("SCRIPT_NAME: " . $_SERVER['SCRIPT_NAME']);
-error_log("Environment: " . (IS_LOCAL ? 'LOCAL' : 'PRODUCTION'));
 
 // Routing
 switch (true) {
     // Ruta raíz - información de la API
     case $request === '/' && $method === 'GET':
+        ob_clean(); // Limpiar buffer antes de respuesta JSON
         echo json_encode([
             'success' => true,
             'message' => 'API del Sistema de Marketing y SEO',
@@ -112,6 +70,13 @@ switch (true) {
                 'GET /auth/me',
                 'POST /auth/logout',
                 'GET /usuarios',
+                'GET /admin/usuarios',
+                'POST /admin/usuarios',
+                'PUT /admin/usuarios/{id}',
+                'DELETE /admin/usuarios/{id}',
+                'GET /admin/usuarios/estadisticas',
+                'GET /admin/seguridad',
+                'GET /admin/seguridad/estadisticas',
                 'POST /contactos',
                 'GET /contactos',
                 'GET /contactos/estadisticas',
@@ -123,33 +88,152 @@ switch (true) {
         
     // Rutas de autenticación
     case $request === '/auth/login' && $method === 'POST':
-        $controller = new UsuarioController();
+        ob_clean(); // Limpiar buffer antes de respuesta JSON
+        $controller = new UsuariosController();
         $controller->login();
         break;
         
     case $request === '/auth/check' && $method === 'GET':
-        $controller = new UsuarioController();
+        $controller = new UsuariosController();
         $controller->checkAuth();
         break;
         
     case $request === '/auth/me' && $method === 'GET':
-        $controller = new UsuarioController();
+        $controller = new UsuariosController();
         $controller->me();
         break;
         
     case $request === '/auth/logout' && $method === 'POST':
-        $controller = new UsuarioController();
+        $controller = new UsuariosController();
         $controller->logout();
         break;
     
-    // Rutas de usuarios
+    // Rutas de usuarios (legacy) - redirigido a admin/usuarios
     case $request === '/usuarios' && $method === 'GET':
-        $controller = new UsuarioController();
-        $controller->index();
+        $controller = new UsuariosController();
+        $controller->listar();
+        break;
+        
+    // Rutas de administración de usuarios
+    case $request === '/admin/usuarios' && $method === 'GET':
+        $controller = new UsuariosController();
+        $controller->listar();
+        break;
+        
+    case $request === '/admin/usuarios' && $method === 'POST':
+        $controller = new UsuariosController();
+        $controller->crear();
+        break;
+        
+    case preg_match('/^\/admin\/usuarios\/([a-f0-9\-]+)$/', $request, $matches) && $method === 'PUT':
+        $controller = new UsuariosController();
+        $controller->actualizar($matches[1]);
+        break;
+        
+    case preg_match('/^\/admin\/usuarios\/([a-f0-9\-]+)$/', $request, $matches) && $method === 'DELETE':
+        $controller = new UsuariosController();
+        $controller->eliminar($matches[1]);
+        break;
+        
+    case $request === '/admin/usuarios/estadisticas' && $method === 'GET':
+        $controller = new UsuariosController();
+        $controller->obtenerEstadisticas();
+        break;
+        
+    // Rutas de eventos de seguridad
+    case $request === '/admin/seguridad' && $method === 'GET':
+        try {
+            // Verificar autenticación
+            if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_rol'])) {
+                http_response_code(401);
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'No autenticado'
+                ]);
+                break;
+            }
+            
+            // Solo administradores pueden acceder
+            if (strtolower($_SESSION['user_rol']) !== 'admin') {
+                http_response_code(403);
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Permisos insuficientes'
+                ]);
+                break;
+            }
+            
+            $eventoSeguridad = new EventoSeguridad();
+            $filtros = [];
+            
+            if (isset($_GET['tipo'])) {
+                $filtros['tipo'] = $_GET['tipo'];
+            }
+            if (isset($_GET['fecha_desde'])) {
+                $filtros['fecha_desde'] = $_GET['fecha_desde'];
+            }
+            if (isset($_GET['fecha_hasta'])) {
+                $filtros['fecha_hasta'] = $_GET['fecha_hasta'];
+            }
+            
+            $eventos = $eventoSeguridad->obtenerEventos($filtros);
+            
+            http_response_code(200);
+            echo json_encode([
+                'success' => true,
+                'data' => $eventos
+            ]);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                'success' => false,
+                'message' => 'Error al obtener eventos de seguridad: ' . $e->getMessage()
+            ]);
+        }
+        break;
+        
+    case $request === '/admin/seguridad/estadisticas' && $method === 'GET':
+        try {
+            // Verificar autenticación
+            if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_rol'])) {
+                http_response_code(401);
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'No autenticado'
+                ]);
+                break;
+            }
+            
+            // Solo administradores pueden acceder
+            if (strtolower($_SESSION['user_rol']) !== 'admin') {
+                http_response_code(403);
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Permisos insuficientes'
+                ]);
+                break;
+            }
+            
+            $eventoSeguridad = new EventoSeguridad();
+            $estadisticas = $eventoSeguridad->obtenerEstadisticas();
+            
+            http_response_code(200);
+            echo json_encode([
+                'success' => true,
+                'data' => $estadisticas
+            ]);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                'success' => false,
+                'message' => 'Error al obtener estadísticas de seguridad: ' . $e->getMessage()
+            ]);
+        }
         break;
         
     // Rutas de contactos
     case $request === '/contactos' && $method === 'POST':
+        ob_clean(); // Limpiar buffer antes de respuesta JSON
         $controller = new ContactoController();
         $controller->crear();
         break;
@@ -178,19 +262,20 @@ switch (true) {
         http_response_code(404);
         echo json_encode([
             'success' => false,
-            'error' => 'Ruta no encontrada: ' . $request,
-            'method' => $method,
-            'debug_info' => [
-                'original_uri' => $_SERVER['REQUEST_URI'],
-                'script_name' => $_SERVER['SCRIPT_NAME'],
-                'processed_request' => $request
-            ],
+            'error' => 'Ruta no encontrada',
             'available_routes' => [
                 'POST /auth/login',
                 'GET /auth/check',
                 'GET /auth/me',
                 'POST /auth/logout',
                 'GET /usuarios',
+                'GET /admin/usuarios',
+                'POST /admin/usuarios',
+                'PUT /admin/usuarios/{id}',
+                'DELETE /admin/usuarios/{id}',
+                'GET /admin/usuarios/estadisticas',
+                'GET /admin/seguridad',
+                'GET /admin/seguridad/estadisticas',
                 'POST /contactos',
                 'GET /contactos',
                 'GET /contactos/estadisticas',
@@ -199,4 +284,7 @@ switch (true) {
             ]
         ]);
 }
+
+// Limpiar cualquier output no deseado del buffer antes de enviar respuesta
+ob_clean();
 ?>

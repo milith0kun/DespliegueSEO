@@ -1,0 +1,36 @@
+# Configuración básica para Hostinger
+RewriteEngine On
+
+# Configurar tipos MIME para archivos estáticos
+AddType application/javascript .js
+AddType text/css .css
+AddType image/webp .webp
+AddType image/png .png
+AddType image/jpeg .jpg
+AddType image/jpeg .jpeg
+AddType image/gif .gif
+AddType image/svg+xml .svg
+
+# Redireccionar archivos estáticos al directorio frontend
+RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|webp|svg|ico|woff|woff2|ttf|eot)$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ frontend/$1 [QSA,L]
+
+# Redireccionar API
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^api/(.*)$ api/index.php [QSA,L]
+
+# Redireccionar páginas HTML al directorio frontend
+RewriteCond %{REQUEST_URI} \.html$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ frontend/$1 [QSA,L]
+
+# Frontend SPA - Solo para rutas que no existen como archivos
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteCond %{REQUEST_URI} !\.(js|css|png|jpg|jpeg|gif|webp|svg|ico|woff|woff2|ttf|eot|html)$ [NC]
+RewriteRule ^(.*)$ frontend/index.html [QSA,L]
+
+# Página de inicio
+DirectoryIndex frontend/index.html

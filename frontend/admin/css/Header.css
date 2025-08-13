@@ -1,0 +1,504 @@
+/* Header Styles */
+.admin-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 4px 8px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+}
+
+/* Sidebar Toggle */
+.sidebar-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    margin-right: 8px;
+}
+
+.sidebar-toggle:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.sidebar-toggle i {
+    font-size: 1.1rem;
+    color: #667eea;
+    line-height: 1;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.logo-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Header Center - Search Bar */
+.header-center {
+    flex: 1;
+    max-width: 300px;
+    margin: 0 2px;
+}
+
+.search-bar {
+    position: relative;
+    width: 100%;
+}
+
+.search-bar i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 1rem;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    background: white;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.header-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.header-left h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-left h1 i {
+    color: #667eea;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.breadcrumb .separator {
+    color: #999;
+}
+
+.breadcrumb i {
+    color: #667eea;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    margin-right: 50px;
+    flex-shrink: 0;
+}
+
+/* Notifications */
+.notifications {
+    position: relative;
+}
+
+.notification-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    padding: 6px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.notification-btn:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.notification-btn i {
+    font-size: 1.2rem;
+    color: #667eea;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #f44336;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.notification-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    width: 320px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+
+.notification-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notification-header h4 {
+    margin: 0;
+    color: #333;
+}
+
+.mark-all-read {
+    background: none;
+    border: none;
+    color: #667eea;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.mark-all-read:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.notification-list {
+    padding: 10px 0;
+}
+
+/* User Info */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    position: relative;
+}
+
+/* Clases de utilidad para posicionamiento manual */
+.push-left {
+    margin-right: auto;
+}
+
+.push-right {
+    margin-left: auto;
+}
+
+.spacing-left-xs {
+    margin-left: 2px;
+}
+
+.spacing-left-sm {
+    margin-left: 5px;
+}
+
+.spacing-left-md {
+    margin-left: 10px;
+}
+
+.spacing-left-lg {
+    margin-left: 15px;
+}
+
+.spacing-right-xs {
+    margin-right: 2px;
+}
+
+.spacing-right-sm {
+    margin-right: 5px;
+}
+
+.spacing-right-md {
+    margin-right: 10px;
+}
+
+.spacing-right-lg {
+    margin-right: 15px;
+}
+
+/* Clases para ajustar gaps específicos */
+.gap-xs {
+    gap: 2px !important;
+}
+
+.gap-sm {
+    gap: 5px !important;
+}
+
+.gap-md {
+    gap: 10px !important;
+}
+
+.gap-lg {
+    gap: 15px !important;
+}
+
+.no-gap {
+    gap: 0px !important;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.user-role {
+    font-size: 12px;
+    color: #666;
+}
+
+.user-dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.dropdown-toggle:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.dropdown-toggle i {
+    color: #667eea;
+    font-size: 0.9rem;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 180px;
+    padding: 8px 0;
+    display: none;
+    z-index: 1000;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.dropdown-item i {
+    color: #667eea;
+    width: 16px;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: #f44336;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.logout-btn:hover {
+    background: rgba(244, 67, 54, 0.1);
+    transform: scale(1.1);
+}
+
+/* Responsive Header */
+@media (max-width: 768px) {
+    .admin-header {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .header-center {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .header-left h1 {
+        font-size: 1.5rem;
+    }
+    
+    .user-info {
+        justify-content: center;
+    }
+    
+    .notification-dropdown {
+        width: 280px;
+    }
+}
+
+/* Additional responsive fixes */
+@media (max-width: 768px) {
+    .admin-header {
+        padding: 8px 10px;
+        flex-wrap: nowrap;
+    }
+    
+    .header-left {
+        gap: 3px;
+        min-width: 0;
+    }
+    
+    .logo-text {
+        display: none;
+    }
+    
+    .header-center {
+        max-width: 200px;
+        margin: 0 5px;
+    }
+    
+    .search-bar input {
+        padding: 8px 10px 8px 35px;
+        font-size: 12px;
+    }
+    
+    .header-right {
+        gap: 2px;
+    }
+    
+    .user-details {
+        display: none;
+    }
+    
+    .notification-dropdown {
+        width: 250px;
+        right: -50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-center {
+        display: none;
+    }
+    
+    .admin-header {
+        padding: 5px 8px;
+    }
+    
+    .notification-dropdown {
+        width: 200px;
+        right: -80px;
+    }
+
+    .notification-list {
+        padding: 5px 0;
+    }       
+}

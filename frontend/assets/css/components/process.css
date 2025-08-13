@@ -99,15 +99,15 @@
 
 /* Cargar imágenes desde CSS para cada paso */
 .step-analysis .step-image {
-    background-image: url('../../images/Seccion/Proceso\ \ 1.png');
+    background-image: url('../../images/Seccion/Proceso%20%201.png');
 }
 
 .step-execution .step-image {
-    background-image: url('../../images/Seccion/Proces\ 2.png');
+    background-image: url('../../images/Seccion/Proces%202.png');
 }
 
 .step-optimization .step-image {
-    background-image: url('../../images/Seccion/Proceso\ 3.png');
+    background-image: url('../../images/Seccion/Proceso%203.png');
 }
 
 /* Efecto de color al pasar el mouse */
