@@ -1,7 +1,14 @@
-# Configuración básica para Hostinger
+# ========================================
+# CONFIGURACIÓN PARA ECOSDELSEO.COM
+# Proyecto principal + WordPress en /blog
+# ========================================
+
+# Activar RewriteEngine
 RewriteEngine On
 
-# Configurar tipos MIME para archivos estáticos
+# ========================================
+# CONFIGURACIÓN DE TIPOS MIME
+# ========================================
 AddType application/javascript .js
 AddType text/css .css
 AddType image/webp .webp
@@ -11,26 +18,119 @@ AddType image/jpeg .jpeg
 AddType image/gif .gif
 AddType image/svg+xml .svg
 
+# ========================================
+# FORZAR HTTPS Y WWW (OPCIONAL)
+# ========================================
+# Redirigir HTTP a HTTPS
+RewriteCond %{HTTPS} off
+RewriteCond %{REQUEST_URI} !^/blog/ [NC]
+RewriteRule ^(.*)$ https://www.ecosdelseo.com/$1 [R=301,L]
+
+# Redirigir sin www a con www (solo HTTPS)
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} ^ecosdelseo\.com$ [NC]
+RewriteCond %{REQUEST_URI} !^/blog/ [NC]
+RewriteRule ^(.*)$ https://www.ecosdelseo.com/$1 [R=301,L]
+
+# ========================================
+# EXCLUSIÓN TOTAL DEL DIRECTORIO /blog
+# Permitir que WordPress maneje sus propias reglas
+# ========================================
+# EXCLUSIÓN COMPLETA: Pasar TODO el directorio /blog a WordPress
+# Sin procesamiento adicional del .htaccess principal
+RewriteCond %{REQUEST_URI} ^/blog [NC]
+RewriteRule ^blog/(.*)$ blog/$1 [QSA,L,E=WORDPRESS:1]
+
+# Permitir acceso directo al directorio /blog/
+RewriteCond %{REQUEST_URI} ^/blog/?$ [NC]
+RewriteRule ^blog/?$ blog/ [QSA,L,E=WORDPRESS:1]
+
+# NOTA: Todas las demás reglas de /blog son manejadas por las reglas anteriores
+# WordPress tendrá control total sobre su directorio
+
+# ========================================
+# REGLAS DEL PROYECTO PRINCIPAL
+# (Solo se aplican fuera de /blog)
+# ========================================
+
 # Redireccionar archivos estáticos al directorio frontend
+# EXCLUIR completamente /blog de esta regla
+RewriteCond %{REQUEST_URI} !^/blog/ [NC]
 RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|webp|svg|ico|woff|woff2|ttf|eot)$ [NC]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ frontend/$1 [QSA,L]
 
 # Redireccionar API
+RewriteCond %{REQUEST_URI} !^/blog/ [NC]
 RewriteCond %{REQUEST_URI} ^/api/
 RewriteRule ^api/(.*)$ api/index.php [QSA,L]
 
 # Redireccionar páginas HTML al directorio frontend
+RewriteCond %{REQUEST_URI} !^/blog/ [NC]
 RewriteCond %{REQUEST_URI} \.html$ [NC]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ frontend/$1 [QSA,L]
 
 # Frontend SPA - Solo para rutas que no existen como archivos
+# EXCLUYE completamente el directorio /blog para WordPress
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !^/api/
-RewriteCond %{REQUEST_URI} !\.(js|css|png|jpg|jpeg|gif|webp|svg|ico|woff|woff2|ttf|eot|html)$ [NC]
+RewriteCond %{REQUEST_URI} !^/api/ [NC]
+RewriteCond %{REQUEST_URI} !^/blog [NC]
+RewriteCond %{REQUEST_URI} !\.(js|css|png|jpg|jpeg|gif|webp|svg|ico|woff|woff2|ttf|eot|html|php)$ [NC]
 RewriteRule ^(.*)$ frontend/index.html [QSA,L]
 
-# Página de inicio
+# ========================================
+# CONFIGURACIÓN DE DIRECTORIO ÍNDICE
+# ========================================
 DirectoryIndex frontend/index.html
+
+# ========================================
+# CONFIGURACIONES ADICIONALES PARA SEO
+# ========================================
+
+# Habilitar compresión GZIP
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Configurar caché para archivos estáticos
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>
+
+# Seguridad básica
+<Files ".htaccess">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# ========================================
+# NOTAS IMPORTANTES:
+# ========================================
+# 1. Este .htaccess va en la raíz de public_html
+# 2. WordPress debe tener su propio .htaccess en public_html/blog/
+# 3. Las reglas de WordPress NO interfieren con el proyecto principal
+# 4. El directorio /blog está completamente excluido de las reglas principales
+# 5. SEO: Ambos sitios pueden ser indexados independientemente
+# 6. Sitemap principal: ecosdelseo.com/sitemap.xml
+# 7. Sitemap WordPress: ecosdelseo.com/blog/sitemap.xml
+# ========================================

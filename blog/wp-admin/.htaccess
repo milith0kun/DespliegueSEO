@@ -1,0 +1,56 @@
+# ========================================
+# CONFIGURACIÓN PARA WP-ADMIN
+# Solución para error 403 Forbidden en Hostinger
+# ========================================
+
+# Permitir acceso completo al directorio wp-admin
+Order allow,deny
+Allow from all
+
+# Configuración específica para Hostinger
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Permitir acceso directo a todos los archivos PHP de wp-admin
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule \.(php)$ - [L]
+
+# Permitir acceso a archivos estáticos (CSS, JS, imágenes)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule \.(css|js|png|jpg|jpeg|gif|svg|ico)$ - [L]
+
+# Permitir acceso a directorios
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.*)$ - [L]
+</IfModule>
+
+# Configuración de cabeceras para compatibilidad
+<IfModule mod_headers.c>
+# Permitir acceso desde el panel de Hostinger
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
+# Configuración de tipos MIME
+AddType application/javascript .js
+AddType text/css .css
+AddType image/png .png
+AddType image/jpeg .jpg
+AddType image/gif .gif
+AddType image/svg+xml .svg
+
+# Configuración de índices
+Options +Indexes
+DirectoryIndex index.php admin.php
+
+# Configuración de seguridad básica
+<Files "*.php">
+	Order allow,deny
+	Allow from all
+</Files>
+
+# Permitir acceso específico para el panel de Hostinger
+<RequireAll>
+	Require all granted
+</RequireAll>

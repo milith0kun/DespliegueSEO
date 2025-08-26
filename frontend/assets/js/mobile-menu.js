@@ -16,11 +16,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Cerrar menú al hacer clic en enlaces
-        const mobileNavLinks = mobileDropdownMenu.querySelectorAll('a');
-        mobileNavLinks.forEach(link => {
+        const mobileLinks = mobileDropdownMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
             link.addEventListener('click', function() {
                 closeMobileMenu();
             });
+        });
+        
+        // Cerrar menú automáticamente al redimensionar a pantalla grande
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1024) {
+                closeMobileMenu();
+            }
         });
         
         // Cerrar menú al presionar Escape

@@ -53,7 +53,7 @@
     align-items: center;
 }
 
-.language-selector a {
+.language-selector .lang-btn {
     padding: 0.35rem 1rem;
     border-radius: 15px;
     font-weight: 500;
@@ -63,18 +63,33 @@
     align-items: center;
     justify-content: center;
     background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #0f172a;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    text-decoration: none;
 }
 
-.language-selector a.active {
+.language-selector .lang-btn.active {
     background: linear-gradient(135deg, #3B82F6, #2563EB);
     color: white;
     box-shadow: 0 2px 6px rgba(59, 130, 246, 0.2);
     height: 22px;
+    font-weight: 600;
+    transform: scale(1.05);
 }
 
-.language-selector a:hover:not(.active) {
+.language-selector .lang-btn:hover:not(.active) {
     background: rgba(59, 130, 246, 0.1);
     transform: translateY(-1px);
+    color: #1e40af;
+}
+
+.language-selector .lang-btn:focus {
+    outline: 2px solid rgba(59, 130, 246, 0.5);
+    outline-offset: 2px;
 }
 
 .main-nav {
@@ -151,26 +166,27 @@
 }
 
 .login-btn {
-    background: linear-gradient(135deg, #3a4db1, #2563EB);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #ffffff;
-    padding: 0.35rem 1.75rem;
-    height: 30px;
+    padding: 0.15rem 1.75rem;
+    height: 28px;
     min-width: 90px;
-    border-radius: 6px;
-    font-weight: 600;
+    border-radius: 25px;
+    font-weight: 500;
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: inline-flex;
+    transition: all 0.3s ease;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     position: relative;
-    border: 1px solid rgba(109, 138, 255, 0.5);
+    border: none;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    cursor: pointer;
 }
 
 .login-btn::before {
@@ -394,6 +410,30 @@
     background: linear-gradient(135deg, #4a5dc1, #3a4a9c);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Query para pantallas grandes - Ocultar menú móvil */
+@media (min-width: 1025px) {
+    .mobile-menu-container {
+        display: none !important;
+    }
+    
+    .mobile-dropdown-menu {
+        display: none !important;
+    }
+    
+    .mobile-menu-overlay {
+        display: none !important;
+    }
+    
+    /* Asegurar que la navegación desktop sea visible */
+    .nav-menu {
+        display: flex !important;
+    }
+    
+    .login-btn {
+        display: inline-block !important;
+    }
 }
 
 /* Media Query específico para 1024x881 y menores */

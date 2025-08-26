@@ -445,6 +445,7 @@ class UsuariosController {
             
             if (empty($rawInput)) {
                 http_response_code(400);
+                ob_clean();
                 echo json_encode(['success' => false, 'message' => 'No se recibieron datos']);
                 return;
             }
@@ -454,6 +455,7 @@ class UsuariosController {
             if (json_last_error() !== JSON_ERROR_NONE) {
                 error_log("JSON decode error: " . json_last_error_msg());
                 http_response_code(400);
+                ob_clean();
                 echo json_encode(['success' => false, 'message' => 'Formato JSON inválido']);
                 return;
             }
@@ -461,6 +463,7 @@ class UsuariosController {
             // Validar campos requeridos
             if (!isset($input['email']) || !isset($input['password'])) {
                 http_response_code(400);
+                ob_clean();
                 echo json_encode(['success' => false, 'message' => 'Email y contraseña son requeridos']);
                 return;
             }
@@ -468,6 +471,7 @@ class UsuariosController {
             // Validar formato de email
             if (!filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
                 http_response_code(400);
+                ob_clean();
                 echo json_encode(['success' => false, 'message' => 'Formato de email inválido']);
                 return;
             }
@@ -475,6 +479,7 @@ class UsuariosController {
             // Validar longitud de contraseña
             if (strlen($input['password']) < 1) {
                 http_response_code(400);
+                ob_clean();
                 echo json_encode(['success' => false, 'message' => 'La contraseña no puede estar vacía']);
                 return;
             }
@@ -507,10 +512,12 @@ class UsuariosController {
                     ]
                 ];
                 
+                ob_clean();
                 echo json_encode($response, JSON_UNESCAPED_UNICODE);
                 
             } else {
                 http_response_code(401);
+                ob_clean();
                 echo json_encode(['success' => false, 'message' => 'Credenciales inválidas'], JSON_UNESCAPED_UNICODE);
             }
             
@@ -518,6 +525,7 @@ class UsuariosController {
             error_log("UsuariosController login error: " . $e->getMessage());
             
             http_response_code(500);
+            ob_clean();
             echo json_encode([
                 'success' => false, 
                 'message' => 'Error interno del servidor'
@@ -533,6 +541,7 @@ class UsuariosController {
             error_log("CheckAuth - user_id isset: " . (isset($_SESSION['user_id']) ? 'true' : 'false'));
             
             if (isset($_SESSION['user_id'])) {
+                ob_clean();
                 echo json_encode([
                     'authenticated' => true,
                     'success' => true,
@@ -544,10 +553,12 @@ class UsuariosController {
                     ]
                 ]);
             } else {
+                ob_clean();
                 echo json_encode(['authenticated' => false, 'success' => false]);
             }
         } catch (Exception $e) {
             http_response_code(500);
+            ob_clean();
             echo json_encode(['success' => false, 'message' => 'Error interno del servidor']);
         }
     }
@@ -556,10 +567,12 @@ class UsuariosController {
         try {
             if (!isset($_SESSION['user_id'])) {
                 http_response_code(401);
+                ob_clean();
                 echo json_encode(['success' => false, 'message' => 'No autenticado']);
                 return;
             }
 
+            ob_clean();
             echo json_encode([
                 'success' => true,
                 'data' => [
@@ -571,6 +584,7 @@ class UsuariosController {
             ]);
         } catch (Exception $e) {
             http_response_code(500);
+            ob_clean();
             echo json_encode(['success' => false, 'message' => 'Error interno del servidor']);
         }
     }
@@ -578,9 +592,11 @@ class UsuariosController {
     public function logout() {
         try {
             session_destroy();
+            ob_clean();
             echo json_encode(['success' => true, 'message' => 'Logout exitoso']);
         } catch (Exception $e) {
             http_response_code(500);
+            ob_clean();
             echo json_encode(['success' => false, 'message' => 'Error interno del servidor']);
         }
     }

@@ -285,6 +285,5 @@ switch (true) {
         ]);
 }
 
-// Limpiar cualquier output no deseado del buffer antes de enviar respuesta
-ob_clean();
+// Finalizar el procesamiento
 ?>
